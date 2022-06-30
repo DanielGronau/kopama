@@ -32,7 +32,7 @@ the pattern will simply not match in this case, but there will be
 I don't consider this library ready for use in production. 
 I did my best to test for the intended behavior,
 but with such ultra-flexible and rule-bending code it's hard to be
-absolutely sure that all edge cases behave sensible. Further,
+absolutely sure that all edge cases behave in a sensible way. Further,
 the code uses reflection and might be too slow for your use case.
 
 Also, I should mention that "kopama" means "anger" in Telugu.

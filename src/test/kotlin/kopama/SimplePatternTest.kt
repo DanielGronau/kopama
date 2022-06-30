@@ -10,6 +10,26 @@ class SimplePatternTest : StringSpec({
         isNull.test(null) shouldBe true
     }
 
+    "isA(KClass) should test if obj is an instance" {
+        isA(String::class).test(null) shouldBe false
+        isA(String::class).test(42) shouldBe false
+        isA(String::class).test("Alice") shouldBe true
+        isA(CharSequence::class).test("Alice") shouldBe true
+
+        isA(Int::class).test(42) shouldBe true
+        isA(Number::class).test(42) shouldBe true
+    }
+
+    "isA(Class) should test if obj is an instance" {
+        isA(String::class.java).test(null) shouldBe false
+        isA(String::class.java).test(42) shouldBe false
+        isA(String::class.java).test("Alice") shouldBe true
+        isA(CharSequence::class.java).test("Alice") shouldBe true
+
+        isA(Integer::class.java).test(Integer.valueOf(42)) shouldBe true
+        isA(Number::class.java).test(Integer.valueOf(42)) shouldBe true
+    }
+
     "eq() should test equality" {
         eq("Bob").test(null) shouldBe false
         eq("Bob").test(0) shouldBe false

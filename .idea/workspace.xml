@@ -7,15 +7,9 @@
     <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="WIP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/destructuringPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/destructuringPatterns.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/matching.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/matching.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/operatorPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/operatorPatterns.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/simplePatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/simplePatterns.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/DestructuringPatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/DestructuringPatternTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/MatchingTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/MatchingTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/OperatorPatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/OperatorPatternTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/Person.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/Person.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/SimplePatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/SimplePatternTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +59,7 @@
       <recent name="kopama" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotest.DestructuringPatternTest">
+  <component name="RunManager" selected="Kotest.OperatorPatternTest">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -90,19 +84,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DestructuringPatternTest: anonymous destructuring of Iterables should work" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="consoleApp" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
-      <option name="programParameters" value="" />
-      <option name="specName" value="kopama.DestructuringPatternTest" />
-      <option name="testPath" value="anonymous destructuring of Iterables should work" />
-      <option name="packageName" value="" />
-      <option name="vmparams" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="DestructuringPatternTest: destructuring of Iterables should work" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
       <module name="consoleApp" />
       <option name="passParentEnvs" value="true" />
@@ -110,19 +91,6 @@
       <option name="programParameters" value="" />
       <option name="specName" value="kopama.DestructuringPatternTest" />
       <option name="testPath" value="destructuring of Iterables should work" />
-      <option name="packageName" value="" />
-      <option name="vmparams" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DestructuringPatternTest: destructuring of normal classes should work" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="consoleApp" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
-      <option name="programParameters" value="" />
-      <option name="specName" value="kopama.DestructuringPatternTest" />
-      <option name="testPath" value="destructuring of normal classes should work" />
       <option name="packageName" value="" />
       <option name="vmparams" value="" />
       <method v="2">
@@ -142,13 +110,39 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="OperatorPatternTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="consoleApp" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="kopama.OperatorPatternTest" />
+      <option name="testPath" value="" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SimplePatternTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="consoleApp" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="kopama.SimplePatternTest" />
+      <option name="testPath" value="" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotest.OperatorPatternTest" />
+        <item itemvalue="Kotest.SimplePatternTest" />
         <item itemvalue="Kotest.DestructuringPatternTest" />
         <item itemvalue="Kotest.MatchingTest: data class should be destructured" />
         <item itemvalue="Kotest.DestructuringPatternTest: destructuring of Iterables should work" />
-        <item itemvalue="Kotest.DestructuringPatternTest: anonymous destructuring of Iterables should work" />
-        <item itemvalue="Kotest.DestructuringPatternTest: destructuring of normal classes should work" />
       </list>
     </recent_temporary>
   </component>
@@ -161,6 +155,14 @@
       <option name="presentableId" value="Default" />
       <updated>1656534486242</updated>
     </task>
+    <task id="LOCAL-00001" summary="WIP">
+      <created>1656621309923</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1656621309923</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -30,5 +30,18 @@ class OperatorPatternTest : StringSpec({
         (eq("Alice") xor eq("Bob")).test("Charlie") shouldBe false
         (eq("Alice") xor eq("Alice")).test("Alice") shouldBe false
     }
+
+    "allOf should match if all argument patterns match" {
+        allOf().test("Alice") shouldBe true
+        allOf(eq("Alice"), any, !isNull).test("Alice") shouldBe true
+        allOf(eq("Alice"), any, eq("Bob"), !isNull).test("Alice") shouldBe false
+    }
+
+    "anyOf should match if all argument patterns match" {
+        anyOf().test("Alice") shouldBe false
+        anyOf(eq("Alice"), eq("Bob"), isNull).test("Alice") shouldBe true
+        anyOf(eq("Alice"), eq("Bob"), isNull).test("Bob") shouldBe true
+        anyOf(eq("Alice"), eq("Bob"), isNull).test("Charlie") shouldBe false
+    }
 })
 
