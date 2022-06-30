@@ -30,6 +30,24 @@ class SimplePatternTest : StringSpec({
         isA(Number::class.java).test(Integer.valueOf(42)) shouldBe true
     }
 
+    "isSame should check if obj is the same instance" {
+        val p = Person("Alice", "Cooper", 74)
+        isSame(p).test(Person("Alice", "Cooper", 74)) shouldBe false
+        isSame(p).test(p) shouldBe true
+        isSame(p).test(null) shouldBe false
+        isSame(null).test(p) shouldBe false
+        isSame(null).test(null) shouldBe true
+    }
+
+    "hasToString should check if obj has the same toString() result" {
+        val p = Person("Alice", "Cooper", 74)
+        println(p)
+        hasToString("Person(firstName=Alice, lastName=Cooper, age=74)").test(p) shouldBe true
+        hasToString("waffles").test(p) shouldBe false
+        hasToString("waffles").test(null) shouldBe false
+        hasToString("null").test(null) shouldBe true
+    }
+
     "eq() should test equality" {
         eq("Bob").test(null) shouldBe false
         eq("Bob").test(0) shouldBe false

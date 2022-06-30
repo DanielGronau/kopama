@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="WIP">
+    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="isA(), allOf(), anyOf() patterns">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/operatorPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/operatorPatterns.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/matching.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/matching.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/simplePatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/simplePatterns.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/OperatorPatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/OperatorPatternTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/SimplePatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/SimplePatternTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +57,7 @@
       <recent name="kopama" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotest.OperatorPatternTest">
+  <component name="RunManager" selected="Kotest.SimplePatternTest">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -84,13 +82,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DestructuringPatternTest: destructuring of Iterables should work" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+    <configuration name="MatchingTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
       <module name="consoleApp" />
       <option name="passParentEnvs" value="true" />
       <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
       <option name="programParameters" value="" />
-      <option name="specName" value="kopama.DestructuringPatternTest" />
-      <option name="testPath" value="destructuring of Iterables should work" />
+      <option name="specName" value="kopama.MatchingTest" />
+      <option name="testPath" value="" />
       <option name="packageName" value="" />
       <option name="vmparams" value="" />
       <method v="2">
@@ -138,11 +136,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotest.OperatorPatternTest" />
         <item itemvalue="Kotest.SimplePatternTest" />
+        <item itemvalue="Kotest.MatchingTest" />
+        <item itemvalue="Kotest.OperatorPatternTest" />
         <item itemvalue="Kotest.DestructuringPatternTest" />
         <item itemvalue="Kotest.MatchingTest: data class should be destructured" />
-        <item itemvalue="Kotest.DestructuringPatternTest: destructuring of Iterables should work" />
       </list>
     </recent_temporary>
   </component>
@@ -162,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656621309923</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="isA(), allOf(), anyOf() patterns">
+      <created>1656623181659</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1656623181659</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -178,7 +183,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="WIP" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP" />
+    <MESSAGE value="isA(), allOf(), anyOf() patterns" />
+    <option name="LAST_COMMIT_MESSAGE" value="isA(), allOf(), anyOf() patterns" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

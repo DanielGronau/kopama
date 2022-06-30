@@ -15,6 +15,14 @@ fun isA(klass: Class<*>) = object : Pattern {
     override fun test(obj: Any?) = klass.isInstance(obj)
 }
 
+fun isSame(instance: Any?) = object : Pattern {
+    override fun test(obj: Any?) = obj === instance
+}
+
+fun hasToString(string: String) = object : Pattern {
+    override fun test(obj: Any?) = obj.toString() == string
+}
+
 val any = object : Pattern {
     override fun test(obj: Any?) = true
 }
