@@ -1,0 +1,4 @@
+package kopama
+
+class Person {
+}
