@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>consoleApp</artifactId>
-    <groupId>org.example</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>kopama</artifactId>
+    <groupId>org.kopama</groupId>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>consoleApp</name>
+    <name>kopama</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,7 +31,7 @@
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
-                <version>1.6.21</version>
+                <version>1.7.0</version>
                 <executions>
                     <execution>
                         <id>compile</id>
@@ -63,6 +63,17 @@
     <dependencies>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit5</artifactId>
             <version>1.6.21</version>
             <scope>test</scope>
@@ -74,10 +85,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>1.6.21</version>
+            <groupId>io.kotest</groupId>
+            <artifactId>kotest-runner-junit5-jvm</artifactId>
+            <version>5.3.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.kotest</groupId>
+            <artifactId>kotest-assertions-core-jvm</artifactId>
+            <version>5.3.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
-
 </project>

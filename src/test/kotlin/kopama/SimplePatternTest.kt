@@ -3,87 +3,36 @@ package kopama
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class DataClassTest : StringSpec ({
+class SimplePatternTest : StringSpec({
 
-     "isNull should test for null values" {
-         val s = null
-         when(match(s)) {
-             eq("Alice") -> 1
-             eq("Bob") -> 2
-             isNull -> 3
-             eq("Darius") -> 4
-             else -> 5
-         } shouldBe 3
-     }
+    "isNull should test for null values" {
+        isNull.test("23") shouldBe false
+        isNull.test(null) shouldBe true
+    }
 
-     "eq should test equality" {
-         val s = "Cesar"
-         when(match(s)) {
-             eq("Alice") -> 1
-             eq("Bob") -> 2
-             eq("Cesar") -> 3
-             eq("Darius") -> 4
-             else -> 5
-         } shouldBe 3
-     }
+    "eq() should test equality" {
+        eq("Bob").test(null) shouldBe false
+        eq("Bob").test(0) shouldBe false
+        eq("Bob").test("Alice") shouldBe false
+        eq("Bob").test("Bob") shouldBe true
+
+        eq(null).test("Bob") shouldBe false
+        eq(null).test(null) shouldBe true
+    }
 
     "any should match anything" {
-        val s = "Cesar"
-        when(match(s)) {
-            eq("Alice") -> 1
-            eq("Bob") -> 2
-            any -> 3
-            eq("Darius") -> 4
-            else -> 5
-        } shouldBe 3
+        any.test(null) shouldBe true
+        any.test(0) shouldBe true
+        any.test("Bob") shouldBe true
     }
 
-    "'!' should negate the pattern result" {
-        val s = "Cesar"
-        when(match(s)) {
-            !any -> 1
-            eq("Alice") -> 1
-            !eq("Alice") -> 2
-            else -> 3
-        } shouldBe 2
-    }
+    "oneOf() should test equality with at least one of the given values" {
+        oneOf().test("Bob") shouldBe false
+        oneOf(1, null, "Alice", 'c').test("Bob") shouldBe false
+        oneOf(1, null, "Bob", 'c').test("Bob") shouldBe true
+        oneOf("Bob", "Alice", "Bob", "Bob").test("Bob") shouldBe true
 
-    "oneOf should match when one of the values is equal" {
-        val s = "Cesar"
-        when(match(s)) {
-            oneOf("Alice", "Bob") -> 1
-            oneOf("Cesar", "Darius") -> 2
-            else -> 3
-        } shouldBe 2
+        oneOf(1, 0.0, "Bob", 'c').test(null) shouldBe false
+        oneOf(1, null, "Bob", 'c').test(null) shouldBe true
     }
-
-    "or should match when one of the patterns matches" {
-        val s = "Cesar"
-        when(match(s)) {
-            eq("Alice") or eq("Bob") -> 1
-            eq("Cesar") or !any -> 2
-            else -> 3
-        } shouldBe 2
-    }
-
-    "and should match when both of the patterns match" {
-        val s = "Cesar"
-        when(match(s)) {
-            eq("Alice") and eq("Cesar") -> 1
-            eq("Cesar") and any -> 2
-            else -> 3
-        } shouldBe 2
-    }
-
-    "the range operator should deconstruct the object" {
-        val s = Person("Roy", "Batty", 4)
-        when(match(s)) {
-            eq("Roy") .. eq("Black") .. eq(4) -> 1
-            eq("Roy") .. eq("Batty") .. eq(4) -> 2
-            else -> 3
-        } shouldBe 2
-    }
-
 })
-
-data class Person(val firstName: String, val lastName: String, val age: Int)

@@ -3,87 +3,78 @@ package kopama
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class SimplePatternTest : StringSpec ({
+class DestructuringPatternTest : StringSpec({
 
-     "isNull should test for null values" {
-         val s = null
-         when(match(s)) {
-             eq("Alice") -> 1
-             eq("Bob") -> 2
-             isNull -> 3
-             eq("Darius") -> 4
-             else -> 5
-         } shouldBe 3
-     }
+    "destructuring of data classes should work" {
+        val p = Person("Alice", "Cooper", 74)
 
-     "eq should test equality" {
-         val s = "Cesar"
-         when(match(s)) {
-             eq("Alice") -> 1
-             eq("Bob") -> 2
-             eq("Cesar") -> 3
-             eq("Darius") -> 4
-             else -> 5
-         } shouldBe 3
-     }
+        "Human"(eq("Alice"), eq("Cooper"), eq(74)).test(p) shouldBe false
+        "Person"(eq("Alice"), eq("Cooper"), eq(74)).test(p) shouldBe true
+        "kopama.Person"(eq("Alice"), eq("Cooper"), eq(74)).test(p) shouldBe true
 
-    "any should match anything" {
-        val s = "Cesar"
-        when(match(s)) {
-            eq("Alice") -> 1
-            eq("Bob") -> 2
-            any -> 3
-            eq("Darius") -> 4
-            else -> 5
-        } shouldBe 3
+        "Person"(eq("Alice"), eq("Cooper"), eq(74), eq(0.0)).test(p) shouldBe false
+        "Person"(eq("Alice"), eq("Cooper")).test(p) shouldBe true
+        "Person"().test(p) shouldBe true
     }
 
-    "'!' should negate the pattern result" {
-        val s = "Cesar"
-        when(match(s)) {
-            !any -> 1
-            eq("Alice") -> 1
-            !eq("Alice") -> 2
-            else -> 3
-        } shouldBe 2
+    "destructuring of normal classes should work" {
+        "String"().test("foo") shouldBe true
+        "kotlin.String"().test("foo") shouldBe true
+        "Text"().test("foo") shouldBe false
     }
 
-    "oneOf should match when one of the values is equal" {
-        val s = "Cesar"
-        when(match(s)) {
-            oneOf("Alice", "Bob") -> 1
-            oneOf("Cesar", "Darius") -> 2
-            else -> 3
-        } shouldBe 2
+    "destructuring of Iterables should work" {
+        val l = listOf(2, 1, 3, 4)
+        println(l::class.qualifiedName)
+
+        "ArrayList"().test(l) shouldBe true
+        "ArrayList"(eq(2)).test(l) shouldBe true
+        "ArrayList"(eq(2), eq(1)).test(l) shouldBe true
+        "ArrayList"(eq(2), eq(1), eq(3)).test(l) shouldBe true
+        "ArrayList"(eq(2), eq(1), eq(3), eq(4)).test(l) shouldBe true
+        "ArrayList"(eq(2), eq(1), eq(3), eq(4), eq(7)).test(l) shouldBe false
+
+        "ArrayList"(eq("Alice")).test(l) shouldBe false
+        "ArrayList"(eq(null)).test(l) shouldBe false
+
+        "List"(eq(2), eq(1), eq(3), eq(4)).test(l) shouldBe false
+        "java.util.Arrays.ArrayList"(eq(2), eq(1), eq(3), eq(4)).test(l) shouldBe true
     }
 
-    "or should match when one of the patterns matches" {
-        val s = "Cesar"
-        when(match(s)) {
-            eq("Alice") or eq("Bob") -> 1
-            eq("Cesar") or !any -> 2
-            else -> 3
-        } shouldBe 2
+    "anonymous destructuring of data classes should work" {
+        val p = Person("Alice", "Cooper", 74)
+
+        data(eq("Alice"), eq("Cooper"), eq(74)).test(p) shouldBe true
+        data(eq("Alice"), eq("Cooper"), eq(74), eq(0.0)).test(p) shouldBe false
+        data(eq("Alice"), eq("Cooper")).test(p) shouldBe true
     }
 
-    "and should match when both of the patterns match" {
-        val s = "Cesar"
-        when(match(s)) {
-            eq("Alice") and eq("Cesar") -> 1
-            eq("Cesar") and any -> 2
-            else -> 3
-        } shouldBe 2
+    "anonymous destructuring of Iterables should work" {
+        val l = listOf(2, 1, 3, 4)
+
+        data().test(l) shouldBe true
+        data(eq(2)).test(l) shouldBe true
+        data(eq(2), eq(1)).test(l) shouldBe true
+        data(eq(2), eq(1), eq(3)).test(l) shouldBe true
+        data(eq(2), eq(1), eq(3), eq(4)).test(l) shouldBe true
+        data(eq(2), eq(1), eq(3), eq(4), eq(7)).test(l) shouldBe false
+
+        data(eq("Alice")).test(l) shouldBe false
+        data(eq(null)).test(l) shouldBe false
     }
 
-    "the range operator should deconstruct the object" {
-        val s = Person("Roy", "Batty", 4)
-        when(match(s)) {
-            eq("Roy") .. eq("Black") .. eq(4) -> 1
-            eq("Roy") .. eq("Batty") .. eq(4) -> 2
-            else -> 3
-        } shouldBe 2
+    "destructuring should nest" {
+        val l = listOf(
+            Person("Alice", "Cooper", 74),
+            Person("Mick", "Jagger", 78)
+        )
+        data(
+            "Person"(eq("Alice"), any, eq(74)),
+            data(any, eq("Jagger"), eq(78))
+        ).test(l) shouldBe true
+        data(
+            "Person"(eq("Alice"), any, eq(71)),
+            data(any, eq("Jagger"), eq(78))
+        ).test(l) shouldBe false
     }
-
 })
-
-data class Person(val firstName: String, val lastName: String, val age: Int)

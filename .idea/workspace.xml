@@ -1,20 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="" />
+    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="WIP">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/destructuringPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/destructuringPatterns.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/matching.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/matching.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/operatorPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/operatorPatterns.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/simplePatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/simplePatterns.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/DestructuringPatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/DestructuringPatternTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/MatchingTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/MatchingTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/OperatorPatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/OperatorPatternTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/Person.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/Person.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/SimplePatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/SimplePatternTest.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Interface" />
+        <option value="Kotlin File" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2BGZf1zHulS8yAwirO9YPXTu4rd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "D:/Code/kopama/src/test/kotlin/kopama",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Code\kopama\src\test\kotlin\kopama" />
+      <recent name="D:\Code\kopama\src\main\kotlin\kopama" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="kopama" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Kotest.DestructuringPatternTest">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DestructuringPatternTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="consoleApp" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="kopama.DestructuringPatternTest" />
+      <option name="testPath" value="" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DestructuringPatternTest: anonymous destructuring of Iterables should work" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="consoleApp" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="kopama.DestructuringPatternTest" />
+      <option name="testPath" value="anonymous destructuring of Iterables should work" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DestructuringPatternTest: destructuring of Iterables should work" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="consoleApp" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="kopama.DestructuringPatternTest" />
+      <option name="testPath" value="destructuring of Iterables should work" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DestructuringPatternTest: destructuring of normal classes should work" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="consoleApp" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="kopama.DestructuringPatternTest" />
+      <option name="testPath" value="destructuring of normal classes should work" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MatchingTest: data class should be destructured" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="consoleApp" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="kopama.MatchingTest" />
+      <option name="testPath" value="data class should be destructured" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Kotest.DestructuringPatternTest" />
+        <item itemvalue="Kotest.MatchingTest: data class should be destructured" />
+        <item itemvalue="Kotest.DestructuringPatternTest: destructuring of Iterables should work" />
+        <item itemvalue="Kotest.DestructuringPatternTest: anonymous destructuring of Iterables should work" />
+        <item itemvalue="Kotest.DestructuringPatternTest: destructuring of normal classes should work" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -25,5 +162,24 @@
       <updated>1656534486242</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
