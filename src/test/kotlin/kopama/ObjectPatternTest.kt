@@ -3,7 +3,7 @@ package kopama
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class SimplePatternTest : StringSpec({
+class ObjectPatternTest : StringSpec({
 
     "isNull should test for null values" {
         isNull.test("23") shouldBe false

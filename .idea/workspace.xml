@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="ops">
+    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="indexed destructuring">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/stringPatterns.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/destructuringPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/destructuringPatterns.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/DestructuringPatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/DestructuringPatternTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/MatchingTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/MatchingTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/destructuringPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/splitPatterns.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/simplePatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/objectPatterns.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/DestructuringPatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/SplitPatternTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/SimplePatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/ObjectPatternTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Interface" />
-        <option value="Kotlin File" />
         <option value="Kotlin Class" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -176,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656624599658</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="indexed destructuring">
+      <created>1656699337970</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1656699337970</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -195,7 +204,8 @@
     <MESSAGE value="isA(), allOf(), anyOf() patterns" />
     <MESSAGE value="isSame, hasToString patterns" />
     <MESSAGE value="ops" />
-    <option name="LAST_COMMIT_MESSAGE" value="ops" />
+    <MESSAGE value="indexed destructuring" />
+    <option name="LAST_COMMIT_MESSAGE" value="indexed destructuring" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

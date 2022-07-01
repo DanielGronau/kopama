@@ -3,11 +3,11 @@ package kopama
 import kotlin.reflect.KParameter
 import kotlin.reflect.full.memberFunctions
 
-fun data(vararg patterns: Pattern) = Destruct(null, *patterns)
+fun split(vararg patterns: Pattern): Pattern = Split(null, *patterns)
 
-operator fun String.invoke(vararg patterns: Pattern) = Destruct(this, *patterns)
+operator fun String.invoke(vararg patterns: Pattern): Pattern = Split(this, *patterns)
 
-class Destruct internal constructor(private val className: String?, vararg val patterns: Pattern) : Pattern {
+internal class Split(private val className: String?, vararg val patterns: Pattern) : Pattern {
     override fun test(obj: Any?) = when {
         obj == null -> false
         className != null && className != obj::class.simpleName && className != obj::class.qualifiedName -> false
@@ -20,16 +20,16 @@ class Destruct internal constructor(private val className: String?, vararg val p
 // index is 1-based
 operator fun Pattern.get(index: Int) = object : Pattern {
 
-    private fun eval(list: List<*>) =
+    private fun testIndex(list: List<*>) =
         if (index < 0 || index >= list.size) false
         else this@get.test(list[index])
 
     override fun test(obj: Any?) = when (obj) {
         null -> false
-        is List<*> -> eval(obj)
-        is Array<*> -> eval(obj.toList())
-        is Sequence<*> -> eval(obj.toList())
-        is Iterable<*> -> eval(obj.toList())
+        is List<*> -> testIndex(obj)
+        is Array<*> -> testIndex(obj.toList())
+        is Sequence<*> -> testIndex(obj.toList())
+        is Iterable<*> -> testIndex(obj.toList())
         else -> this@get.testComponentN(obj, index)
     }
 }

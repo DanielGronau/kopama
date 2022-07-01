@@ -3,9 +3,9 @@ package kopama
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class DestructuringPatternTest : StringSpec({
+class SplitPatternTest : StringSpec({
 
-    "destructuring of data classes should work" {
+    "splitting data classes should work" {
         val p = Person("Alice", "Cooper", 74)
 
         "Human"(eq("Alice"), eq("Cooper"), eq(74)).test(p) shouldBe false
@@ -17,13 +17,13 @@ class DestructuringPatternTest : StringSpec({
         "Person"().test(p) shouldBe true
     }
 
-    "destructuring of normal classes should work" {
+    "splitting normal classes should work" {
         "String"().test("foo") shouldBe true
         "kotlin.String"().test("foo") shouldBe true
         "Text"().test("foo") shouldBe false
     }
 
-    "destructuring of Iterables should work" {
+    "splitting Iterables should work" {
         val l = listOf(2, 1, 3, 4)
         println(l::class.qualifiedName)
 
@@ -41,40 +41,40 @@ class DestructuringPatternTest : StringSpec({
         "java.util.Arrays.ArrayList"(eq(2), eq(1), eq(3), eq(4)).test(l) shouldBe true
     }
 
-    "anonymous destructuring of data classes should work" {
+    "anonymous splitting of data classes should work" {
         val p = Person("Alice", "Cooper", 74)
 
-        data(eq("Alice"), eq("Cooper"), eq(74)).test(p) shouldBe true
-        data(eq("Alice"), eq("Cooper"), eq(74), eq(0.0)).test(p) shouldBe false
-        data(eq("Alice"), eq("Cooper")).test(p) shouldBe true
+        split(eq("Alice"), eq("Cooper"), eq(74)).test(p) shouldBe true
+        split(eq("Alice"), eq("Cooper"), eq(74), eq(0.0)).test(p) shouldBe false
+        split(eq("Alice"), eq("Cooper")).test(p) shouldBe true
     }
 
-    "anonymous destructuring of Iterables should work" {
+    "anonymous splitting of Iterables should work" {
         val l = listOf(2, 1, 3, 4)
 
-        data().test(l) shouldBe true
-        data(eq(2)).test(l) shouldBe true
-        data(eq(2), eq(1)).test(l) shouldBe true
-        data(eq(2), eq(1), eq(3)).test(l) shouldBe true
-        data(eq(2), eq(1), eq(3), eq(4)).test(l) shouldBe true
-        data(eq(2), eq(1), eq(3), eq(4), eq(7)).test(l) shouldBe false
+        split().test(l) shouldBe true
+        split(eq(2)).test(l) shouldBe true
+        split(eq(2), eq(1)).test(l) shouldBe true
+        split(eq(2), eq(1), eq(3)).test(l) shouldBe true
+        split(eq(2), eq(1), eq(3), eq(4)).test(l) shouldBe true
+        split(eq(2), eq(1), eq(3), eq(4), eq(7)).test(l) shouldBe false
 
-        data(eq("Alice")).test(l) shouldBe false
-        data(eq(null)).test(l) shouldBe false
+        split(eq("Alice")).test(l) shouldBe false
+        split(eq(null)).test(l) shouldBe false
     }
 
-    "destructuring should nest" {
+    "splitting should nest" {
         val l = listOf(
             Person("Alice", "Cooper", 74),
             Person("Mick", "Jagger", 78)
         )
-        data(
+        split(
             "Person"(eq("Alice"), any, eq(74)),
-            data(any, eq("Jagger"), eq(78))
+            split(any, eq("Jagger"), eq(78))
         ).test(l) shouldBe true
-        data(
+        split(
             "Person"(eq("Alice"), any, eq(71)),
-            data(any, eq("Jagger"), eq(78))
+            split(any, eq("Jagger"), eq(78))
         ).test(l) shouldBe false
     }
 
