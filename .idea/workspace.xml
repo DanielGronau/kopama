@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="isSame, hasToString patterns" />
+    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="ops">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/destructuringPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/destructuringPatterns.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/DestructuringPatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/DestructuringPatternTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/MatchingTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/MatchingTest.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,18 +36,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "D:/Code/kopama/src/test/kotlin/kopama",
-    "project.structure.last.edited": "Facets",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Code/kopama/src/test/kotlin/kopama&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Code\kopama\src\test\kotlin\kopama" />
@@ -52,7 +57,15 @@
       <recent name="kopama" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotest.SimplePatternTest">
+  <component name="RunManager" selected="Kotest.All tests in 'kopama' (1)">
+    <configuration name="All in consoleApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="consoleApp" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -64,65 +77,52 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DestructuringPatternTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+    <configuration name="All tests in 'kopama' (1)" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="consoleApp" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="" />
+      <option name="testPath" value="" />
+      <option name="packageName" value="kopama" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All tests in 'kopama'" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="consoleApp" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="" />
+      <option name="testPath" value="" />
+      <option name="packageName" value="kopama" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DestructuringPatternTest: destructuring of data classes should work" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
       <module name="consoleApp" />
       <option name="passParentEnvs" value="true" />
       <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
       <option name="programParameters" value="" />
       <option name="specName" value="kopama.DestructuringPatternTest" />
-      <option name="testPath" value="" />
+      <option name="testPath" value="destructuring of data classes should work" />
       <option name="packageName" value="" />
       <option name="vmparams" value="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MatchingTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+    <configuration name="DestructuringPatternTest: indexed access should work for arrays" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
       <module name="consoleApp" />
       <option name="passParentEnvs" value="true" />
       <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
       <option name="programParameters" value="" />
-      <option name="specName" value="kopama.MatchingTest" />
-      <option name="testPath" value="" />
-      <option name="packageName" value="" />
-      <option name="vmparams" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MatchingTest: data class should be destructured" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="consoleApp" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
-      <option name="programParameters" value="" />
-      <option name="specName" value="kopama.MatchingTest" />
-      <option name="testPath" value="data class should be destructured" />
-      <option name="packageName" value="" />
-      <option name="vmparams" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OperatorPatternTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="consoleApp" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
-      <option name="programParameters" value="" />
-      <option name="specName" value="kopama.OperatorPatternTest" />
-      <option name="testPath" value="" />
-      <option name="packageName" value="" />
-      <option name="vmparams" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SimplePatternTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="consoleApp" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
-      <option name="programParameters" value="" />
-      <option name="specName" value="kopama.SimplePatternTest" />
-      <option name="testPath" value="" />
+      <option name="specName" value="kopama.DestructuringPatternTest" />
+      <option name="testPath" value="indexed access should work for arrays" />
       <option name="packageName" value="" />
       <option name="vmparams" value="" />
       <method v="2">
@@ -131,11 +131,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotest.SimplePatternTest" />
-        <item itemvalue="Kotest.MatchingTest" />
-        <item itemvalue="Kotest.OperatorPatternTest" />
-        <item itemvalue="Kotest.DestructuringPatternTest" />
-        <item itemvalue="Kotest.MatchingTest: data class should be destructured" />
+        <item itemvalue="Kotest.All tests in 'kopama' (1)" />
+        <item itemvalue="JUnit.All in consoleApp" />
+        <item itemvalue="Kotest.DestructuringPatternTest: destructuring of data classes should work" />
+        <item itemvalue="Kotest.All tests in 'kopama'" />
+        <item itemvalue="Kotest.DestructuringPatternTest: indexed access should work for arrays" />
       </list>
     </recent_temporary>
   </component>
@@ -169,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656624561453</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="ops">
+      <created>1656624599658</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1656624599658</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -187,7 +194,8 @@
     <MESSAGE value="WIP" />
     <MESSAGE value="isA(), allOf(), anyOf() patterns" />
     <MESSAGE value="isSame, hasToString patterns" />
-    <option name="LAST_COMMIT_MESSAGE" value="isSame, hasToString patterns" />
+    <MESSAGE value="ops" />
+    <option name="LAST_COMMIT_MESSAGE" value="ops" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

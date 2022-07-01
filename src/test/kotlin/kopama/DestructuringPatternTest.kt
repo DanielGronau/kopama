@@ -77,4 +77,52 @@ class DestructuringPatternTest : StringSpec({
             data(any, eq("Jagger"), eq(78))
         ).test(l) shouldBe false
     }
+
+    "indexed access should work for arrays" {
+        eq("Bob")[1].test(arrayOf("Alice", "Bob", "Charlie")) shouldBe true
+        eq("Bob")[-1].test(arrayOf("Alice", "Bob", "Charlie")) shouldBe false
+        eq("Bob")[2].test(arrayOf("Alice", "Bob", "Charlie")) shouldBe false
+        eq("Bob")[10].test(arrayOf("Alice", "Bob", "Charlie")) shouldBe false
+        isNull[1].test(arrayOf("Alice", null, "Charlie")) shouldBe true
+        isNull[10].test(arrayOf("Alice", null, "Charlie")) shouldBe false
+    }
+
+    "indexed access should work for lists" {
+        eq("Bob")[1].test(listOf("Alice", "Bob", "Charlie")) shouldBe true
+        eq("Bob")[-1].test(listOf("Alice", "Bob", "Charlie")) shouldBe false
+        eq("Bob")[2].test(listOf("Alice", "Bob", "Charlie")) shouldBe false
+        eq("Bob")[10].test(listOf("Alice", "Bob", "Charlie")) shouldBe false
+        isNull[1].test(listOf("Alice", null, "Charlie")) shouldBe true
+        isNull[10].test(listOf("Alice", null, "Charlie")) shouldBe false
+    }
+
+    "indexed access should work for collections" {
+        // note that setOf preserves order, as it uses LinkedHashSet
+        eq("Bob")[1].test(setOf("Alice", "Bob", "Charlie")) shouldBe true
+        eq("Bob")[-1].test(setOf("Alice", "Bob", "Charlie")) shouldBe false
+        eq("Bob")[2].test(setOf("Alice", "Bob", "Charlie")) shouldBe false
+        eq("Bob")[10].test(setOf("Alice", "Bob", "Charlie")) shouldBe false
+        isNull[1].test(setOf("Alice", null, "Charlie")) shouldBe true
+        isNull[10].test(setOf("Alice", null, "Charlie")) shouldBe false
+    }
+
+    "indexed access should work for sequences" {
+        eq("Bob")[1].test(sequenceOf("Alice", "Bob", "Charlie")) shouldBe true
+        eq("Bob")[-1].test(sequenceOf("Alice", "Bob", "Charlie")) shouldBe false
+        eq("Bob")[2].test(sequenceOf("Alice", "Bob", "Charlie")) shouldBe false
+        eq("Bob")[10].test(sequenceOf("Alice", "Bob", "Charlie")) shouldBe false
+        isNull[1].test(sequenceOf("Alice", null, "Charlie")) shouldBe true
+        isNull[10].test(sequenceOf("Alice", null, "Charlie")) shouldBe false
+    }
+
+    "indexed access should work for data classes" {
+        val p = Person("Alice", "Cooper", 74)
+        eq("Alice")[1].test(p) shouldBe true
+        eq("Cooper")[2].test(p) shouldBe true
+        eq(74)[3].test(p) shouldBe true
+        eq("Bob")[-1].test(p) shouldBe false
+        eq("Bob")[1].test(p) shouldBe false
+        eq("Bob")[10].test(p) shouldBe false
+    }
+
 })
