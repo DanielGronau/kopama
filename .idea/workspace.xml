@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="indexed destructuring">
+    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="renaming">
       <change afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/stringPatterns.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/StringPatternTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/destructuringPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/splitPatterns.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/simplePatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/objectPatterns.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/DestructuringPatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/SplitPatternTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/SimplePatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/ObjectPatternTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,8 +55,11 @@
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="kopama" />
     </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="kopama" />
+    </key>
   </component>
-  <component name="RunManager" selected="Kotest.All tests in 'kopama' (1)">
+  <component name="RunManager" selected="Kotest.StringPatternTest">
     <configuration name="All in consoleApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="consoleApp" />
       <option name="PACKAGE_NAME" value="" />
@@ -92,19 +92,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All tests in 'kopama'" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="consoleApp" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
-      <option name="programParameters" value="" />
-      <option name="specName" value="" />
-      <option name="testPath" value="" />
-      <option name="packageName" value="kopama" />
-      <option name="vmparams" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="DestructuringPatternTest: destructuring of data classes should work" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
       <module name="consoleApp" />
       <option name="passParentEnvs" value="true" />
@@ -118,13 +105,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DestructuringPatternTest: indexed access should work for arrays" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+    <configuration name="StringPatternTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
       <module name="consoleApp" />
       <option name="passParentEnvs" value="true" />
       <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
       <option name="programParameters" value="" />
-      <option name="specName" value="kopama.DestructuringPatternTest" />
-      <option name="testPath" value="indexed access should work for arrays" />
+      <option name="specName" value="kopama.StringPatternTest" />
+      <option name="testPath" value="" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StringPatternTest: contains(String) should test whether the given String is part of the original one" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="consoleApp" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="kopama.StringPatternTest" />
+      <option name="testPath" value="contains(String) should test whether the given String is part of the original one" />
       <option name="packageName" value="" />
       <option name="vmparams" value="" />
       <method v="2">
@@ -133,11 +133,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotest.StringPatternTest" />
+        <item itemvalue="Kotest.StringPatternTest: contains(String) should test whether the given String is part of the original one" />
         <item itemvalue="Kotest.All tests in 'kopama' (1)" />
         <item itemvalue="JUnit.All in consoleApp" />
         <item itemvalue="Kotest.DestructuringPatternTest: destructuring of data classes should work" />
-        <item itemvalue="Kotest.All tests in 'kopama'" />
-        <item itemvalue="Kotest.DestructuringPatternTest: indexed access should work for arrays" />
       </list>
     </recent_temporary>
   </component>
@@ -185,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656699337970</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="renaming">
+      <created>1656704772669</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1656704772669</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -205,7 +212,8 @@
     <MESSAGE value="isSame, hasToString patterns" />
     <MESSAGE value="ops" />
     <MESSAGE value="indexed destructuring" />
-    <option name="LAST_COMMIT_MESSAGE" value="indexed destructuring" />
+    <MESSAGE value="renaming" />
+    <option name="LAST_COMMIT_MESSAGE" value="renaming" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
