@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="comparable patterns">
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/objectPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/objectPatterns.kt" afterDir="false" />
-    </list>
+    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="make any lazy" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -209,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656762347467</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="make any lazy">
+      <created>1656762638829</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1656762638829</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -232,7 +237,8 @@
     <MESSAGE value="renaming" />
     <MESSAGE value="string patterns" />
     <MESSAGE value="comparable patterns" />
-    <option name="LAST_COMMIT_MESSAGE" value="comparable patterns" />
+    <MESSAGE value="make any lazy" />
+    <option name="LAST_COMMIT_MESSAGE" value="make any lazy" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

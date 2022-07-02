@@ -41,7 +41,6 @@ class ObjectPatternTest : StringSpec({
 
     "hasToString() should check if obj has the same toString() result" {
         val p = Person("Alice", "Cooper", 74)
-        println(p)
         hasToString("Person(firstName=Alice, lastName=Cooper, age=74)").test(p) shouldBe true
         hasToString("waffles").test(p) shouldBe false
         hasToString("waffles").test(null) shouldBe false

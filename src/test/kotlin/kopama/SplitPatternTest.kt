@@ -25,7 +25,6 @@ class SplitPatternTest : StringSpec({
 
     "splitting Iterables should work" {
         val l = listOf(2, 1, 3, 4)
-        println(l::class.qualifiedName)
 
         "ArrayList"().test(l) shouldBe true
         "ArrayList"(eq(2)).test(l) shouldBe true
