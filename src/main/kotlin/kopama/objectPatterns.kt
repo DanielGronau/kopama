@@ -24,8 +24,10 @@ fun hasToString(string: String) = object : Pattern {
     override fun test(obj: Any?) = obj.toString() == string
 }
 
-val any = object : Pattern {
-    override fun test(obj: Any?) = true
+val any by lazy {
+    object : Pattern {
+        override fun test(obj: Any?) = true
+    }
 }
 
 fun eq(value: Any?) = object : Pattern {

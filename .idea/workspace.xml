@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="string patterns">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="comparable patterns">
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/objectPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/objectPatterns.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/ObjectPatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/ObjectPatternTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +57,7 @@
       <recent name="kopama" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotest.ObjectPatternTest">
+  <component name="RunManager" selected="Kotest.All tests in 'kopama' (1)">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -138,11 +136,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotest.All tests in 'kopama' (1)" />
         <item itemvalue="Kotest.ObjectPatternTest" />
         <item itemvalue="Kotest.ObjectPatternTest: gt() should test if the original object is bigger than the given value" />
         <item itemvalue="Kotest.StringPatternTest" />
         <item itemvalue="Kotest.StringPatternTest: contains(String) should test whether the given String is part of the original one" />
-        <item itemvalue="Kotest.All tests in 'kopama' (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -204,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656706075900</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="comparable patterns">
+      <created>1656762347467</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1656762347467</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -226,7 +231,8 @@
     <MESSAGE value="indexed destructuring" />
     <MESSAGE value="renaming" />
     <MESSAGE value="string patterns" />
-    <option name="LAST_COMMIT_MESSAGE" value="string patterns" />
+    <MESSAGE value="comparable patterns" />
+    <option name="LAST_COMMIT_MESSAGE" value="comparable patterns" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
