@@ -30,7 +30,7 @@ class ObjectPatternTest : StringSpec({
         isA(Number::class.java).test(Integer.valueOf(42)) shouldBe true
     }
 
-    "isSame should check if obj is the same instance" {
+    "isSame() should check if obj is the same instance" {
         val p = Person("Alice", "Cooper", 74)
         isSame(p).test(Person("Alice", "Cooper", 74)) shouldBe false
         isSame(p).test(p) shouldBe true
@@ -39,7 +39,7 @@ class ObjectPatternTest : StringSpec({
         isSame(null).test(null) shouldBe true
     }
 
-    "hasToString should check if obj has the same toString() result" {
+    "hasToString() should check if obj has the same toString() result" {
         val p = Person("Alice", "Cooper", 74)
         println(p)
         hasToString("Person(firstName=Alice, lastName=Cooper, age=74)").test(p) shouldBe true
@@ -72,5 +72,37 @@ class ObjectPatternTest : StringSpec({
 
         oneOf(1, 0.0, "Bob", 'c').test(null) shouldBe false
         oneOf(1, null, "Bob", 'c').test(null) shouldBe true
+    }
+
+    "gt() should test if the original object is bigger than the given value" {
+        gt(5).test(10) shouldBe true
+        gt(5).test(5) shouldBe false
+        gt(5).test(0) shouldBe false
+        gt(5).test("Bob") shouldBe false
+        gt(5).test(null) shouldBe false
+    }
+
+    "ge() should test if the original object is bigger than or equal to the given value" {
+        ge(5).test(10) shouldBe true
+        ge(5).test(5) shouldBe true
+        ge(5).test(0) shouldBe false
+        ge(5).test("Bob") shouldBe false
+        ge(5).test(null) shouldBe false
+    }
+
+    "lt() should test if the original object is less than the given value" {
+        lt(5).test(10) shouldBe false
+        lt(5).test(5) shouldBe false
+        lt(5).test(0) shouldBe true
+        lt(5).test("Bob") shouldBe false
+        lt(5).test(null) shouldBe false
+    }
+
+    "le() should test if the original object is less than the given value" {
+        le(5).test(10) shouldBe false
+        le(5).test(5) shouldBe true
+        le(5).test(0) shouldBe true
+        le(5).test("Bob") shouldBe false
+        le(5).test(null) shouldBe false
     }
 })

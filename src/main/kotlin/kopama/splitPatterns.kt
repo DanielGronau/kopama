@@ -38,4 +38,7 @@ private fun Pattern.testComponentN(obj: Any?, index: Int) =
     if (index < 0 || obj == null) false
     else obj::class.memberFunctions.find { f ->
         f.name == "component$index" && f.parameters.size == 1 && f.parameters[0].kind == KParameter.Kind.INSTANCE
-    }?.call(obj)?.let { this@testComponentN.test(it) } ?: false
+    }
+        ?.call(obj)
+        ?.let { this@testComponentN.test(it) }
+        ?: false

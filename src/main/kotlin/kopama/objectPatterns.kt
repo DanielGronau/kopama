@@ -11,6 +11,7 @@ val isNull by lazy {
 fun isA(kClass: KClass<*>) = object : Pattern {
     override fun test(obj: Any?) = kClass.isInstance(obj)
 }
+
 fun isA(klass: Class<*>) = object : Pattern {
     override fun test(obj: Any?) = klass.isInstance(obj)
 }
@@ -31,7 +32,34 @@ fun eq(value: Any?) = object : Pattern {
     override fun test(obj: Any?) = value == obj
 }
 
+inline fun <reified T : Comparable<T>> gt(value: T) = object : Pattern {
+    override fun test(obj: Any?) = when (obj) {
+        is T -> obj > value
+        else -> false
+    }
+}
+
+inline fun <reified T : Comparable<T>> ge(value: T) = object : Pattern {
+    override fun test(obj: Any?) = when (obj) {
+        is T -> obj >= value
+        else -> false
+    }
+}
+
+inline fun <reified T : Comparable<T>> lt(value: T) = object : Pattern {
+    override fun test(obj: Any?) = when (obj) {
+        is T -> obj < value
+        else -> false
+    }
+}
+
+inline fun <reified T : Comparable<T>> le(value: T) = object : Pattern {
+    override fun test(obj: Any?) = when (obj) {
+        is T -> obj <= value
+        else -> false
+    }
+}
+
 fun oneOf(vararg values: Any?) = object : Pattern {
     override fun test(obj: Any?) = values.any { it == obj }
 }
-
