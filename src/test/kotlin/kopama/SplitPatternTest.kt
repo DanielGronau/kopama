@@ -124,4 +124,21 @@ class SplitPatternTest : StringSpec({
         eq("Bob")[10].test(p) shouldBe false
     }
 
+    "indexed access should work for char sequences" {
+        eq('c')[3].test("Alice") shouldBe true
+        eq('d')[3].test("Alice") shouldBe false
+        eq('c')[-3].test("Alice") shouldBe false
+        eq('c')[30].test("Alice") shouldBe false
+        eq('c')[3].test(StringBuilder("Alice")) shouldBe true
+        eq('d')[3].test(StringBuilder("Alice")) shouldBe false
+        eq('c')[-3].test(StringBuilder("Alice")) shouldBe false
+        eq('c')[30].test(StringBuilder("Alice")) shouldBe false
+    }
+
+    "named access should work for fields" {
+        val p = Person("Alice", "Cooper", 74)
+        eq("Alice")["firstName"].test(p) shouldBe true
+        eq("Person(firstName=Alice, lastName=Cooper, age=74)")["toString"].test(p) shouldBe true
+    }
+
 })
