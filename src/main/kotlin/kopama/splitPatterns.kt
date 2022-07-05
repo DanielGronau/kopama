@@ -1,6 +1,5 @@
 package kopama
 
-import java.util.*
 import kotlin.reflect.KParameter
 import kotlin.reflect.full.memberFunctions
 
@@ -18,46 +17,42 @@ internal class Split(private val className: String?, vararg val patterns: Patter
     }
 }
 
-// index is 1-based
-operator fun Pattern.get(index: Int) = object : Pattern {
+operator fun Pattern.get(key: Any) = object : Pattern {
 
-    private fun testIndex(list: List<*>) =
+    private fun findMember(obj: Any?, path: List<String>): List<Any?>? =
+        when {
+            path.isEmpty() -> listOf(obj)
+            obj == null -> null
+            else -> findMember(
+                obj::class.members.find { it.name == path.first() }
+                    ?.call(obj),
+                path.drop(1)
+            )
+        }
+
+    private fun testIndex(list: List<*>, index: Int) =
         if (index < 0 || index >= list.size) false
         else this@get.test(list[index])
 
-    private fun testChar(s: CharSequence) =
+    private fun testChar(s: CharSequence, index: Int) =
         if (index < 0 || index >= s.length) false
         else this@get.test(s[index])
 
-    override fun test(obj: Any?) = when (obj) {
-        null -> false
-        is List<*> -> testIndex(obj)
-        is Array<*> -> testIndex(obj.toList())
-        is Sequence<*> -> testIndex(obj.toList())
-        is Iterable<*> -> testIndex(obj.toList())
-        is CharSequence -> testChar(obj)
-        else -> this@get.testComponentN(obj, index)
-    }
-}
-
-operator fun Pattern.get(propertyName: String) = object : Pattern {
-    override fun test(obj: Any?): Boolean {
-        if (obj == null)
-            return false
-        return obj::class.members
-            .find {
-                it.name == propertyName
-                        || it.name == "get${capitalize(propertyName)}"
-                        || it.name == "is${capitalize(propertyName)}"
-            }
-            ?.call(obj)
-            ?.let { this@get.test(it) }
+    override fun test(obj: Any?) = when {
+        obj == null -> false
+        obj is Map<*, *> -> this@get.test(obj[key])
+        key is String -> findMember(obj, key.split('.'))
+            ?.let { this@get.test(it[0]) }
             ?: false
+        key is Int && obj is List<*> -> testIndex(obj, key)
+        key is Int && obj is Array<*> -> testIndex(obj.toList(), key)
+        key is Int && obj is Sequence<*> -> testIndex(obj.toList(), key)
+        key is Int && obj is Iterable<*> -> testIndex(obj.toList(), key)
+        key is Int && obj is CharSequence -> testChar(obj, key)
+        key is Int -> this@get.testComponentN(obj, key)
+        else -> false
     }
 }
-
-private fun capitalize(s: String) =
-    s.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 
 private fun Pattern.testComponentN(obj: Any?, index: Int) =
     if (index < 0 || obj == null) false

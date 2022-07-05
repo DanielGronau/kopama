@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="remove println()s">
+    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="more splitpatterns - WIP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/splitPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/splitPatterns.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/SplitPatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/SplitPatternTest.kt" afterDir="false" />
@@ -59,7 +59,7 @@
       <recent name="kopama" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotest.SplitPatternTest: indexed access should work for char sequences">
+  <component name="RunManager" selected="Kotest.SplitPatternTest">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -71,26 +71,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All tests in 'kopama' (1)" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+    <configuration name="MatchingTest: bla" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
       <module name="consoleApp" />
       <option name="passParentEnvs" value="true" />
       <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
       <option name="programParameters" value="" />
-      <option name="specName" value="" />
-      <option name="testPath" value="" />
-      <option name="packageName" value="kopama" />
-      <option name="vmparams" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ObjectPatternTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="consoleApp" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
-      <option name="programParameters" value="" />
-      <option name="specName" value="kopama.ObjectPatternTest" />
-      <option name="testPath" value="" />
+      <option name="specName" value="kopama.MatchingTest" />
+      <option name="testPath" value="bla" />
       <option name="packageName" value="" />
       <option name="vmparams" value="" />
       <method v="2">
@@ -136,13 +123,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SplitPatternTest: named access should work for nested properties" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="consoleApp" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="kopama.SplitPatternTest" />
+      <option name="testPath" value="named access should work for nested properties" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotest.SplitPatternTest: indexed access should work for char sequences" />
         <item itemvalue="Kotest.SplitPatternTest" />
+        <item itemvalue="Kotest.SplitPatternTest: named access should work for nested properties" />
+        <item itemvalue="Kotest.MatchingTest: bla" />
+        <item itemvalue="Kotest.SplitPatternTest: indexed access should work for char sequences" />
         <item itemvalue="Kotest.SplitPatternTest: named access should work for fields" />
-        <item itemvalue="Kotest.All tests in 'kopama' (1)" />
-        <item itemvalue="Kotest.ObjectPatternTest" />
       </list>
     </recent_temporary>
   </component>
@@ -225,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656763938190</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="more splitpatterns - WIP">
+      <created>1656883524989</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1656883524990</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -250,7 +257,8 @@
     <MESSAGE value="comparable patterns" />
     <MESSAGE value="make any lazy" />
     <MESSAGE value="remove println()s" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove println()s" />
+    <MESSAGE value="more splitpatterns - WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="more splitpatterns - WIP" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

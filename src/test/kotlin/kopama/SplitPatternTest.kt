@@ -135,10 +135,28 @@ class SplitPatternTest : StringSpec({
         eq('c')[30].test(StringBuilder("Alice")) shouldBe false
     }
 
-    "named access should work for fields" {
+    "named access should work" {
         val p = Person("Alice", "Cooper", 74)
         eq("Alice")["firstName"].test(p) shouldBe true
         eq("Person(firstName=Alice, lastName=Cooper, age=74)")["toString"].test(p) shouldBe true
+    }
+
+    "named access should work for nested properties" {
+        val p = Person("Alice", "Cooper", 74)
+        eq(5)["firstName.length"].test(p) shouldBe true
+        eq(6)["firstName.length"].test(p) shouldBe false
+        eq(48)["toString.length"].test(p) shouldBe true
+        eq(0)["toString.length"].test(p) shouldBe false
+    }
+
+    "map access should work" {
+        eq(42)["fortyTwo"].test(mapOf("one" to 1, "fortyTwo" to 42)) shouldBe true
+        eq(42)["fortyTwo"].test(mapOf("one" to 1)) shouldBe false
+        eq("fortyTwo")[42].test(mapOf(1 to "one", 42 to "fortyTwo")) shouldBe true
+        eq("fortyTwo")[42].test(mapOf(1 to "one")) shouldBe false
+        eq("fortyTwo")[42L].test(mapOf(1L to "one", 42L to "fortyTwo")) shouldBe true
+        eq("fortyTwo")[42L].test(mapOf(1L to "one")) shouldBe false
+        eq("fortyTwo")[42L].test(null) shouldBe false
     }
 
 })
