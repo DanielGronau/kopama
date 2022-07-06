@@ -66,16 +66,3 @@ fun oneOf(vararg values: Any?) = object : Pattern {
     override fun test(obj: Any?) = values.any { it == obj }
 }
 
-fun size(size: Int) = object : Pattern {
-    override fun test(obj: Any?) = when (obj) {
-        is Array<*> -> obj.size == size
-        is Collection<*> -> obj.size == size
-        is Iterable<*> -> obj.toList().size == size
-        is Sequence<*> -> obj.toList().size == size
-        is Map<*, *> -> obj.size == size
-        is CharSequence -> obj.length == size
-        else -> false
-    }
-}
-
-val empty by lazy { size(0) }

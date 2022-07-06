@@ -12,15 +12,6 @@ class StringPatternTest : StringSpec({
         eqIgnoreCase("Bob").test(42) shouldBe false
     }
 
-    "contains(String) should test whether the given String is part of the original one" {
-        contains("cat").test("caterpillar") shouldBe true
-        contains("cat").test("bobcat") shouldBe true
-        contains("cat").test("scatter") shouldBe true
-        contains("cat").test("cart") shouldBe false
-        contains("cat").test(null) shouldBe false
-        contains("cat").test(42) shouldBe false
-    }
-
     "startsWith(String) should test whether the original String starts with the given one" {
         startsWith("cat").test("caterpillar") shouldBe true
         startsWith("cat").test("bobcat") shouldBe false
@@ -39,7 +30,7 @@ class StringPatternTest : StringSpec({
         endsWith("cat").test(42) shouldBe false
     }
 
-    "matchRegex(String) should test whether the original String matches the given regex" {
+    "regex(String) should test whether the original String matches the given regex" {
         regex("cat").test("cat") shouldBe true
         regex("[a-h]at").test("cat") shouldBe true
         regex("[i-z]at").test("cat") shouldBe false

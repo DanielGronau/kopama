@@ -9,8 +9,6 @@ internal class StringPattern(private val string: String, private val fn: (String
 
 fun eqIgnoreCase(string: String): Pattern = StringPattern(string) { obj, s -> obj.equals(s, true) }
 
-fun contains(string: String): Pattern = StringPattern(string) { obj, s -> obj.contains(s) }
-
 fun startsWith(string: String): Pattern = StringPattern(string) { obj, s -> obj.startsWith(s) }
 
 fun endsWith(string: String): Pattern = StringPattern(string) { obj, s -> obj.endsWith(s) }

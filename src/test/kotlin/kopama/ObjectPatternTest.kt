@@ -104,38 +104,4 @@ class ObjectPatternTest : StringSpec({
         le(5).test("Bob") shouldBe false
         le(5).test(null) shouldBe false
     }
-
-    "size() should check the size or length of the object" {
-        size(2).test(arrayOf(1, 2)) shouldBe true
-        size(3).test(arrayOf(1, 2)) shouldBe false
-        size(2).test(listOf(1, 2)) shouldBe true
-        size(3).test(listOf(1, 2)) shouldBe false
-        size(2).test(setOf(1, 2)) shouldBe true
-        size(3).test(setOf(1, 2)) shouldBe false
-        size(2).test(sequenceOf(1, 2)) shouldBe true
-        size(3).test(sequenceOf(1, 2)) shouldBe false
-        size(2).test(mapOf(1 to "one", 2 to "two")) shouldBe true
-        size(3).test(mapOf(1 to "one", 2 to "two")) shouldBe false
-        size(2).test("np") shouldBe true
-        size(3).test("np") shouldBe false
-        size(3).test(null) shouldBe false
-        size(3).test(42) shouldBe false
-    }
-
-    "empty should check whether the object (e.g. collection) is empty" {
-        empty.test(arrayOf<String>()) shouldBe true
-        empty.test(arrayOf(1, 2)) shouldBe false
-        empty.test(listOf<String>()) shouldBe true
-        empty.test(listOf(1, 2)) shouldBe false
-        empty.test(setOf<String>()) shouldBe true
-        empty.test(setOf(1, 2)) shouldBe false
-        empty.test(sequenceOf<String>()) shouldBe true
-        empty.test(sequenceOf(1, 2)) shouldBe false
-        empty.test(mapOf<Int, String>()) shouldBe true
-        empty.test(mapOf(1 to "one", 2 to "two")) shouldBe false
-        empty.test("") shouldBe true
-        empty.test("np") shouldBe false
-        empty.test(null) shouldBe false
-        empty.test(42) shouldBe false
-    }
 })
