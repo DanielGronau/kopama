@@ -13,8 +13,4 @@ class MatchingTest : StringSpec({
             else -> 4
         } shouldBe 3
     }
-
-    "test" {
-        listOf(1, 2, 3).component1()
-    }
 })
