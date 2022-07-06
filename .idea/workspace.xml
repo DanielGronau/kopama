@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="split pattern improvements" />
+    <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="fix test">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/objectPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/objectPatterns.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/stringPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/stringPatterns.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/ObjectPatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/ObjectPatternTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/StringPatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/StringPatternTest.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,7 +67,7 @@
       <recent name="kopama" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotest.All tests in ''">
+  <component name="RunManager" selected="Kotest.ObjectPatternTest">
     <configuration name="All tests in ''" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
       <module name="kopama" />
       <option name="passParentEnvs" value="true" />
@@ -88,25 +94,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MatchingTest: test" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+    <configuration name="ObjectPatternTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
       <module name="kopama" />
       <option name="passParentEnvs" value="true" />
       <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
       <option name="programParameters" value="" />
-      <option name="specName" value="kopama.MatchingTest" />
-      <option name="testPath" value="test" />
-      <option name="packageName" value="" />
-      <option name="vmparams" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SplitPatternTest" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="consoleApp" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
-      <option name="programParameters" value="" />
-      <option name="specName" value="kopama.SplitPatternTest" />
+      <option name="specName" value="kopama.ObjectPatternTest" />
       <option name="testPath" value="" />
       <option name="packageName" value="" />
       <option name="vmparams" value="" />
@@ -114,13 +107,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SplitPatternTest: named access should work for nested properties" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="consoleApp" />
+    <configuration name="ObjectPatternTest: size() should check the size or length of the object" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="kopama" />
       <option name="passParentEnvs" value="true" />
       <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
       <option name="programParameters" value="" />
-      <option name="specName" value="kopama.SplitPatternTest" />
-      <option name="testPath" value="named access should work for nested properties" />
+      <option name="specName" value="kopama.ObjectPatternTest" />
+      <option name="testPath" value="size() should check the size or length of the object" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StringPatternTest: matchRegex(String) should test whether the original String matches the given regex" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="kopama" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="kopama.StringPatternTest" />
+      <option name="testPath" value="matchRegex(String) should test whether the original String matches the given regex" />
       <option name="packageName" value="" />
       <option name="vmparams" value="" />
       <method v="2">
@@ -129,11 +135,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotest.ObjectPatternTest" />
+        <item itemvalue="Kotest.ObjectPatternTest: size() should check the size or length of the object" />
+        <item itemvalue="Kotest.StringPatternTest: matchRegex(String) should test whether the original String matches the given regex" />
         <item itemvalue="Kotest.All tests in ''" />
         <item itemvalue="Kotest.MatchingTest: data class should be destructable" />
-        <item itemvalue="Kotest.MatchingTest: test" />
-        <item itemvalue="Kotest.SplitPatternTest" />
-        <item itemvalue="Kotest.SplitPatternTest: named access should work for nested properties" />
       </list>
     </recent_temporary>
   </component>
@@ -145,7 +151,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1656534486242</updated>
-      <workItem from="1657098690154" duration="4765000" />
+      <workItem from="1657098690154" duration="6711000" />
     </task>
     <task id="LOCAL-00001" summary="WIP">
       <created>1656621309923</created>
@@ -231,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657107613690</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fix test">
+      <created>1657107757573</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1657107757573</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,7 +274,8 @@
     <MESSAGE value="remove println()s" />
     <MESSAGE value="more splitpatterns - WIP" />
     <MESSAGE value="split pattern improvements" />
-    <option name="LAST_COMMIT_MESSAGE" value="split pattern improvements" />
+    <MESSAGE value="fix test" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix test" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

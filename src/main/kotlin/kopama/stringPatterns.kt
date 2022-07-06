@@ -14,3 +14,5 @@ fun contains(string: String): Pattern = StringPattern(string) { obj, s -> obj.co
 fun startsWith(string: String): Pattern = StringPattern(string) { obj, s -> obj.startsWith(s) }
 
 fun endsWith(string: String): Pattern = StringPattern(string) { obj, s -> obj.endsWith(s) }
+
+fun regex(string: String): Pattern = StringPattern(string) { obj, s -> obj.matches(s.toRegex()) }

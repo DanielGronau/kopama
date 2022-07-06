@@ -39,4 +39,11 @@ class StringPatternTest : StringSpec({
         endsWith("cat").test(42) shouldBe false
     }
 
+    "matchRegex(String) should test whether the original String matches the given regex" {
+        regex("cat").test("cat") shouldBe true
+        regex("[a-h]at").test("cat") shouldBe true
+        regex("[i-z]at").test("cat") shouldBe false
+        regex("[i-z]at").test(null) shouldBe false
+        regex("[i-z]at").test(34) shouldBe false
+    }
 })
