@@ -7,10 +7,14 @@ class MatchingTest : StringSpec({
     "data class should be destructable" {
         val p = Person("Alice", "Cooper", 74)
         when (match(p)) {
-            "Human"(eq("Alice"), eq("Cooper"), eq(74)) -> 1
-            "Person"(eq("Alice"), eq("Cooper"), eq(7)) -> 2
-            "Person"(eq("Alice"), eq("Cooper"), eq(74)) -> 3
+            "Human"("Alice", "Cooper", 74) -> 1
+            "Person"(startsWith("Al"), "Cooper", 7) -> 2
+            "Person"("Alice", "Cooper", 74) -> 3
             else -> 4
         } shouldBe 3
+    }
+
+    "test" {
+        listOf(1, 2, 3).component1()
     }
 })

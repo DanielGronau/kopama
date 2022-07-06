@@ -13,8 +13,8 @@ val p = Person("Alice", "Cooper", 74)
 
 when(match(p)) {
     "Alien"(any, any, any) -> println("Aliens!")
-    "Person"(eq("Mick"), eq("Jagger"), eq(78)) -> println("Mick Jagger!")
-    "Person"(eq("Alice"), eq("Cooper"), any) -> println("Alice Cooper!")
+    "Person"("Mick", "Jagger", gt(70)) -> println("Mick Jagger!")
+    "Person"("Alice", "Cooper", any) -> println("Alice Cooper!")
     else -> println("I don't know this guy")
 }
 ```

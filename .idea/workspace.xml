@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca23fa4f-9330-49d3-9fe3-82be561885c7" name="Changes" comment="more splitpatterns - WIP">
+      <change afterPath="$PROJECT_DIR$/.idea/google-java-format.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/kopama/splitPatterns.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/kopama/splitPatterns.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/MatchingTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/MatchingTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/kopama/SplitPatternTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/kopama/SplitPatternTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,18 +38,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Code/kopama/src/test/kotlin/kopama&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Language Defaults&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Code/kopama/src/test/kotlin/kopama",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Language Defaults"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Code\kopama\src\test\kotlin\kopama" />
@@ -59,25 +68,40 @@
       <recent name="kopama" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotest.SplitPatternTest">
-    <configuration default="true" type="JetRunConfigurationType">
+  <component name="RunManager" selected="Kotest.All tests in ''">
+    <configuration name="All tests in ''" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="kopama" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="" />
+      <option name="testPath" value="" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MatchingTest: bla" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="consoleApp" />
+    <configuration name="MatchingTest: data class should be destructable" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="kopama" />
       <option name="passParentEnvs" value="true" />
       <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
       <option name="programParameters" value="" />
       <option name="specName" value="kopama.MatchingTest" />
-      <option name="testPath" value="bla" />
+      <option name="testPath" value="data class should be destructable" />
+      <option name="packageName" value="" />
+      <option name="vmparams" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MatchingTest: test" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
+      <module name="kopama" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
+      <option name="programParameters" value="" />
+      <option name="specName" value="kopama.MatchingTest" />
+      <option name="testPath" value="test" />
       <option name="packageName" value="" />
       <option name="vmparams" value="" />
       <method v="2">
@@ -91,32 +115,6 @@
       <option name="programParameters" value="" />
       <option name="specName" value="kopama.SplitPatternTest" />
       <option name="testPath" value="" />
-      <option name="packageName" value="" />
-      <option name="vmparams" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SplitPatternTest: indexed access should work for char sequences" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="consoleApp" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
-      <option name="programParameters" value="" />
-      <option name="specName" value="kopama.SplitPatternTest" />
-      <option name="testPath" value="indexed access should work for char sequences" />
-      <option name="packageName" value="" />
-      <option name="vmparams" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SplitPatternTest: named access should work for fields" type="ioKotest" factoryName="Kotest" temporary="true" defaultName="singleModule">
-      <module name="consoleApp" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" value="$MODULE_WORKING_DIR$" />
-      <option name="programParameters" value="" />
-      <option name="specName" value="kopama.SplitPatternTest" />
-      <option name="testPath" value="named access should work for fields" />
       <option name="packageName" value="" />
       <option name="vmparams" value="" />
       <method v="2">
@@ -138,11 +136,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotest.All tests in ''" />
+        <item itemvalue="Kotest.MatchingTest: data class should be destructable" />
+        <item itemvalue="Kotest.MatchingTest: test" />
         <item itemvalue="Kotest.SplitPatternTest" />
         <item itemvalue="Kotest.SplitPatternTest: named access should work for nested properties" />
-        <item itemvalue="Kotest.MatchingTest: bla" />
-        <item itemvalue="Kotest.SplitPatternTest: indexed access should work for char sequences" />
-        <item itemvalue="Kotest.SplitPatternTest: named access should work for fields" />
       </list>
     </recent_temporary>
   </component>
@@ -154,6 +152,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1656534486242</updated>
+      <workItem from="1657098690154" duration="3804000" />
     </task>
     <task id="LOCAL-00001" summary="WIP">
       <created>1656621309923</created>
@@ -234,6 +233,9 @@
     </task>
     <option name="localTasksCounter" value="12" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

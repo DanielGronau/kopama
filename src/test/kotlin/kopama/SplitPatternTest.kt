@@ -8,12 +8,12 @@ class SplitPatternTest : StringSpec({
     "splitting data classes should work" {
         val p = Person("Alice", "Cooper", 74)
 
-        "Human"(eq("Alice"), eq("Cooper"), eq(74)).test(p) shouldBe false
-        "Person"(eq("Alice"), eq("Cooper"), eq(74)).test(p) shouldBe true
-        "kopama.Person"(eq("Alice"), eq("Cooper"), eq(74)).test(p) shouldBe true
+        "Human"("Alice", "Cooper", 74).test(p) shouldBe false
+        "Person"("Alice", "Cooper", 74).test(p) shouldBe true
+        "kopama.Person"("Alice", "Cooper", 74).test(p) shouldBe true
 
-        "Person"(eq("Alice"), eq("Cooper"), eq(74), eq(0.0)).test(p) shouldBe false
-        "Person"(eq("Alice"), eq("Cooper")).test(p) shouldBe true
+        "Person"("Alice", "Cooper", 74, 0.0).test(p) shouldBe false
+        "Person"("Alice", "Cooper").test(p) shouldBe true
         "Person"().test(p) shouldBe true
     }
 
@@ -27,39 +27,39 @@ class SplitPatternTest : StringSpec({
         val l = listOf(2, 1, 3, 4)
 
         "ArrayList"().test(l) shouldBe true
-        "ArrayList"(eq(2)).test(l) shouldBe true
-        "ArrayList"(eq(2), eq(1)).test(l) shouldBe true
-        "ArrayList"(eq(2), eq(1), eq(3)).test(l) shouldBe true
-        "ArrayList"(eq(2), eq(1), eq(3), eq(4)).test(l) shouldBe true
-        "ArrayList"(eq(2), eq(1), eq(3), eq(4), eq(7)).test(l) shouldBe false
+        "ArrayList"(2).test(l) shouldBe true
+        "ArrayList"(2, 1).test(l) shouldBe true
+        "ArrayList"(2, 1, 3).test(l) shouldBe true
+        "ArrayList"(2, 1, 3, 4).test(l) shouldBe true
+        "ArrayList"(2, 1, 3, 4, 7).test(l) shouldBe false
 
-        "ArrayList"(eq("Alice")).test(l) shouldBe false
-        "ArrayList"(eq(null)).test(l) shouldBe false
+        "ArrayList"("Alice").test(l) shouldBe false
+        "ArrayList"(null).test(l) shouldBe false
 
-        "List"(eq(2), eq(1), eq(3), eq(4)).test(l) shouldBe false
-        "java.util.Arrays.ArrayList"(eq(2), eq(1), eq(3), eq(4)).test(l) shouldBe true
+        "List"(2, 1, 3, 4).test(l) shouldBe false
+        "java.util.Arrays.ArrayList"(2, 1, 3, 4).test(l) shouldBe true
     }
 
     "anonymous splitting of data classes should work" {
         val p = Person("Alice", "Cooper", 74)
 
-        split(eq("Alice"), eq("Cooper"), eq(74)).test(p) shouldBe true
-        split(eq("Alice"), eq("Cooper"), eq(74), eq(0.0)).test(p) shouldBe false
-        split(eq("Alice"), eq("Cooper")).test(p) shouldBe true
+        split("Alice", "Cooper", 74).test(p) shouldBe true
+        split("Alice", "Cooper", 74, 0.0).test(p) shouldBe false
+        split("Alice", "Cooper").test(p) shouldBe true
     }
 
     "anonymous splitting of Iterables should work" {
         val l = listOf(2, 1, 3, 4)
 
         split().test(l) shouldBe true
-        split(eq(2)).test(l) shouldBe true
-        split(eq(2), eq(1)).test(l) shouldBe true
-        split(eq(2), eq(1), eq(3)).test(l) shouldBe true
-        split(eq(2), eq(1), eq(3), eq(4)).test(l) shouldBe true
-        split(eq(2), eq(1), eq(3), eq(4), eq(7)).test(l) shouldBe false
+        split(2).test(l) shouldBe true
+        split(2, 1).test(l) shouldBe true
+        split(2, 1, 3).test(l) shouldBe true
+        split(2, 1, 3, 4).test(l) shouldBe true
+        split(2, 1, 3, 4, 7).test(l) shouldBe false
 
-        split(eq("Alice")).test(l) shouldBe false
-        split(eq(null)).test(l) shouldBe false
+        split("Alice").test(l) shouldBe false
+        split(null).test(l) shouldBe false
     }
 
     "splitting should nest" {
@@ -68,12 +68,16 @@ class SplitPatternTest : StringSpec({
             Person("Mick", "Jagger", 78)
         )
         split(
-            "Person"(eq("Alice"), any, eq(74)),
-            split(any, eq("Jagger"), eq(78))
+            "Person"("Alice", any, 74),
+            split(any, "Jagger", 78)
         ).test(l) shouldBe true
         split(
-            "Person"(eq("Alice"), any, eq(71)),
-            split(any, eq("Jagger"), eq(78))
+            Person("Alice", "Cooper", 74),
+            split(any, "Jagger", 78)
+        ).test(l) shouldBe true
+        split(
+            "Person"("Alice", any, 71),
+            split(any, "Jagger", 78)
         ).test(l) shouldBe false
     }
 
@@ -158,5 +162,4 @@ class SplitPatternTest : StringSpec({
         eq("fortyTwo")[42L].test(mapOf(1L to "one")) shouldBe false
         eq("fortyTwo")[42L].test(null) shouldBe false
     }
-
 })

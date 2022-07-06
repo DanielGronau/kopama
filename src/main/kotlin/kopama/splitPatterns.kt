@@ -3,25 +3,33 @@ package kopama
 import kotlin.reflect.KParameter
 import kotlin.reflect.full.memberFunctions
 
-fun split(vararg patterns: Pattern): Pattern = Split(null, *patterns)
+fun split(vararg patterns: Any?): Pattern = Split(null, *patterns)
 
-operator fun String.invoke(vararg patterns: Pattern): Pattern = Split(this, *patterns)
+operator fun String.invoke(vararg patterns: Any?): Pattern = Split(this, *patterns)
 
-internal class Split(private val className: String?, vararg val patterns: Pattern) : Pattern {
+internal class Split(private val className: String?, private vararg val patterns: Any?) : Pattern {
+
+    private fun asPattern(p: Any?) = when (p) {
+        is Pattern -> p
+        else -> eq(p)
+    }
+
     override fun test(obj: Any?) = when {
         obj == null -> false
         className != null && className != obj::class.simpleName && className != obj::class.qualifiedName -> false
-        obj is Iterable<*> -> obj.zip(patterns) { elem, pattern -> if (pattern.test(elem)) 1 else 0 }
+        obj is Iterable<*> -> obj.zip(patterns) { elem, p -> if (asPattern(p).test(elem)) 1 else 0 }
             .sum() == patterns.size
-        else -> patterns.foldIndexed(true) { i, b, p -> b && p.testComponentN(obj, i + 1) }
+        else -> patterns.foldIndexed(true) { i, b, p -> b && asPattern(p).testComponentN(obj, i + 1) }
     }
 }
 
+internal data class Id(val value: Any?)
+
 operator fun Pattern.get(key: Any) = object : Pattern {
 
-    private fun findMember(obj: Any?, path: List<String>): List<Any?>? =
+    private fun findMember(obj: Any?, path: List<String>): Id? =
         when {
-            path.isEmpty() -> listOf(obj)
+            path.isEmpty() -> Id(obj)
             obj == null -> null
             else -> findMember(
                 obj::class.members.find { it.name == path.first() }
@@ -42,7 +50,7 @@ operator fun Pattern.get(key: Any) = object : Pattern {
         obj == null -> false
         obj is Map<*, *> -> this@get.test(obj[key])
         key is String -> findMember(obj, key.split('.'))
-            ?.let { this@get.test(it[0]) }
+            ?.let { this@get.test(it.value) }
             ?: false
         key is Int && obj is List<*> -> testIndex(obj, key)
         key is Int && obj is Array<*> -> testIndex(obj.toList(), key)
