@@ -11,15 +11,15 @@ class MatchingTest : StringSpec({
             "Human"("Alice", "Cooper", 74) -> 1
             "Person"(startsWith("Al"), "Cooper", 7) -> 2
             "Person"("Alice", "Cooper", 74) -> 3
-            "Person"("Alice", "Cooper", 74) -> 3
-            else -> 4
+            "Person"("Alice", "Cooper", 74) -> 4
+            else -> 5
         } shouldBe 3
     }
 
     "capture() should capture a value" {
         val p = Person("Alice", "Cooper", 74)
-        val c = capture()
-        c.value shouldBe ValueNotSet
+        val c = capture<Int>()
+        c.test("x") shouldBe false
         when (match(p)) {
             "Human"("Alice", "Cooper", 74) -> 1
             "Person"(startsWith("B"), "Cooper", c) -> 2
