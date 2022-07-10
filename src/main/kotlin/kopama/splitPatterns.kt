@@ -1,13 +1,14 @@
 package kopama
 
 import kotlin.reflect.KParameter
+import kotlin.reflect.KClass
 import kotlin.reflect.full.memberFunctions
 
 fun split(vararg patterns: Any?): Pattern = Split(null, *patterns)
 
-operator fun String.invoke(vararg patterns: Any?): Pattern = Split(this, *patterns)
+operator fun KClass<*>.invoke(vararg patterns: Any?): Pattern = Split(this, *patterns)
 
-internal class Split(private val className: String?, private vararg val patterns: Any?) : Pattern {
+internal class Split(private val kClass: KClass<*>?, private vararg val patterns: Any?) : Pattern {
 
     private fun asPattern(p: Any?) = when (p) {
         is Pattern -> p
@@ -16,7 +17,7 @@ internal class Split(private val className: String?, private vararg val patterns
 
     override fun test(obj: Any?) = when {
         obj == null -> false
-        className != null && className != obj::class.simpleName && className != obj::class.qualifiedName -> false
+        kClass != null && !kClass.isInstance(obj) -> false
         obj is Iterable<*> -> obj.zip(patterns) { elem, p -> if (asPattern(p).test(elem)) 1 else 0 }
             .sum() == patterns.size
         else -> patterns.foldIndexed(true) { i, b, p -> b && asPattern(p).testComponentN(obj, i + 1) }

@@ -12,9 +12,9 @@ data class Person(val firstName: String, val lastName: String, val age: Int)
 val p = Person("Alice", "Cooper", 74)
 
 when(match(p)) {
-    "Alien"(any, any, any) -> println("Aliens!")
-    "Person"("Mick", "Jagger", gt(70)) -> println("Mick Jagger!")
-    "Person"("Alice", "Cooper", any) -> println("Alice Cooper!")
+    Alien::class(any, any, any) -> println("Aliens!")
+    Person::class("Mick", "Jagger", gt(70)) -> println("Mick Jagger!")
+    Person::class("Alice", "Cooper", any) -> println("Alice Cooper!")
     else -> println("I don't know this guy")
 }
 ```

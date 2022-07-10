@@ -2,42 +2,40 @@ package kopama
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import java.util.*
 
 class SplitPatternTest : StringSpec({
 
     "splitting data classes should work" {
         val p = Person("Alice", "Cooper", 74)
 
-        "Human"("Alice", "Cooper", 74).test(p) shouldBe false
-        "Person"("Alice", "Cooper", 74).test(p) shouldBe true
-        "kopama.Person"("Alice", "Cooper", 74).test(p) shouldBe true
+        String::class("Alice", "Cooper", 74).test(p) shouldBe false
+        Person::class("Alice", "Cooper", 74).test(p) shouldBe true
 
-        "Person"("Alice", "Cooper", 74, 0.0).test(p) shouldBe false
-        "Person"("Alice", "Cooper").test(p) shouldBe true
-        "Person"().test(p) shouldBe true
+        Person::class("Alice", "Cooper", 74, 0.0).test(p) shouldBe false
+        Person::class("Alice", "Cooper").test(p) shouldBe true
+        Person::class().test(p) shouldBe true
     }
 
     "splitting normal classes should work" {
-        "String"().test("foo") shouldBe true
-        "kotlin.String"().test("foo") shouldBe true
-        "Text"().test("foo") shouldBe false
+        String::class().test("foo") shouldBe true
+        Date::class().test("foo") shouldBe false
     }
 
     "splitting Iterables should work" {
         val l = listOf(2, 1, 3, 4)
 
-        "ArrayList"().test(l) shouldBe true
-        "ArrayList"(2).test(l) shouldBe true
-        "ArrayList"(2, 1).test(l) shouldBe true
-        "ArrayList"(2, 1, 3).test(l) shouldBe true
-        "ArrayList"(2, 1, 3, 4).test(l) shouldBe true
-        "ArrayList"(2, 1, 3, 4, 7).test(l) shouldBe false
+        List::class().test(l) shouldBe true
+        List::class(2).test(l) shouldBe true
+        List::class(2, 1).test(l) shouldBe true
+        List::class(2, 1, 3).test(l) shouldBe true
+        List::class(2, 1, 3, 4).test(l) shouldBe true
+        List::class(2, 1, 3, 4, 7).test(l) shouldBe false
 
-        "ArrayList"("Alice").test(l) shouldBe false
-        "ArrayList"(null).test(l) shouldBe false
+        List::class("Alice").test(l) shouldBe false
+        List::class(null).test(l) shouldBe false
 
-        "List"(2, 1, 3, 4).test(l) shouldBe false
-        "java.util.Arrays.ArrayList"(2, 1, 3, 4).test(l) shouldBe true
+        ArrayList::class(2, 1, 3, 4).test(l) shouldBe false
     }
 
     "anonymous splitting of data classes should work" {
@@ -68,15 +66,17 @@ class SplitPatternTest : StringSpec({
             Person("Mick", "Jagger", 78)
         )
         split(
-            "Person"("Alice", any, 74),
+            Person::class("Alice", any, 74),
             split(any, "Jagger", 78)
         ).test(l) shouldBe true
+
         split(
             Person("Alice", "Cooper", 74),
             split(any, "Jagger", 78)
         ).test(l) shouldBe true
+
         split(
-            "Person"("Alice", any, 71),
+            Person::class("Alice", any, 71),
             split(any, "Jagger", 78)
         ).test(l) shouldBe false
     }

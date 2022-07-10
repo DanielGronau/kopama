@@ -8,10 +8,10 @@ class MatchingTest : StringSpec({
     "data class should be destructable" {
         val p = Person("Alice", "Cooper", 74)
         when (match(p)) {
-            "Human"("Alice", "Cooper", 74) -> 1
-            "Person"(startsWith("Al"), "Cooper", 7) -> 2
-            "Person"("Alice", "Cooper", 74) -> 3
-            "Person"("Alice", "Cooper", 74) -> 4
+            String::class("Alice", "Cooper", 74) -> 1
+            Person::class(startsWith("Al"), "Cooper", 7) -> 2
+            Person::class("Alice", "Cooper", 74) -> 3
+            Person::class("Alice", "Cooper", 74) -> 4
             else -> 5
         } shouldBe 3
     }
@@ -21,9 +21,9 @@ class MatchingTest : StringSpec({
         val c = capture<Int>()
         c.test("x") shouldBe false
         when (match(p)) {
-            "Human"("Alice", "Cooper", 74) -> 1
-            "Person"(startsWith("B"), "Cooper", c) -> 2
-            "Person"("Alice", "Cooper", c) -> c.value
+            String::class("Alice", "Cooper", 74) -> 1
+            Person::class(startsWith("B"), "Cooper", c) -> 2
+            Person::class("Alice", "Cooper", c) -> c.value
             else -> 4
         } shouldBe 74
     }
