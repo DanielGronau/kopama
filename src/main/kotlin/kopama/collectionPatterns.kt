@@ -29,3 +29,33 @@ fun contains(elem: Any?) = object : Pattern {
         else -> false
     }
 }
+
+fun all(pattern: Pattern) = object : Pattern {
+    override fun test(obj: Any?) = when (obj) {
+        is Array<*> -> obj.all{ pattern.test(it) }
+        is Iterable<*> -> obj.all{ pattern.test(it) }
+        is Sequence<*> -> obj.all{ pattern.test(it) }
+        is CharSequence -> obj.all{ pattern.test(it) }
+        else -> false
+    }
+}
+
+fun exists(pattern: Pattern) = object : Pattern {
+    override fun test(obj: Any?) = when (obj) {
+        is Array<*> -> obj.any{ pattern.test(it) }
+        is Iterable<*> -> obj.any{ pattern.test(it) }
+        is Sequence<*> -> obj.any{ pattern.test(it) }
+        is CharSequence -> obj.any{ pattern.test(it) }
+        else -> false
+    }
+}
+
+fun none(pattern: Pattern) = object : Pattern {
+    override fun test(obj: Any?) = when (obj) {
+        is Array<*> -> obj.none{ pattern.test(it) }
+        is Iterable<*> -> obj.none{ pattern.test(it) }
+        is Sequence<*> -> obj.none{ pattern.test(it) }
+        is CharSequence -> obj.none{ pattern.test(it) }
+        else -> false
+    }
+}

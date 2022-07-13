@@ -67,31 +67,128 @@ class CollectionPatternTest : StringSpec({
     }
 
     "contains() for arrays, iterables, sequences should check if it contains the element" {
-        contains(3).test(arrayOf(2,3,4)) shouldBe true
-        contains(6).test(arrayOf(2,3,4)) shouldBe false
+        contains(3).test(arrayOf(2, 3, 4)) shouldBe true
+        contains(6).test(arrayOf(2, 3, 4)) shouldBe false
         contains(3).test(arrayOf("cat")) shouldBe false
         contains(3).test(arrayOf<Int>()) shouldBe false
 
-        contains(3).test(listOf(2,3,4)) shouldBe true
-        contains(6).test(listOf(2,3,4)) shouldBe false
+        contains(3).test(listOf(2, 3, 4)) shouldBe true
+        contains(6).test(listOf(2, 3, 4)) shouldBe false
         contains(3).test(listOf("cat")) shouldBe false
         contains(3).test(listOf<Int>()) shouldBe false
 
-        contains(3).test(setOf(2,3,4)) shouldBe true
-        contains(6).test(setOf(2,3,4)) shouldBe false
+        contains(3).test(setOf(2, 3, 4)) shouldBe true
+        contains(6).test(setOf(2, 3, 4)) shouldBe false
         contains(3).test(setOf("cat")) shouldBe false
         contains(3).test(setOf<Int>()) shouldBe false
 
-        contains(3).test(sequenceOf(2,3,4)) shouldBe true
-        contains(6).test(sequenceOf(2,3,4)) shouldBe false
+        contains(3).test(sequenceOf(2, 3, 4)) shouldBe true
+        contains(6).test(sequenceOf(2, 3, 4)) shouldBe false
         contains(3).test(sequenceOf("cat")) shouldBe false
         contains(3).test(sequenceOf<Int>()) shouldBe false
     }
 
     "contains() for maps should check if it contains the key" {
-        contains(3).test(mapOf(2 to "two",3 to "three", 4 to "four")) shouldBe true
-        contains(6).test(mapOf(2 to "two",3 to "three", 4 to "four")) shouldBe false
+        contains(3).test(mapOf(2 to "two", 3 to "three", 4 to "four")) shouldBe true
+        contains(6).test(mapOf(2 to "two", 3 to "three", 4 to "four")) shouldBe false
         contains(2).test(mapOf("two" to 2)) shouldBe false
     }
 
+    "all() should check if all elements match the given pattern" {
+        all(gt(5)).test(arrayOf<Int>()) shouldBe true
+        all(gt(5)).test(arrayOf(1, 2, 6, 7)) shouldBe false
+        all(gt(5)).test(arrayOf(9, 8, 6, 7)) shouldBe true
+        all(gt(5)).test(arrayOf(9, null, 6, 7)) shouldBe false
+        all(gt(5)).test(arrayOf("foo", "bar", 7)) shouldBe false
+
+        all(gt(5)).test(listOf<Int>()) shouldBe true
+        all(gt(5)).test(listOf(1, 2, 6, 7)) shouldBe false
+        all(gt(5)).test(listOf(9, 8, 6, 7)) shouldBe true
+        all(gt(5)).test(listOf(9, null, 6, 7)) shouldBe false
+        all(gt(5)).test(listOf("foo", "bar", 7)) shouldBe false
+
+        all(gt(5)).test(setOf<Int>()) shouldBe true
+        all(gt(5)).test(setOf(1, 2, 6, 7)) shouldBe false
+        all(gt(5)).test(setOf(9, 8, 6, 7)) shouldBe true
+        all(gt(5)).test(setOf(9, null, 6, 7)) shouldBe false
+        all(gt(5)).test(setOf("foo", "bar", 7)) shouldBe false
+
+        all(gt(5)).test(sequenceOf<Int>()) shouldBe true
+        all(gt(5)).test(sequenceOf(1, 2, 6, 7)) shouldBe false
+        all(gt(5)).test(sequenceOf(9, 8, 6, 7)) shouldBe true
+        all(gt(5)).test(sequenceOf(9, null, 6, 7)) shouldBe false
+        all(gt(5)).test(sequenceOf("foo", "bar", 7)) shouldBe false
+
+        all(gt('b')).test("") shouldBe true
+        all(gt('b')).test("cat") shouldBe false
+        all(gt('b')).test("mouse") shouldBe true
+    }
+
+    "exists() should check if any elements match the given pattern" {
+        exists(gt(5)).test(arrayOf<Int>()) shouldBe false
+        exists(gt(5)).test(arrayOf(1, 2, 3, 5)) shouldBe false
+        exists(gt(5)).test(arrayOf(1, 8, 0, 2)) shouldBe true
+        exists(gt(5)).test(arrayOf(9, null, 1, 2)) shouldBe true
+        exists(gt(5)).test(arrayOf("foo", "bar", 7)) shouldBe true
+        exists(gt(5)).test(arrayOf("foo", "bar", null)) shouldBe false
+
+        exists(gt(5)).test(listOf<Int>()) shouldBe false
+        exists(gt(5)).test(listOf(1, 2, 3, 5)) shouldBe false
+        exists(gt(5)).test(listOf(1, 8, 0, 2)) shouldBe true
+        exists(gt(5)).test(listOf(9, null, 1, 2)) shouldBe true
+        exists(gt(5)).test(listOf("foo", "bar", 7)) shouldBe true
+        exists(gt(5)).test(listOf("foo", "bar", null)) shouldBe false
+
+        exists(gt(5)).test(setOf<Int>()) shouldBe false
+        exists(gt(5)).test(setOf(1, 2, 3, 5)) shouldBe false
+        exists(gt(5)).test(setOf(1, 8, 0, 2)) shouldBe true
+        exists(gt(5)).test(setOf(9, null, 1, 2)) shouldBe true
+        exists(gt(5)).test(setOf("foo", "bar", 7)) shouldBe true
+        exists(gt(5)).test(setOf("foo", "bar", null)) shouldBe false
+
+        exists(gt(5)).test(sequenceOf<Int>()) shouldBe false
+        exists(gt(5)).test(sequenceOf(1, 2, 3, 5)) shouldBe false
+        exists(gt(5)).test(sequenceOf(1, 8, 0, 2)) shouldBe true
+        exists(gt(5)).test(sequenceOf(9, null, 1, 2)) shouldBe true
+        exists(gt(5)).test(sequenceOf("foo", "bar", 7)) shouldBe true
+        exists(gt(5)).test(sequenceOf("foo", "bar", null)) shouldBe false
+
+        exists(gt('t')).test("") shouldBe false
+        exists(gt('t')).test("cat") shouldBe false
+        exists(gt('t')).test("mouse") shouldBe true
+    }
+
+    "none() should check if no elements match the given pattern" {
+        none(gt(5)).test(arrayOf<Int>()) shouldBe true
+        none(gt(5)).test(arrayOf(1, 2, 3, 5)) shouldBe true
+        none(gt(5)).test(arrayOf(1, 8, 0, 2)) shouldBe false
+        none(gt(5)).test(arrayOf(9, null, 1, 2)) shouldBe false
+        none(gt(5)).test(arrayOf("foo", "bar", 7)) shouldBe false
+        none(gt(5)).test(arrayOf("foo", "bar", null)) shouldBe true
+
+        none(gt(5)).test(listOf<Int>()) shouldBe true
+        none(gt(5)).test(listOf(1, 2, 3, 5)) shouldBe true
+        none(gt(5)).test(listOf(1, 8, 0, 2)) shouldBe false
+        none(gt(5)).test(listOf(9, null, 1, 2)) shouldBe false
+        none(gt(5)).test(listOf("foo", "bar", 7)) shouldBe false
+        none(gt(5)).test(listOf("foo", "bar", null)) shouldBe true
+
+        none(gt(5)).test(setOf<Int>()) shouldBe true
+        none(gt(5)).test(setOf(1, 2, 3, 5)) shouldBe true
+        none(gt(5)).test(setOf(1, 8, 0, 2)) shouldBe false
+        none(gt(5)).test(setOf(9, null, 1, 2)) shouldBe false
+        none(gt(5)).test(setOf("foo", "bar", 7)) shouldBe false
+        none(gt(5)).test(setOf("foo", "bar", null)) shouldBe true
+
+        none(gt(5)).test(sequenceOf<Int>()) shouldBe true
+        none(gt(5)).test(sequenceOf(1, 2, 3, 5)) shouldBe true
+        none(gt(5)).test(sequenceOf(1, 8, 0, 2)) shouldBe false
+        none(gt(5)).test(sequenceOf(9, null, 1, 2)) shouldBe false
+        none(gt(5)).test(sequenceOf("foo", "bar", 7)) shouldBe false
+        none(gt(5)).test(sequenceOf("foo", "bar", null)) shouldBe true
+
+        none(gt('t')).test("") shouldBe true
+        none(gt('t')).test("cat") shouldBe false
+        none(gt('t')).test("mouse") shouldBe false
+    }
 })
