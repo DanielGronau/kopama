@@ -1,12 +1,10 @@
 package kopama
 
-import kotlin.reflect.KParameter
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction
+import kotlin.reflect.KParameter
 import kotlin.reflect.KProperty
-import kotlin.reflect.full.createType
 import kotlin.reflect.full.isSuperclassOf
-import kotlin.reflect.full.isSupertypeOf
 import kotlin.reflect.full.memberFunctions
 import kotlin.reflect.jvm.jvmErasure
 
