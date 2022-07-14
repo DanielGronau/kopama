@@ -2,7 +2,13 @@ package kopama
 
 import kotlin.reflect.KParameter
 import kotlin.reflect.KClass
+import kotlin.reflect.KFunction
+import kotlin.reflect.KProperty
+import kotlin.reflect.full.createType
+import kotlin.reflect.full.isSuperclassOf
+import kotlin.reflect.full.isSupertypeOf
 import kotlin.reflect.full.memberFunctions
+import kotlin.reflect.jvm.jvmErasure
 
 fun split(vararg patterns: Any?): Pattern = Split(null, *patterns)
 
@@ -59,6 +65,14 @@ operator fun Pattern.get(key: Any) = object : Pattern {
         key is Int && obj is Iterable<*> -> testIndex(obj.toList(), key)
         key is Int && obj is CharSequence -> testChar(obj, key)
         key is Int -> this@get.testComponentN(obj, key)
+        key is KProperty<*>
+                && key.getter.parameters.size == 1
+                && key.getter.parameters[0].type.jvmErasure.isSuperclassOf(obj::class) ->
+            this@get.test(key.getter.call(obj))
+        key is KFunction<*>
+                && key.parameters.size == 1
+                && key.parameters[0].type.jvmErasure.isSuperclassOf(obj::class) ->
+            this@get.test(key.call(obj))
         else -> false
     }
 }

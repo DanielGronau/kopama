@@ -162,4 +162,28 @@ class SplitPatternTest : StringSpec({
         eq("fortyTwo")[42L].test(mapOf(1L to "one")) shouldBe false
         eq("fortyTwo")[42L].test(null) shouldBe false
     }
+
+    "reflective property access should work" {
+        val p = Person("Alice", "Cooper", 74)
+        gt(70)[Person::age].test(p) shouldBe true
+        lt(70)[Person::age].test(p) shouldBe false
+        lt(70)[Person::age].test("oops") shouldBe false
+        lt(70)[Person::age].test(null) shouldBe false
+    }
+
+    "reflective method access should work" {
+        val p = Person("Alice", "Cooper", 74)
+        startsWith("Person(")[Person::toString].test(p) shouldBe true
+        startsWith("Alien(")[Person::toString].test(p) shouldBe false
+        startsWith("Person(")[Person::toString].test(42) shouldBe false
+        startsWith("Person(")[Person::toString].test(null) shouldBe false
+    }
+
+    "nested reflected access should work" {
+        val p = Person("Alice", "Cooper", 74)
+        eq(5)[String::length][Person::firstName].test(p) shouldBe true
+        eq(6)[String::length][Person::firstName].test(p) shouldBe false
+        eq(6)[String::length][Person::firstName].test("oops") shouldBe false
+        eq(6)[String::length][Person::firstName].test(null) shouldBe false
+    }
 })
