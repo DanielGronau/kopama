@@ -193,6 +193,8 @@ class SplitPatternTest : StringSpec({
         (eq(6) on { person: Person -> person.firstName.length }).test(p) shouldBe false
         (eq(5).on<Person> { it.firstName.length }).test(p) shouldBe true
         (eq(6).on<Person> { it.firstName.length }).test(p) shouldBe false
+        (eq("Alice") on Person::firstName).test(p) shouldBe true
+        (eq("Bob") on Person::firstName).test(p) shouldBe false
         (eq(6).on<Person> { it.firstName.length }).test("oops") shouldBe false
         (eq(6).on<Person> { it.firstName.length }).test(null) shouldBe false
     }
