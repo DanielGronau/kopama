@@ -33,7 +33,8 @@ class MatchingTest : StringSpec({
         when(match(p)) {
             eq(5) on { person:Person -> person.firstName.length } -> 1
             eq(5).on<Person>{ it.firstName.length } -> 2
-            else -> 32
+            startsWith("Al") on Person::firstName -> 3
+            else -> 4
         } shouldBe 1
     }
 
