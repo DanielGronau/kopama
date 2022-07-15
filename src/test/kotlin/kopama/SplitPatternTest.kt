@@ -197,5 +197,10 @@ class SplitPatternTest : StringSpec({
         (eq("Bob") on Person::firstName).test(p) shouldBe false
         (eq(6).on<Person> { it.firstName.length }).test("oops") shouldBe false
         (eq(6).on<Person> { it.firstName.length }).test(null) shouldBe false
+
+        fun Person.fullName() = "$firstName $lastName"
+
+        (eq("Alice Cooper") on Person::fullName).test(p) shouldBe true
+        (eq("Mick Jagger") on Person::fullName).test(p) shouldBe false
     }
 })
