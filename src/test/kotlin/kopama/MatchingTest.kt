@@ -28,4 +28,13 @@ class MatchingTest : StringSpec({
         } shouldBe 74
     }
 
+    "on() should infer type" {
+        val p = Person("Alice", "Cooper", 74)
+        when(match(p)) {
+            eq(5) on { person:Person -> person.firstName.length } -> 1
+            eq(5).on<Person>{ it.firstName.length } -> 2
+            else -> 32
+        } shouldBe 1
+    }
+
 })

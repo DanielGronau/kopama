@@ -179,11 +179,21 @@ class SplitPatternTest : StringSpec({
         startsWith("Person(")[Person::toString].test(null) shouldBe false
     }
 
-    "nested reflected access should work" {
+    "nested reflective access should work" {
         val p = Person("Alice", "Cooper", 74)
         eq(5)[String::length][Person::firstName].test(p) shouldBe true
         eq(6)[String::length][Person::firstName].test(p) shouldBe false
         eq(6)[String::length][Person::firstName].test("oops") shouldBe false
         eq(6)[String::length][Person::firstName].test(null) shouldBe false
+    }
+
+    "on operator should work" {
+        val p = Person("Alice", "Cooper", 74)
+        (eq(5) on { person: Person -> person.firstName.length }).test(p) shouldBe true
+        (eq(6) on { person: Person -> person.firstName.length }).test(p) shouldBe false
+        (eq(5).on<Person> { it.firstName.length }).test(p) shouldBe true
+        (eq(6).on<Person> { it.firstName.length }).test(p) shouldBe false
+        (eq(6).on<Person> { it.firstName.length }).test("oops") shouldBe false
+        (eq(6).on<Person> { it.firstName.length }).test(null) shouldBe false
     }
 })
