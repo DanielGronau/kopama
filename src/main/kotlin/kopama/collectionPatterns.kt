@@ -67,7 +67,7 @@ fun allKeys(pattern: Pattern) = object : Pattern {
     }
 }
 
-fun existKeys(pattern: Pattern) = object : Pattern {
+fun existsKey(pattern: Pattern) = object : Pattern {
     override fun test(obj: Any?) = when(obj) {
         is Map<*,*> -> obj.keys.any { pattern.test(it) }
         else -> false

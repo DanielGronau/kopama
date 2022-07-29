@@ -202,12 +202,12 @@ class CollectionPatternTest : StringSpec({
     }
 
     "existsKey() should check if any of the keys of a map matches the given pattern" {
-        existKeys(gt(5)).test(mapOf(6 to "x", 3 to "y")) shouldBe true
-        existKeys(gt(5)).test(mapOf(3 to "x", 5 to "y")) shouldBe false
-        existKeys(gt(5)).test(mapOf<Int, String>()) shouldBe false
-        existKeys(gt(5)).test(mapOf("x" to 6, "y" to 5)) shouldBe false
-        existKeys(gt(5)).test("nope") shouldBe false
-        existKeys(gt(5)).test(null) shouldBe false
+        existsKey(gt(5)).test(mapOf(6 to "x", 3 to "y")) shouldBe true
+        existsKey(gt(5)).test(mapOf(3 to "x", 5 to "y")) shouldBe false
+        existsKey(gt(5)).test(mapOf<Int, String>()) shouldBe false
+        existsKey(gt(5)).test(mapOf("x" to 6, "y" to 5)) shouldBe false
+        existsKey(gt(5)).test("nope") shouldBe false
+        existsKey(gt(5)).test(null) shouldBe false
     }
 
     "noKey() should check if none of the keys of a map matches the given pattern" {
