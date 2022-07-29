@@ -59,3 +59,45 @@ fun none(pattern: Pattern) = object : Pattern {
         else -> false
     }
 }
+
+fun allKeys(pattern: Pattern) = object : Pattern {
+    override fun test(obj: Any?) = when(obj) {
+        is Map<*,*> -> obj.keys.all { pattern.test(it) }
+        else -> false
+    }
+}
+
+fun existKeys(pattern: Pattern) = object : Pattern {
+    override fun test(obj: Any?) = when(obj) {
+        is Map<*,*> -> obj.keys.any { pattern.test(it) }
+        else -> false
+    }
+}
+
+fun noKey(pattern: Pattern) = object : Pattern {
+    override fun test(obj: Any?) = when(obj) {
+        is Map<*,*> -> obj.keys.none { pattern.test(it) }
+        else -> false
+    }
+}
+
+fun allValues(pattern: Pattern) = object : Pattern {
+    override fun test(obj: Any?) = when(obj) {
+        is Map<*,*> -> obj.values.all { pattern.test(it) }
+        else -> false
+    }
+}
+
+fun existsValue(pattern: Pattern) = object : Pattern {
+    override fun test(obj: Any?) = when(obj) {
+        is Map<*,*> -> obj.values.any { pattern.test(it) }
+        else -> false
+    }
+}
+
+fun noValue(pattern: Pattern) = object : Pattern {
+    override fun test(obj: Any?) = when(obj) {
+        is Map<*,*> -> obj.values.none { pattern.test(it) }
+        else -> false
+    }
+}

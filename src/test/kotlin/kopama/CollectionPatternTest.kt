@@ -188,7 +188,61 @@ class CollectionPatternTest : StringSpec({
         none(gt(5)).test(sequenceOf("foo", "bar", null)) shouldBe true
 
         none(gt('t')).test("") shouldBe true
-        none(gt('t')).test("cat") shouldBe false
+        none(gt('t')).test("cat") shouldBe true
         none(gt('t')).test("mouse") shouldBe false
+    }
+
+    "allKeys() should check if all keys of a map match the given pattern" {
+        allKeys(gt(5)).test(mapOf(6 to "x", 8 to "y")) shouldBe true
+        allKeys(gt(5)).test(mapOf(6 to "x", 5 to "y")) shouldBe false
+        allKeys(gt(5)).test(mapOf<Int, String>()) shouldBe true
+        allKeys(gt(5)).test(mapOf("x" to 6, "y" to 5)) shouldBe false
+        allKeys(gt(5)).test("nope") shouldBe false
+        allKeys(gt(5)).test(null) shouldBe false
+    }
+
+    "existsKey() should check if any of the keys of a map matches the given pattern" {
+        existKeys(gt(5)).test(mapOf(6 to "x", 3 to "y")) shouldBe true
+        existKeys(gt(5)).test(mapOf(3 to "x", 5 to "y")) shouldBe false
+        existKeys(gt(5)).test(mapOf<Int, String>()) shouldBe false
+        existKeys(gt(5)).test(mapOf("x" to 6, "y" to 5)) shouldBe false
+        existKeys(gt(5)).test("nope") shouldBe false
+        existKeys(gt(5)).test(null) shouldBe false
+    }
+
+    "noKey() should check if none of the keys of a map matches the given pattern" {
+        noKey(gt(5)).test(mapOf(6 to "x", 3 to "y")) shouldBe false
+        noKey(gt(5)).test(mapOf(3 to "x", 5 to "y")) shouldBe true
+        noKey(gt(5)).test(mapOf<Int, String>()) shouldBe true
+        noKey(gt(5)).test(mapOf("x" to 6, "y" to 5)) shouldBe true
+        noKey(gt(5)).test("nope") shouldBe false
+        noKey(gt(5)).test(null) shouldBe false
+    }
+
+    "allValues() should check if all values of a map match the given pattern" {
+        allValues(gt(5)).test(mapOf("x" to 6, "y" to 8)) shouldBe true
+        allValues(gt(5)).test(mapOf("x" to 6, "y" to 5)) shouldBe false
+        allValues(gt(5)).test(mapOf<String, Int>()) shouldBe true
+        allValues(gt(5)).test(mapOf(6 to "x", 5 to "y")) shouldBe false
+        allValues(gt(5)).test("nope") shouldBe false
+        allValues(gt(5)).test(null) shouldBe false
+    }
+
+    "existsValue() should check if any value of a map matches the given pattern" {
+        existsValue(gt(5)).test(mapOf("x" to 6, "y" to 4)) shouldBe true
+        existsValue(gt(5)).test(mapOf("x" to 4, "y" to 5)) shouldBe false
+        existsValue(gt(5)).test(mapOf<String, Int>()) shouldBe false
+        existsValue(gt(5)).test(mapOf(6 to "x", 5 to "y")) shouldBe false
+        existsValue(gt(5)).test("nope") shouldBe false
+        existsValue(gt(5)).test(null) shouldBe false
+    }
+
+    "noValue() should check if no value of a map matches the given pattern" {
+        noValue(gt(5)).test(mapOf("x" to 6, "y" to 4)) shouldBe false
+        noValue(gt(5)).test(mapOf("x" to 4, "y" to 5)) shouldBe true
+        noValue(gt(5)).test(mapOf<String, Int>()) shouldBe true
+        noValue(gt(5)).test(mapOf(6 to "x", 5 to "y")) shouldBe true
+        noValue(gt(5)).test("nope") shouldBe false
+        noValue(gt(5)).test(null) shouldBe false
     }
 })
