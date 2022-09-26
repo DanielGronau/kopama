@@ -1,21 +1,44 @@
 # kopama
 
 Kopama ("Kotlin pattern matching") enables some pattern matching
-, e.g. in `when` expressions. 
+, e.g. in `when` expressions.
 The syntax is similar to Hamcrest matchers, but shortened.
+The pattern matching can be used in two contexts: Using a `when` expression,
+or as a stand-alone DSL. Mixing both styles is discouraged.
 
-### Example
+### Example for when Expression
 
 ```kotlin
+import kopama.*
+import kopama.whenMatcher.*
+
 data class Person(val firstName: String, val lastName: String, val age: Int)
 
 val p = Person("Alice", "Cooper", 74)
 
-when(match(p)) {
+when (match(p)) {
     Alien::class(any, any, any) -> println("Aliens!")
     Person::class("Mick", "Jagger", gt(70)) -> println("Mick Jagger!")
     Person::class("Alice", "Cooper", any) -> println("Alice Cooper!")
     else -> println("I don't know this guy")
+}
+```
+
+### Example for stand-alone DSL
+
+```kotlin
+import kopama.*
+import kopama.dslMatcher.*
+
+data class Person(val firstName: String, val lastName: String, val age: Int)
+
+val p = Person("Alice", "Cooper", 74)
+
+match(p) {
+    Alien::class(any, any, any) then { println("Aliens!") }
+    Person::class("Mick", "Jagger", gt(70)) then { println("Mick Jagger!") }
+    Person::class("Alice", "Cooper", any) then { println("Alice Cooper!") }
+    otherwise { println("I don't know this guy") }
 }
 ```
 
@@ -29,7 +52,7 @@ the pattern will simply not match in this case, but there will be
 
 ### Warning
 
-I don't consider this library ready for use in production. 
+I don't consider this library ready for use in production.
 I did my best to test for the intended behavior,
 but with such ultra-flexible and rule-bending code it's hard to be
 absolutely sure that all edge cases behave in a sensible way. Further,
@@ -39,5 +62,5 @@ Also, I should mention that "kopama" means "anger" in Telugu.
 
 ### Last words
 
-I hope you have as much fun playing with the library as I have 
+I hope you have as much fun playing with the library as I have
 writing it.

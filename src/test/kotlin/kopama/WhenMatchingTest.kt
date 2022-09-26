@@ -2,8 +2,10 @@ package kopama
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import kopama.whenMatcher.capture
+import kopama.whenMatcher.match
 
-class MatchingTest : StringSpec({
+class WhenMatchingTest : StringSpec({
 
     "data class should be destructable" {
         val p = Person("Alice", "Cooper", 74)
