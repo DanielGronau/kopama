@@ -1,7 +1,7 @@
 package kopama
 
-fun size(size: Int) = object : Pattern {
-    override fun test(obj: Any?) = when (obj) {
+fun size(size: Int) = Pattern { obj ->
+    when (obj) {
         is Array<*> -> obj.size == size
         is Collection<*> -> obj.size == size
         is Iterable<*> -> obj.toList().size == size
@@ -14,8 +14,8 @@ fun size(size: Int) = object : Pattern {
 
 val empty by lazy { size(0) }
 
-fun contains(elem: Any?) = object : Pattern {
-    override fun test(obj: Any?) = when (obj) {
+fun contains(elem: Any?) = Pattern { obj ->
+    when (obj) {
         is Array<*> -> obj.contains(elem)
         is Iterable<*> -> obj.contains(elem)
         is Sequence<*> -> obj.contains(elem)
@@ -30,8 +30,8 @@ fun contains(elem: Any?) = object : Pattern {
     }
 }
 
-fun all(pattern: Pattern) = object : Pattern {
-    override fun test(obj: Any?) = when (obj) {
+fun all(pattern: Pattern) = Pattern { obj ->
+    when (obj) {
         is Array<*> -> obj.all{ pattern.test(it) }
         is Iterable<*> -> obj.all{ pattern.test(it) }
         is Sequence<*> -> obj.all{ pattern.test(it) }
@@ -40,8 +40,8 @@ fun all(pattern: Pattern) = object : Pattern {
     }
 }
 
-fun exists(pattern: Pattern) = object : Pattern {
-    override fun test(obj: Any?) = when (obj) {
+fun exists(pattern: Pattern) = Pattern { obj ->
+    when (obj) {
         is Array<*> -> obj.any{ pattern.test(it) }
         is Iterable<*> -> obj.any{ pattern.test(it) }
         is Sequence<*> -> obj.any{ pattern.test(it) }
@@ -50,8 +50,8 @@ fun exists(pattern: Pattern) = object : Pattern {
     }
 }
 
-fun none(pattern: Pattern) = object : Pattern {
-    override fun test(obj: Any?) = when (obj) {
+fun none(pattern: Pattern) = Pattern { obj ->
+    when (obj) {
         is Array<*> -> obj.none{ pattern.test(it) }
         is Iterable<*> -> obj.none{ pattern.test(it) }
         is Sequence<*> -> obj.none{ pattern.test(it) }
@@ -60,43 +60,43 @@ fun none(pattern: Pattern) = object : Pattern {
     }
 }
 
-fun allKeys(pattern: Pattern) = object : Pattern {
-    override fun test(obj: Any?) = when(obj) {
+fun allKeys(pattern: Pattern) = Pattern { obj ->
+    when(obj) {
         is Map<*,*> -> obj.keys.all { pattern.test(it) }
         else -> false
     }
 }
 
-fun existsKey(pattern: Pattern) = object : Pattern {
-    override fun test(obj: Any?) = when(obj) {
+fun existsKey(pattern: Pattern) = Pattern { obj ->
+    when(obj) {
         is Map<*,*> -> obj.keys.any { pattern.test(it) }
         else -> false
     }
 }
 
-fun noKey(pattern: Pattern) = object : Pattern {
-    override fun test(obj: Any?) = when(obj) {
+fun noKey(pattern: Pattern) = Pattern { obj ->
+    when(obj) {
         is Map<*,*> -> obj.keys.none { pattern.test(it) }
         else -> false
     }
 }
 
-fun allValues(pattern: Pattern) = object : Pattern {
-    override fun test(obj: Any?) = when(obj) {
+fun allValues(pattern: Pattern) = Pattern { obj ->
+    when(obj) {
         is Map<*,*> -> obj.values.all { pattern.test(it) }
         else -> false
     }
 }
 
-fun existsValue(pattern: Pattern) = object : Pattern {
-    override fun test(obj: Any?) = when(obj) {
+fun existsValue(pattern: Pattern) = Pattern { obj ->
+    when(obj) {
         is Map<*,*> -> obj.values.any { pattern.test(it) }
         else -> false
     }
 }
 
-fun noValue(pattern: Pattern) = object : Pattern {
-    override fun test(obj: Any?) = when(obj) {
+fun noValue(pattern: Pattern) = Pattern { obj ->
+    when(obj) {
         is Map<*,*> -> obj.values.none { pattern.test(it) }
         else -> false
     }

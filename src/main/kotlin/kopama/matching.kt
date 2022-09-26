@@ -2,7 +2,7 @@ package kopama
 
 interface Matching
 
-interface Pattern : Matching {
+fun interface Pattern : Matching {
     fun test(obj: Any?): Boolean
 }
 fun match(obj: Any?): Matching = object : Matching {

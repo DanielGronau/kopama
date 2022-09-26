@@ -3,66 +3,50 @@ package kopama
 import kotlin.reflect.KClass
 
 val isNull by lazy {
-    object : Pattern {
-        override fun test(obj: Any?) = obj == null
-    }
+    Pattern { obj -> obj == null }
 }
 
-fun isA(kClass: KClass<*>) = object : Pattern {
-    override fun test(obj: Any?) = kClass.isInstance(obj)
-}
+fun isA(kClass: KClass<*>) = Pattern { obj -> kClass.isInstance(obj) }
 
-fun isA(klass: Class<*>) = object : Pattern {
-    override fun test(obj: Any?) = klass.isInstance(obj)
-}
+fun isA(klass: Class<*>) = Pattern { obj -> klass.isInstance(obj) }
 
-fun isSame(instance: Any?) = object : Pattern {
-    override fun test(obj: Any?) = obj === instance
-}
+fun isSame(instance: Any?) = Pattern { obj -> obj === instance }
 
-fun hasToString(string: String) = object : Pattern {
-    override fun test(obj: Any?) = obj.toString() == string
-}
+fun hasToString(string: String) = Pattern { obj -> obj.toString() == string }
 
 val any by lazy {
-    object : Pattern {
-        override fun test(obj: Any?) = true
-    }
+    Pattern { true }
 }
 
-fun eq(value: Any?) = object : Pattern {
-    override fun test(obj: Any?) = value == obj
-}
+fun eq(value: Any?) = Pattern { obj -> value == obj }
 
-inline fun <reified T : Comparable<T>> gt(value: T) = object : Pattern {
-    override fun test(obj: Any?) = when (obj) {
+inline fun <reified T : Comparable<T>> gt(value: T) = Pattern { obj ->
+    when (obj) {
         is T -> obj > value
         else -> false
     }
 }
 
-inline fun <reified T : Comparable<T>> ge(value: T) = object : Pattern {
-    override fun test(obj: Any?) = when (obj) {
+inline fun <reified T : Comparable<T>> ge(value: T) = Pattern { obj ->
+    when (obj) {
         is T -> obj >= value
         else -> false
     }
 }
 
-inline fun <reified T : Comparable<T>> lt(value: T) = object : Pattern {
-    override fun test(obj: Any?) = when (obj) {
+inline fun <reified T : Comparable<T>> lt(value: T) = Pattern { obj ->
+    when (obj) {
         is T -> obj < value
         else -> false
     }
 }
 
-inline fun <reified T : Comparable<T>> le(value: T) = object : Pattern {
-    override fun test(obj: Any?) = when (obj) {
+inline fun <reified T : Comparable<T>> le(value: T) = Pattern { obj ->
+    when (obj) {
         is T -> obj <= value
         else -> false
     }
 }
 
-fun oneOf(vararg values: Any?) = object : Pattern {
-    override fun test(obj: Any?) = values.any { it == obj }
-}
+fun oneOf(vararg values: Any?) = Pattern { obj -> values.any { it == obj } }
 

@@ -84,8 +84,8 @@ private fun Pattern.testComponentN(obj: Any?, index: Int) =
         ?.let { this@testComponentN.test(it) }
         ?: false
 
-inline infix fun <reified T> Pattern.on(crossinline call: (T) -> Any?) = object : Pattern {
-    override fun test(obj: Any?) = when(obj) {
+inline infix fun <reified T> Pattern.on(crossinline call: (T) -> Any?) = Pattern { obj ->
+    when(obj) {
         is T -> this@on.test(call.invoke(obj))
         else -> false
     }
