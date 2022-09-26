@@ -21,8 +21,9 @@ class DslMatchingTest : StringSpec({
         val p = Person("Alice", "Cooper", 74)
         match(p) {
             String::class("Alice", "Cooper", 74) then { 1 }
-            Person::class(startsWith("B"), "Cooper", capture("age")) then { 2 }
-            Person::class("Alice", "Cooper", capture("age")) then { get("age") }
+            val age = capture<Int>()
+            Person::class(startsWith("B"), "Cooper", age) then { 2 }
+            Person::class("Alice", "Cooper",  age) then { age.value }
             otherwise { 4 }
         } shouldBe 74
     }

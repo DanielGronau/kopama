@@ -2,7 +2,6 @@ package kopama
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import kopama.whenMatcher.capture
 import kopama.whenMatcher.match
 
 class WhenMatchingTest : StringSpec({
