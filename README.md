@@ -1,66 +1,7 @@
 # kopama
 
-Kopama ("Kotlin pattern matching") enables some pattern matching
-, e.g. in `when` expressions.
-The syntax is similar to Hamcrest matchers, but shortened.
-The pattern matching can be used in two contexts: Using a `when` expression,
-or as a stand-alone DSL. Mixing both styles is discouraged.
+Kopama ("Kotlin Pattern Matching") provides pattern matching functionality, as known from Haskell and Scala. It not only supports built-in classes, but also custom data classes (although this requires the use of KSP)
 
-### Example for when Expression
+Unfortunately the project had to be completely reworked, in order to make it more type-safe. The main reason for the carnage is the use of annotation processing (specifically KSP), which requires a multi-project setup. I'm terribly sorry I had to do this, but I see a chance to go from a proof-of-concept toy to a stable and actually useful implementation.
 
-```kotlin
-import kopama.*
-import kopama.whenMatcher.*
-
-data class Person(val firstName: String, val lastName: String, val age: Int)
-
-val p = Person("Alice", "Cooper", 74)
-
-when (match(p)) {
-    Alien::class(any, any, any) -> println("Aliens!")
-    Person::class("Mick", "Jagger", gt(70)) -> println("Mick Jagger!")
-    Person::class("Alice", "Cooper", any) -> println("Alice Cooper!")
-    else -> println("I don't know this guy")
-}
-```
-
-### Example for stand-alone DSL
-
-```kotlin
-import kopama.*
-import kopama.dslMatcher.*
-
-data class Person(val firstName: String, val lastName: String, val age: Int)
-
-val p = Person("Alice", "Cooper", 74)
-
-match(p) {
-    Alien::class(any, any, any) then { println("Aliens!") }
-    Person::class("Mick", "Jagger", gt(70)) then { println("Mick Jagger!") }
-    Person::class("Alice", "Cooper", any) then { println("Alice Cooper!") }
-    otherwise { println("I don't know this guy") }
-}
-```
-
-### Implementation
-
-The deconstruction for data classes is based on their `componentN` methods,
-and for `Iterable` classes on their elements. The
-patterns are not checked against type or range of the given object,
-the pattern will simply not match in this case, but there will be
-(hopefully) neither compile-time nor runtime-errors.
-
-### Warning
-
-I don't consider this library ready for use in production.
-I did my best to test for the intended behavior,
-but with such ultra-flexible and rule-bending code it's hard to be
-absolutely sure that all edge cases behave in a sensible way. Further,
-the code uses reflection and might be too slow for your use case.
-
-Also, I should mention that "kopama" means "anger" in Telugu.
-
-### Last words
-
-I hope you have as much fun playing with the library as I have
-writing it.
+The README will be updated as soon as the new version stabilizes.
