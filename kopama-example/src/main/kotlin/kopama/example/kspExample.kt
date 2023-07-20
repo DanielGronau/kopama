@@ -12,7 +12,9 @@ fun main() {
     val p = Person("John", "Doe", 27, Gender.MALE)
 
     val r1 = match(p) {
-        person(eq("John"), startsWith("D"), lt(30), eq(Gender.MALE)) then { "It's John" }
+        person(+"Jane", +"Doe", eq(27), +Gender.FEMALE) then { "oops" }
+        person(+"John", +"Doe", eq(28)) then { "also oops" }
+        person(+"John", startsWith("D"), lt(30), +Gender.MALE) then { "It's John Doe" }
         otherwise { "Uninteresting person" }
     }
 

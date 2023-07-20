@@ -18,6 +18,8 @@ class Matcher<P, T : Any>(private val obj: P) {
         }
     }
 
+    operator fun Any.unaryPlus() = eq(this)
+
     fun otherwise(default: () -> T) = object : MatchResult<T> {
         override val value = result ?: default()
     }

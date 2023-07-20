@@ -3,6 +3,7 @@ package kopama.processor
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.symbol.KSClassDeclaration
+import com.google.devtools.ksp.symbol.KSValueParameter
 import com.google.devtools.ksp.symbol.KSVisitorVoid
 import com.google.devtools.ksp.symbol.Modifier
 import com.squareup.kotlinpoet.ClassName
@@ -32,31 +33,38 @@ class KopamaVisitor(
         }
 
         val parameters = classDeclaration.primaryConstructor!!.parameters
-        val funSpec = FunSpec.builder(shortName.decap())
-            .addParameters(parameters.map { param ->
-                ParameterSpec.builder(
-                    name = param.name!!.getShortName() + "Pattern",
-                    type = patternClassName.parameterizedBy(param.type.toTypeName())
-                ).build()
-            })
-            .returns(patternClassName.parameterizedBy(classDeclaration.toClassName().copy(nullable = true)))
-            .beginControlFlow("return")
-            .beginControlFlow("when(it)")
-            .addCode("null -> false\n")
-            .addCode("else -> %L", parameters.joinToString(" &&\n        ","", "\n") { param ->
-                "${param.name!!.getShortName()}Pattern(it.${param.name!!.getShortName()})"
-            })
-            .endControlFlow()
-            .endControlFlow()
-            .build()
+        val funSpec = patternFunction(shortName, parameters, classDeclaration)
 
         val fileSpec = FileSpec.builder(
             packageName = classDeclaration.packageName.asString(),
             fileName = shortName.decap() + "Pattern"
-        ).addFunction(funSpec).build()
+        ).addFunction(funSpec).addImport("kopama.core", "any").build()
 
         fileSpec.writeTo(codeGenerator, false)
     }
+
+    private fun patternFunction(
+        shortName: String,
+        parameters: List<KSValueParameter>,
+        classDeclaration: KSClassDeclaration
+    ) = FunSpec.builder(shortName.decap())
+        .addParameters(parameters.map { param ->
+            ParameterSpec.builder(
+                name = param.name!!.getShortName(),
+                type = patternClassName.parameterizedBy(param.type.toTypeName())
+            ).defaultValue("any()")
+                .build()
+        })
+        .returns(patternClassName.parameterizedBy(classDeclaration.toClassName().copy(nullable = true)))
+        .beginControlFlow("return")
+        .beginControlFlow("when(it)")
+        .addCode("null -> false\n")
+        .addCode("else -> %L", parameters.joinToString(" &&\n        ", "", "\n") { param ->
+            "${param.name!!.getShortName()}(it.${param.name!!.getShortName()})"
+        })
+        .endControlFlow()
+        .endControlFlow()
+        .build()
 
     fun String.decap(): String = this.replaceFirstChar { it.lowercase(Locale.getDefault()) }
 }
