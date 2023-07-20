@@ -20,6 +20,14 @@ class Matcher<P, T : Any>(private val obj: P) {
 
     operator fun Any.unaryPlus() = eq(this)
 
+    inline operator fun <reified Q : P> Pattern<Q>.unaryMinus(): Pattern<P> = {
+        try {
+            it is Q && this@unaryMinus(it)
+        } catch (_: ClassCastException) {
+            false
+        }
+    }
+
     fun otherwise(default: () -> T) = object : MatchResult<T> {
         override val value = result ?: default()
     }
@@ -48,7 +56,7 @@ fun main() {
     val p: Person = Person("Andy", "Smith", 42)
 
     val result = match(p) {
-        eq("Andy Smith") on {p: Person -> "${p.firstName} ${p.lastName}"} then { "It's Adam Smith"}
+        eq("Andy Smith") on { p: Person -> "${p.firstName} ${p.lastName}" } then { "It's Adam Smith" }
 
         person(oneOf("Andy", "Mike"), eq("Miller"), any()) then
                 { "One of the Miller brothers" }
@@ -67,8 +75,8 @@ fun main() {
 
     println(result)
 
-    val r = match(listOf(1,2,4, 42)) {
-        eq(2)[1] then { "Second element is 2"}
+    val r = match(listOf(1, 2, 4, 42)) {
+        eq(2)[1] then { "Second element is 2" }
         all(lt(10) or eq(42)) then { "Only small elements" }
         otherwise { "no match" }
     }
