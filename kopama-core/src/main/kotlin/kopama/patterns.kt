@@ -1,6 +1,4 @@
-package kopama.core
-
-import kotlin.reflect.KClass
+package kopama
 
 // Constant Patterns
 
@@ -50,11 +48,8 @@ fun <P> isSame(value: P): Pattern<P> =
 fun <P> oneOf(vararg values: P): Pattern<P> =
     { it in values }
 
-fun <P> isInstance(kClass: KClass<*>): Pattern<P> =
-    { kClass.isInstance(it) }
-
-fun <P> isInstance(klass: Class<*>): Pattern<P> =
-    { klass.isInstance(it) }
+inline fun <reified Q> isA(): Pattern<Any> =
+    { Q::class.isInstance(it) }
 
 inline fun <reified C : Comparable<C>> gt(value: C): Pattern<C> =
     { it > value }
@@ -85,7 +80,7 @@ fun endsWith(string: String): Pattern<String> =
 fun containsString(string: String): Pattern<String> =
     { it.contains(string) }
 
-fun regex(regex: String): Pattern <String> =
+fun regex(regex: String): Pattern<String> =
     { it.matches(regex.toRegex()) }
 
 // Collection Patterns
@@ -125,21 +120,21 @@ operator fun <P> Pattern<P>.get(index: Int) : Pattern<List<P>> =
 
 // Map Patterns
 
-fun <K,V> allKeys(p: Pattern<K>) : Pattern<Map<K,V>> =
+fun <K,V> allKeys(p: Pattern<K>) : Pattern<Map<K, V>> =
     { it.keys.all(p) }
 
-fun <K,V> anyKey(p: Pattern<K>) : Pattern<Map<K,V>> =
+fun <K,V> anyKey(p: Pattern<K>) : Pattern<Map<K, V>> =
     { it.keys.any(p) }
 
-fun <K,V> noKey(p: Pattern<K>) : Pattern<Map<K,V>> =
+fun <K,V> noKey(p: Pattern<K>) : Pattern<Map<K, V>> =
     { it.keys.none(p) }
 
-fun <K,V> allValues(p: Pattern<V>) : Pattern<Map<K,V>> =
+fun <K,V> allValues(p: Pattern<V>) : Pattern<Map<K, V>> =
     { it.values.all(p) }
 
-fun <K,V> anyValue(p: Pattern<V>) : Pattern<Map<K,V>> =
+fun <K,V> anyValue(p: Pattern<V>) : Pattern<Map<K, V>> =
     { it.values.any(p) }
 
-fun <K,V> noValue(p: Pattern<V>) : Pattern<Map<K,V>> =
+fun <K,V> noValue(p: Pattern<V>) : Pattern<Map<K, V>> =
     { it.values.none(p) }
 

@@ -1,4 +1,4 @@
-package kopama.core
+package kopama
 
 class Capture<P : Any> : Pattern<P> {
 

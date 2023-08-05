@@ -21,7 +21,7 @@ class KopamaVisitor(
     private val logger: KSPLogger
 ) : KSVisitorVoid() {
 
-    val patternClassName = ClassName("kopama.core", "Pattern")
+    private val patternClassName = ClassName("kopama", "Pattern")
 
     override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
         val shortName = classDeclaration.simpleName.getShortName()
@@ -38,7 +38,7 @@ class KopamaVisitor(
         val fileSpec = FileSpec.builder(
             packageName = classDeclaration.packageName.asString(),
             fileName = shortName.decap() + "Pattern"
-        ).addFunction(funSpec).addImport("kopama.core", "any").build()
+        ).addFunction(funSpec).addImport("kopama", "any").build()
 
         fileSpec.writeTo(codeGenerator, false)
     }
@@ -47,7 +47,7 @@ class KopamaVisitor(
         shortName: String,
         parameters: List<KSValueParameter>,
         classDeclaration: KSClassDeclaration
-    ) = FunSpec.builder(shortName.decap())
+    ) = FunSpec.builder(functionName(shortName))
         .addParameters(parameters.map { param ->
             ParameterSpec.builder(
                 name = param.name!!.getShortName(),
@@ -66,5 +66,12 @@ class KopamaVisitor(
         .endControlFlow()
         .build()
 
-    fun String.decap(): String = this.replaceFirstChar { it.lowercase(Locale.getDefault()) }
+    private fun String.decap(): String = this.replaceFirstChar { it.lowercase(Locale.getDefault()) }
+
+    // use the decapitalized class name as function name,
+    // add "...Pattern" if it would otherwise cause a name clash
+    private fun functionName(shortName: String) = shortName.decap()
+        .let { decap ->
+            if (decap == shortName) "${decap}Pattern" else decap
+        }
 }

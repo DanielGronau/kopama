@@ -7,7 +7,7 @@ import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.validate
-import kopama.core.Kopama
+import kopama.Kopama
 
 class KopamaSymbolProcessor(
     private val codeGenerator: CodeGenerator,

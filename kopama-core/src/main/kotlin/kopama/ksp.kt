@@ -1,4 +1,4 @@
-package kopama.core
+package kopama
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
