@@ -31,7 +31,7 @@ fun <P> anyOf(vararg patterns: Pattern<P>): Pattern<P> =
 fun <P> noneOf(vararg patterns: Pattern<P>): Pattern<P> =
     { obj -> patterns.none { it(obj) } }
 
-infix fun <P,Q> Pattern<Q>.on(transform: (P) -> Q): Pattern<P> =
+infix fun <P, Q> Pattern<Q>.on(transform: (P) -> Q): Pattern<P> =
     { this@on(transform(it)) }
 
 // Comparing Patterns
@@ -85,56 +85,77 @@ fun regex(regex: String): Pattern<String> =
 
 // Collection Patterns
 
-fun <P> isEmpty() : Pattern<Collection<P>> =
+fun <P> isEmpty(): Pattern<Collection<P>> =
     { it.isEmpty() }
 
-fun <P> isNotEmpty() : Pattern<Collection<P>> =
+fun <P> isNotEmpty(): Pattern<Collection<P>> =
     { it.isNotEmpty() }
 
-fun <P> hasSize(size: Int) : Pattern<Collection<P>> =
+fun <P> hasSize(size: Int): Pattern<Collection<P>> =
     { it.size == size }
 
-fun <P> all(p: Pattern<P>) : Pattern<Iterable<P>> =
+fun <P> all(p: Pattern<P>): Pattern<Iterable<P>> =
     { it.all(p) }
 
-fun <P> any(p: Pattern<P>) : Pattern<Iterable<P>> =
+fun <P> any(p: Pattern<P>): Pattern<Iterable<P>> =
     { it.any(p) }
 
-fun <P> none(p: Pattern<P>) : Pattern<Iterable<P>> =
+fun <P> none(p: Pattern<P>): Pattern<Iterable<P>> =
     { it.none(p) }
 
-fun <P> contains(element: P) : Pattern<Iterable<P>> =
-    { element in it}
+fun <P> contains(element: P): Pattern<Iterable<P>> =
+    { element in it }
 
-fun <P> containsAll(vararg elements: P) : Pattern<Collection<P>> =
+fun <P> containsAll(vararg elements: P): Pattern<Collection<P>> =
     { it.containsAll(elements.toSet()) }
 
-fun <P> containsAny(vararg elements: P) : Pattern<Collection<P>> =
+fun <P> containsAny(vararg elements: P): Pattern<Collection<P>> =
     { collection -> elements.any { it in collection } }
 
-fun <P> containsNone(vararg elements: P) : Pattern<Collection<P>> =
+
+fun <P> containsNone(vararg elements: P): Pattern<Collection<P>> =
     { collection -> elements.none { it in collection } }
 
-operator fun <P> Pattern<P>.get(index: Int) : Pattern<List<P>> =
-    { this@get(it[index]) }
+operator fun <P> Pattern<P>.get(index: Int): Pattern<List<P>> =
+    { 0 <= index && index < it.size && this@get(it[index]) }
 
 // Map Patterns
 
-fun <K,V> allKeys(p: Pattern<K>) : Pattern<Map<K, V>> =
-    { it.keys.all(p) }
+fun <K, V> keys(p: Pattern<Set<K>>): Pattern<Map<K, V>> =
+    { p(it.keys) }
 
-fun <K,V> anyKey(p: Pattern<K>) : Pattern<Map<K, V>> =
-    { it.keys.any(p) }
 
-fun <K,V> noKey(p: Pattern<K>) : Pattern<Map<K, V>> =
-    { it.keys.none(p) }
+fun <K, V> values(p: Pattern<Collection<V>>): Pattern<Map<K, V>> =
+    { p(it.values) }
 
-fun <K,V> allValues(p: Pattern<V>) : Pattern<Map<K, V>> =
-    { it.values.all(p) }
+fun <K, V> entries(p: Pattern<List<Pair<K, V>>>): Pattern<Map<K, V>> =
+    { p(it.entries.map(Map.Entry<K, V>::toPair)) }
 
-fun <K,V> anyValue(p: Pattern<V>) : Pattern<Map<K, V>> =
-    { it.values.any(p) }
+// Tuple Patterns
 
-fun <K,V> noValue(p: Pattern<V>) : Pattern<Map<K, V>> =
-    { it.values.none(p) }
+fun <A, B> pair(p: (A, B) -> Boolean): Pattern<Pair<A, B>> =
+    { p(it.first, it.second) }
 
+fun <A, B> pair(pa: Pattern<A>, pb: Pattern<B>): Pattern<Pair<A, B>> =
+    { pa(it.first) && pb(it.second) }
+
+fun <A, B> first(p: Pattern<A>): Pattern<Pair<A, B>> =
+    { p(it.first) }
+
+fun <A, B> second(p: Pattern<B>): Pattern<Pair<A, B>> =
+    { p(it.second) }
+
+fun <A, B, C> triple(p: (A, B, C) -> Boolean): Pattern<Triple<A, B, C>> =
+    { p(it.first, it.second, it.third) }
+
+fun <A, B, C> triple(pa: Pattern<A>, pb: Pattern<B>, pc: Pattern<C>): Pattern<Triple<A, B, C>> =
+    { pa(it.first) && pb(it.second) && pc(it.third) }
+
+fun <A, B, C> triple1(p: Pattern<A>): Pattern<Triple<A, B, C>> =
+    { p(it.first) }
+
+fun <A, B, C> triple2(p: Pattern<B>): Pattern<Triple<A, B, C>> =
+    { p(it.second) }
+
+fun <A, B, C> triple3(p: Pattern<C>): Pattern<Triple<A, B, C>> =
+    { p(it.third) }
