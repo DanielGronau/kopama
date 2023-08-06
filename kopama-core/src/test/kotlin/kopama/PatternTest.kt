@@ -5,9 +5,6 @@ import io.kotest.matchers.shouldBe
 import java.io.Serializable
 
 class PatternTest : StringSpec({
-    val any = any<Int?>()
-    val none = none<Int?>()
-    val isNull = isNull<Int?>()
     val isEmpty = isEmpty<Int>()
     val isNotEmpty = isNotEmpty<Int>()
 

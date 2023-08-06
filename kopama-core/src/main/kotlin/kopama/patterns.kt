@@ -2,10 +2,10 @@ package kopama
 
 // Constant Patterns
 
-fun <P> any(): Pattern<P> =
+val any: Pattern<Any?> =
     { true }
 
-fun <P> none(): Pattern<P> =
+val none: Pattern<Any?> =
     { false }
 
 // Operator Patterns
@@ -46,7 +46,7 @@ fun <P> ifThenElse(cond: Pattern<P>, whenTrue: Pattern<P>, whenFalse: Pattern<P>
 
 // Comparing Patterns
 
-fun <P> isNull(): Pattern<P> =
+val isNull: Pattern<Any?> =
     { it == null }
 
 fun <P> eq(value: P): Pattern<P> =

@@ -52,7 +52,7 @@ class KopamaVisitor(
             ParameterSpec.builder(
                 name = param.name!!.getShortName(),
                 type = patternClassName.parameterizedBy(param.type.toTypeName())
-            ).defaultValue("any()")
+            ).defaultValue("any")
                 .build()
         })
         .returns(patternClassName.parameterizedBy(classDeclaration.toClassName().copy(nullable = true)))
