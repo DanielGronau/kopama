@@ -79,6 +79,19 @@ class PatternTest : StringSpec({
         (isNull on { s: String? -> s?.toInt() })("23") shouldBe false
     }
 
+    "'thenRequire' should match a pattern if a precondition is met" {
+        (ge(7) thenRequire eq(24))(24) shouldBe true
+        (ge(7) thenRequire eq(24))(23) shouldBe false
+        (ge(7) thenRequire eq(24))(2) shouldBe true
+    }
+
+    "'ifThenElse' should match one of the given patterns according to the given precondition" {
+        ifThenElse(ge(10), eq(12), eq(8))(12) shouldBe true
+        ifThenElse(ge(10), eq(12), eq(8))(13) shouldBe false
+        ifThenElse(ge(10), eq(12), eq(8))(8) shouldBe true
+        ifThenElse(ge(10), eq(12), eq(8))(7) shouldBe false
+    }
+
     // Comparing Patterns
 
     "'isNull' should check if a value is null" {
@@ -187,6 +200,8 @@ class PatternTest : StringSpec({
         regex("""^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$""")("test@mail@acme.com") shouldBe false
         regex("""^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$""")("testmail@acme") shouldBe false
     }
+
+    // Collection Patterns
 
     "'isEmpty' should check if a collection is empty" {
         isEmpty(emptyList()) shouldBe true
@@ -339,6 +354,4 @@ class PatternTest : StringSpec({
         triple3<Int, Int, String>(startsWith("a"))(Triple(1, 2, "and")) shouldBe true
         triple3<Int, Int, String>(startsWith("a"))(Triple(1, 3, "or")) shouldBe false
     }
-
-
 })

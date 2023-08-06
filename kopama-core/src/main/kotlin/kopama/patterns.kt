@@ -34,6 +34,16 @@ fun <P> noneOf(vararg patterns: Pattern<P>): Pattern<P> =
 infix fun <P, Q> Pattern<Q>.on(transform: (P) -> Q): Pattern<P> =
     { this@on(transform(it)) }
 
+infix fun <P> Pattern<P>.thenRequire(p: Pattern<P>): Pattern<P> = {
+    when {
+        this@thenRequire(it) -> p(it)
+        else -> true
+    }
+}
+
+fun <P> ifThenElse(cond: Pattern<P>, whenTrue: Pattern<P>, whenFalse: Pattern<P>): Pattern<P> =
+    { if (cond(it)) whenTrue(it) else whenFalse(it) }
+
 // Comparing Patterns
 
 fun <P> isNull(): Pattern<P> =
