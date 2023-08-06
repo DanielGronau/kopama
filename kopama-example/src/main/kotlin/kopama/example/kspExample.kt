@@ -16,15 +16,15 @@ data class Company(val companyName: String, val taxID: String) : LegalEntity
 fun main() {
     val p: LegalEntity = Person("John", "Doe", 27, Gender.MALE)
 
-    val r1 = match(p) {
-        isA<String>() then { TODO() }
-        company(+"Acme") then { TODO() }
+    val result = match(p) {
+        isA<String>() then { "no way!" }
+        company(+"Acme") then { "impossible" }
         person(+"Jane", +"Doe", eq(27), +Gender.FEMALE) then { "oops" }
-        person(+"John", +"Doe", eq(28), isA<Gender>()) then { "also oops" }
-        person(+"John", startsWith("D"), lt(30), +Gender.MALE) then { "It's John Doe" }
+        person(+"John", startsWith("D"), eq(28), isA<Gender>()) then { "also oops" }
+        person(+"John", +"Doe", lt(30), +Gender.MALE) then { "It's John Doe" }
         otherwise { "Uninteresting person" }
     }
 
-    println(r1)
+    println(result)
 }
 

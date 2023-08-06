@@ -1,6 +1,7 @@
+package kopama
+
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import kopama.*
 import java.io.Serializable
 
 class PatternTest : StringSpec({
