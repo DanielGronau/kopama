@@ -1,7 +1,7 @@
 plugins {
     application
-    kotlin("jvm") version "1.9.0"
-    id("com.google.devtools.ksp") version "1.9.0-1.0.11"
+    kotlin("jvm")
+    id("com.google.devtools.ksp") version "1.9.21-1.0.15"
 }
 
 group = "kopama-example"
@@ -27,8 +27,8 @@ dependencies {
     ksp(project(":kopama-ksp"))
 
     testImplementation(kotlin("test"))
-    testImplementation("io.kotest:kotest-runner-junit5-jvm:5.4.2")
-    testImplementation("io.kotest:kotest-assertions-core-jvm:5.4.2")
+    testImplementation(libs.kotest.junit)
+    testImplementation(libs.kotest.assertions)
     implementation(kotlin("stdlib-jdk8"))
 }
 

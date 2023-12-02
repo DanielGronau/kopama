@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.9.0"
+    kotlin("jvm")
 }
 
 group = "kopama-ksp"
@@ -12,12 +12,12 @@ repositories {
 
 dependencies {
     implementation(project(":kopama-core"))
-    implementation("com.google.devtools.ksp:symbol-processing-api:1.9.0-1.0.11")
-    implementation("com.squareup:kotlinpoet-ksp:1.14.2")
+    implementation(libs.ksp)
+    implementation(libs.kotlinpoet.ksp)
 
     testImplementation(kotlin("test"))
-    testImplementation("io.kotest:kotest-runner-junit5-jvm:5.4.2")
-    testImplementation("io.kotest:kotest-assertions-core-jvm:5.4.2")
+    testImplementation(libs.kotest.junit)
+    testImplementation(libs.kotest.assertions)
     implementation(kotlin("stdlib-jdk8"))
 }
 
