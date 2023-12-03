@@ -150,6 +150,14 @@ class PatternTest : StringSpec({
         le(15)(3) shouldBe true
     }
 
+    "'between' should check if a comparable value is between the given values" {
+        between(10, 15)(9) shouldBe false
+        between(10, 15)(10) shouldBe true
+        between(10, 15)(12) shouldBe true
+        between(10, 15)(15) shouldBe true
+        between(10, 15)(16) shouldBe false
+    }
+
     // String Patterns
 
     "'hasToString' should check if calling toString() matches the given string" {

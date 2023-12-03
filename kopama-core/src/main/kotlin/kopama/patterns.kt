@@ -73,6 +73,9 @@ inline fun <reified C : Comparable<C>> lt(value: C): Pattern<C> =
 inline fun <reified C : Comparable<C>> le(value: C): Pattern<C> =
     { it <= value }
 
+inline fun <reified C : Comparable<C>> between(lower: C, upper: C): Pattern<C> =
+    { it in lower .. upper }
+
 // String Patterns
 
 fun <P> hasToString(string: String): Pattern<P> =
