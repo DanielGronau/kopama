@@ -96,6 +96,12 @@ class PatternTest : StringSpec({
         isNull(23) shouldBe false
     }
 
+    "'ifNotNull' should check a pattern if the value is not null" {
+        ifNotNull(ge(10))(null) shouldBe true
+        ifNotNull(ge(10))(10) shouldBe true
+        ifNotNull(ge(10))(9) shouldBe false
+    }
+
     "'eq' should check if a value is equal to a given one" {
         eq(23)(23) shouldBe true
         eq(23)(15) shouldBe false
@@ -198,6 +204,12 @@ class PatternTest : StringSpec({
         containsString("String")("testStrings") shouldBe true
         containsString("estS")("testStrings") shouldBe true
         containsString("testString")("tests") shouldBe false
+    }
+
+    "'hasLength' should check if a string has the given length" {
+        hasLength(3)("abc") shouldBe true
+        hasLength(3)("") shouldBe false
+        hasLength(3)("abcd") shouldBe false
     }
 
     "'regex' should check if a string matches the given regex" {

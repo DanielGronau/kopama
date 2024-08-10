@@ -2,17 +2,12 @@ package kopama.processor
 
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.KSPLogger
-import com.google.devtools.ksp.symbol.KSClassDeclaration
-import com.google.devtools.ksp.symbol.KSValueParameter
-import com.google.devtools.ksp.symbol.KSVisitorVoid
-import com.google.devtools.ksp.symbol.Modifier
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.ParameterSpec
+import com.google.devtools.ksp.symbol.*
+import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
+import com.squareup.kotlinpoet.ksp.toTypeVariableName
 import com.squareup.kotlinpoet.ksp.writeTo
 import java.util.*
 
@@ -51,11 +46,12 @@ class KopamaVisitor(
         .addParameters(parameters.map { param ->
             ParameterSpec.builder(
                 name = param.name!!.getShortName(),
-                type = patternClassName.parameterizedBy(param.type.toTypeName())
+                type = patternClassName.parameterizedBy(paramTypeName(param))
             ).defaultValue("any")
                 .build()
         })
-        .returns(patternClassName.parameterizedBy(classDeclaration.toClassName().copy(nullable = true)))
+        .addTypeVariables(typeVariableNames(classDeclaration))
+        .returns(patternClassName.parameterizedBy(returnType(classDeclaration).copy(nullable = true)))
         .beginControlFlow("return")
         .beginControlFlow("when(it)")
         .addCode("null -> false\n")
@@ -65,6 +61,23 @@ class KopamaVisitor(
         .endControlFlow()
         .endControlFlow()
         .build()
+
+    private fun typeVariableNames(classDeclaration: KSClassDeclaration) =
+        classDeclaration.typeParameters.map { it.toTypeVariableName() }
+
+    private fun returnType(classDeclaration: KSClassDeclaration) = when {
+        classDeclaration.typeParameters.isNotEmpty() ->
+            classDeclaration.toClassName().parameterizedBy(typeVariableNames(classDeclaration))
+
+        else -> classDeclaration.toClassName()
+    }
+
+    private fun paramTypeName(param: KSValueParameter) : TypeName  {
+        val ksType = param.type.resolve()
+        return (if (ksType.arguments.isEmpty()) ksType.toClassName() else
+            ksType.toClassName().parameterizedBy(ksType.arguments.map { it.toTypeName() }))
+                .copy(nullable = ksType.nullability != Nullability.NOT_NULL)
+    }
 
     private fun String.decap(): String = this.replaceFirstChar { it.lowercase(Locale.getDefault()) }
 

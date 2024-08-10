@@ -49,6 +49,9 @@ fun <P> ifThenElse(cond: Pattern<P>, whenTrue: Pattern<P>, whenFalse: Pattern<P>
 val isNull: Pattern<Any?> =
     { it == null }
 
+fun <P> ifNotNull(pattern: Pattern<P>): Pattern<P?> =
+    { if (it == null) true else pattern(it) }
+
 fun <P> eq(value: P): Pattern<P> =
     { it == value }
 
@@ -93,6 +96,9 @@ fun endsWith(string: String): Pattern<String> =
 fun containsString(string: String): Pattern<String> =
     { it.contains(string) }
 
+fun hasLength(length: Int): Pattern<String> =
+    { it.length == length }
+
 fun regex(regex: String): Pattern<String> =
     { it.matches(regex.toRegex()) }
 
@@ -136,7 +142,6 @@ operator fun <P> Pattern<P>.get(index: Int): Pattern<List<P>> =
 
 fun <K, V> keys(p: Pattern<Set<K>>): Pattern<Map<K, V>> =
     { p(it.keys) }
-
 
 fun <K, V> values(p: Pattern<Collection<V>>): Pattern<Map<K, V>> =
     { p(it.values) }

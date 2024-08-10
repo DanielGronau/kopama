@@ -21,7 +21,8 @@ fun main() {
         company(+"Acme") then { "impossible" }
         person(+"Jane", +"Doe", eq(27), +Gender.FEMALE) then { "oops" }
         person(+"John", startsWith("D"), eq(28), isA<Gender>()) then { "also oops" }
-        person(+"John", +"Doe", lt(30), +Gender.MALE) then { "It's John Doe" }
+        val ageCapture = capture<Int>()
+        person(+"John", +"Doe", ageCapture and lt(37), +Gender.MALE) then { "It's John Doe, age ${ageCapture.value}" }
         otherwise { "Uninteresting person" }
     }
 
