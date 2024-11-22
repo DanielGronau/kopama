@@ -19,4 +19,21 @@ class CaptureTest : StringSpec({
         shouldThrow<UninitializedPropertyAccessException> { capInt.value }
     }
 
+    "capture patterns should work with normal patterns" {
+        val capInt = capture<Int>()
+        (ge(20) and capInt)(23) shouldBe true
+        capInt.value shouldBe 23
+        (lt(20) and capInt)(23) shouldBe false
+        capInt.value shouldBe 23
+    }
+
+    "multiple captures work in one match" {
+        match(12 to "twelve") {
+            val capInt = capture<Int>()
+            val capStr = capture<String>()
+            pair(capInt, capStr and hasLength(17)) then { "does not match: ${capInt.value}, ${capStr.value}"}
+            pair(capInt, capStr and hasLength(6)) then { "first:${capInt.value} second:${capStr.value}"}
+            otherwise { "oops" }
+        } shouldBe "first:12 second:twelve"
+    }
 })

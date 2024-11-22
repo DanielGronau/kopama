@@ -96,10 +96,21 @@ class PatternTest : StringSpec({
         isNull(23) shouldBe false
     }
 
-    "'ifNotNull' should check a pattern if the value is not null" {
-        ifNotNull(ge(10))(null) shouldBe true
-        ifNotNull(ge(10))(10) shouldBe true
-        ifNotNull(ge(10))(9) shouldBe false
+    "'isNotNull' should check if a value is null" {
+        isNotNull(null) shouldBe false
+        isNotNull(23) shouldBe true
+    }
+
+    "'isNullOr' should check a pattern if the value is not null" {
+        isNullOr(ge(10))(null) shouldBe true
+        isNullOr(ge(10))(10) shouldBe true
+        isNullOr(ge(10))(9) shouldBe false
+    }
+
+    "'isNotNullAnd' should check the values is not null and the given pattern matches" {
+        isNotNullAnd(ge(10))(null) shouldBe false
+        isNotNullAnd(ge(10))(10) shouldBe true
+        isNotNullAnd(ge(10))(9) shouldBe false
     }
 
     "'eq' should check if a value is equal to a given one" {
@@ -162,6 +173,20 @@ class PatternTest : StringSpec({
         between(10, 15)(12) shouldBe true
         between(10, 15)(15) shouldBe true
         between(10, 15)(16) shouldBe false
+    }
+
+    "'inRange' should check if a comparable value is in the given closed range" {
+        inRange(10..15)(9) shouldBe false
+        inRange(10..15)(10) shouldBe true
+        inRange(10..15)(12) shouldBe true
+        inRange(10..15)(15) shouldBe true
+        inRange(10..15)(16) shouldBe false
+
+        inRange(10..<15)(9) shouldBe false
+        inRange(10..<15)(10) shouldBe true
+        inRange(10..<15)(12) shouldBe true
+        inRange(10..<15)(15) shouldBe false
+        inRange(10..<15)(16) shouldBe false
     }
 
     // String Patterns
