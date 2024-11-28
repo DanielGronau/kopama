@@ -8,6 +8,10 @@ val any: Pattern<Any?> =
 val none: Pattern<Any?> =
     { false }
 
+fun <P> any(): Pattern<P> = { true }
+
+fun <P> none(): Pattern<P> = { false }
+
 // Operator Patterns
 
 operator fun <P> Pattern<P>.not(): Pattern<P> =
