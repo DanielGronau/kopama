@@ -4,6 +4,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import kopama.Kopama
 import kopama.any
+import kopama.forAny
 import kopama.eq
 import kopama.isEmpty
 import kopama.match
@@ -29,7 +30,7 @@ class NestedTest : StringSpec({
 
         match(o3) {
             outer(inner = +inner(eq(12)), outers = any) then { "nope" }
-            outer(inner(eq(42)), any(outer(inner(eq(36)), isEmpty()))) then { "yupp o3" }
+            outer(inner(eq(42)), forAny(outer(inner(eq(36)), isEmpty()))) then { "yupp o3" }
             otherwise { "oops" }
         } shouldBe "yupp o3"
     }

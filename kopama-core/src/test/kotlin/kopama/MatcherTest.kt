@@ -30,6 +30,13 @@ class MatcherTest : StringSpec({
             gt(11) then { error("shouldn't be evaluated") }
             otherwise { error("shouldn't be evaluated") }
         } shouldBe "greater than 19"
+
+        match(3) {
+            gt(25) then { error("shouldn't be evaluated") }
+            gt(19) then { error("shouldn't be evaluated") }
+            gt(11) then { error("shouldn't be evaluated") }
+            otherwise { "something else" }
+        } shouldBe "something else"
     }
 
     "a matcher should allow to capture values" {

@@ -4,7 +4,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class CaptureTest : StringSpec({
+class CapturePatternTest : StringSpec({
 
     "a capture pattern should succeed and retain the last value" {
         val capInt = capture<Int>()
