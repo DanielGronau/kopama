@@ -31,13 +31,11 @@ class KopamaVisitor(
         val resolver = classDeclaration.typeParameters.toTypeParameterResolver()
 
         val shortName = classDeclaration.simpleName.getShortName()
-        val patternName = annotation.patternName.takeIf { it.isNotEmpty() } ?: shortName.decap()
-        val fileName = annotation.fileName.takeIf { it.isNotEmpty() } ?: "${patternName}Pattern"
-
-        logger.warn("found $shortName")
+        val patternName = annotation.patternName.ifEmpty { shortName.decap() }
+        val fileName = annotation.fileName.ifEmpty { "${patternName}Pattern" }
 
         if (classDeclaration.isOpen()) {
-            logger.error("Can't generate pattern, <$shortName> isn't a final class")
+            loggedError("Can't generate pattern, `$shortName` isn't a final class")
         }
 
         val parameters = when {
@@ -51,10 +49,10 @@ class KopamaVisitor(
         }
         val funSpec = patternFunction(patternName, parameters, classDeclaration, resolver)
 
-        val fileSpec = FileSpec.builder(
-            packageName = classDeclaration.packageName.asString(),
-            fileName = fileName
-        ).addFunction(funSpec).addImport("kopama", "any").build()
+        val fileSpec = FileSpec.builder(packageName = classDeclaration.packageName.asString(), fileName = fileName)
+            .addFunction(funSpec)
+            .addImport("kopama", "any")
+            .build()
 
         fileSpec.writeTo(codeGenerator, false)
     }
@@ -80,9 +78,7 @@ class KopamaVisitor(
                 isFun = true
             )
         }
-        ?: error("Can't generate pattern, couldn't find parameter <$paramTypeName>").also {
-            logger.error("Can't generate pattern, couldn't find parameter <$paramTypeName>")
-        }
+        ?: loggedError("Can't generate pattern, couldn't find parameter <$paramTypeName>")
     }
 
     private fun patternFunction(
@@ -95,7 +91,8 @@ class KopamaVisitor(
             ParameterSpec.builder(
                 name = prop.name,
                 type = patternClassName.parameterizedBy(paramTypeName(prop.type, resolver))
-            ).defaultValue("any")
+            )
+                .defaultValue("any")
                 .build()
         })
         .addTypeVariables(classDeclaration.typeVariableNames(resolver))
@@ -116,26 +113,26 @@ class KopamaVisitor(
         typeParameters.map { it.toTypeVariableName(resolver) }
 
     private fun KSClassDeclaration.returnType(resolver: TypeParameterResolver) = when {
-        typeParameters.isNotEmpty() ->
-            toClassName().parameterizedBy(typeVariableNames(resolver))
-
+        typeParameters.isNotEmpty() -> toClassName().parameterizedBy(typeVariableNames(resolver))
         else -> toClassName()
     }
 
-    private fun paramTypeName(ksType: KSType, resolver: TypeParameterResolver): TypeName {
-        val declaration = ksType.declaration
-        return when (declaration) {
+    private fun paramTypeName(ksType: KSType, resolver: TypeParameterResolver): TypeName =
+        when (val declaration = ksType.declaration) {
             is KSClassDeclaration -> if (ksType.arguments.isEmpty()) ksType.toClassName() else
-                ksType.toClassName().parameterizedBy(ksType.arguments.map { it.toTypeName(resolver) })
+                ksType.toClassName()
+                    .parameterizedBy(ksType.arguments.map {
+                        it.toTypeName(resolver)
+                    })
 
             is KSTypeParameter -> declaration.toTypeVariableName(resolver)
-            else -> error("Cannot handle type ${ksType.declaration}").also {
-                logger.error("Cannot handle type ${ksType.declaration}")
-            }
+            else -> loggedError("Cannot handle type ${ksType.declaration}")
         }.copy(nullable = ksType.nullability != Nullability.NOT_NULL)
-    }
 
     private fun String.decap(): String = this.replaceFirstChar { it.lowercase(Locale.getDefault()) }
 
     private data class ClassProperty(val name: String, val type: KSType, val isFun: Boolean = false)
+
+    private fun loggedError(message: String): Nothing =
+        error(message).also { logger.error(message) }
 }
