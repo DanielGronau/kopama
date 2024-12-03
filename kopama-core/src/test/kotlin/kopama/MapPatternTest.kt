@@ -2,7 +2,6 @@ package kopama
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import java.io.Serializable
 
 class MapPatternTest : StringSpec({
 
@@ -25,5 +24,21 @@ class MapPatternTest : StringSpec({
         eq(5).valueAt("b")(mapOf("a" to 3, "b" to 5, "c" to 7)) shouldBe true
         eq(6).valueAt("b")(mapOf("a" to 3, "b" to 5, "c" to 7)) shouldBe false
         eq(5).valueAt("x")(mapOf("a" to 3, "b" to 5, "c" to 7)) shouldBe false
+    }
+
+    "'mapHasSize' should check if a map has the given size" {
+        mapHasSize(0)(emptyMap<Int, String>()) shouldBe true
+        mapHasSize(2)(emptyMap<Int, String>()) shouldBe false
+        mapHasSize(2)(mapOf(1 to "a")) shouldBe false
+        mapHasSize(2)(mapOf(1 to "a", 2 to "b")) shouldBe true
+        mapHasSize(0)(mapOf(1 to "a", 2 to "b")) shouldBe false
+    }
+
+    "'mapHasSize' should check if the map size matches the given pattern" {
+        mapHasSize(oneOf(0, 3, 4))(emptyMap<Int, String>()) shouldBe true
+        mapHasSize(oneOf(2, 3))(emptyMap<Int, String>()) shouldBe false
+        mapHasSize(oneOf(2, 3, 4))(mapOf(1 to "a")) shouldBe false
+        mapHasSize(oneOf(1, 2))(mapOf(1 to "a", 2 to "b")) shouldBe true
+        mapHasSize(oneOf(0, 3))(mapOf(1 to "a", 2 to "b")) shouldBe false
     }
 })

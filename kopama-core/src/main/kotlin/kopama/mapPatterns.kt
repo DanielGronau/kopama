@@ -11,3 +11,9 @@ fun <K, V> entries(p: Pattern<List<Pair<K, V>>>): Pattern<Map<K, V>> =
 
 fun <K,V> Pattern<V>.valueAt(key: K): Pattern<Map<K,V>> =
     { it[key]?.let { this@valueAt(it) } == true }
+
+fun mapHasSize(size: Int): Pattern<Map<*, *>> =
+    { it.size == size }
+
+fun mapHasSize(pattern: Pattern<Int>): Pattern<Map<*, *>> =
+    { pattern(it.size) }

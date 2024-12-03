@@ -9,6 +9,9 @@ fun isNotEmpty(): Pattern<Collection<*>> =
 fun hasSize(size: Int): Pattern<Collection<*>> =
     { it.size == size }
 
+fun hasSize(pattern: Pattern<Int>): Pattern<Collection<*>> =
+    { pattern(it.size) }
+
 fun <P> forAll(p: Pattern<P>): Pattern<Iterable<P>> =
     { it.all(p) }
 
@@ -26,7 +29,6 @@ fun <P> containsAll(vararg elements: P): Pattern<Collection<P>> =
 
 fun <P> containsAny(vararg elements: P): Pattern<Collection<P>> =
     { collection -> elements.any { it in collection } }
-
 
 fun <P> containsNone(vararg elements: P): Pattern<Collection<P>> =
     { collection -> elements.none { it in collection } }

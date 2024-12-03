@@ -95,7 +95,7 @@ class KopamaVisitor(
                 .defaultValue("any")
                 .build()
         })
-        .addTypeVariables(classDeclaration.typeVariableNames(resolver))
+        .addTypeVariables(classDeclaration.typeVariableNames(resolver)) // TODO this might add unused type params
         .returns(patternClassName.parameterizedBy(classDeclaration.returnType(resolver).copy(nullable = true)))
         .beginControlFlow("return")
         .beginControlFlow("when(it)")

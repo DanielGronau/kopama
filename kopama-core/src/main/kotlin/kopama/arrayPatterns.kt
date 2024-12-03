@@ -9,6 +9,9 @@ fun arrayIsNotEmpty(): Pattern<Array<*>> =
 fun arrayHasSize(size: Int): Pattern<Array<*>> =
     { it.size == size }
 
+fun arrayHasSize(pattern: Pattern<Int>): Pattern<Array<*>> =
+    { pattern(it.size) }
+
 fun <P> arrayForAll(p: Pattern<P>): Pattern<Array<P>> =
     { it.all(p) }
 

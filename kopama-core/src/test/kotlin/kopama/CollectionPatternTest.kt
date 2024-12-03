@@ -23,6 +23,14 @@ class CollectionPatternTest : StringSpec({
         hasSize(0)(listOf(1, 2)) shouldBe false
     }
 
+    "'hasSize' should check if a collection matches the given pattern for its size" {
+        hasSize(oneOf(0, 2, 10))(emptyList<Int>()) shouldBe true
+        hasSize(oneOf(2,3))(emptyList<Int>()) shouldBe false
+        hasSize(oneOf(2,4,6))(listOf(1)) shouldBe false
+        hasSize(oneOf(0,2))(listOf(1, 2)) shouldBe true
+        hasSize(oneOf(0,1))(listOf(1, 2)) shouldBe false
+    }
+
     "'forAll' should check if a pattern matches for all elements" {
         forAll(isNull)(listOf()) shouldBe true
         forAll(isNull)(listOf(null)) shouldBe true

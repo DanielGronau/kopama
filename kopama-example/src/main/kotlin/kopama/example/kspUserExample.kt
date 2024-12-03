@@ -11,7 +11,7 @@ data class User(
     val phone: String? = null
 )
 
-fun contactMethod(user: User): String =
+fun manualMethod(user: User): String =
     when {
         user.country == "US" && user.roles.contains("ADMIN") && user.phone != null ->
             "Contact by phone: ${user.phone}"
@@ -42,8 +42,11 @@ fun kopamaMethod(user: User): String =
     }
 
 fun main() {
-    val c1 = contactMethod(User("Daniel", "DE", listOf("ADMIN"), phone = "123-456-789"))
+    val user = User("Daniel", "DE", listOf("ADMIN"), phone = "123-456-789")
+
+    val c1 = manualMethod(user)
     println(c1)
-    val c2 = kopamaMethod(User("Daniel", "DE", listOf("ADMIN"), phone = "123-456-789"))
+
+    val c2 = kopamaMethod(user)
     println(c2)
 }

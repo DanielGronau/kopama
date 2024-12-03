@@ -6,8 +6,8 @@ import io.kotest.matchers.shouldBe
 class StringPatternTest : StringSpec({
 
     "'hasToString' should check if calling toString() matches the given string" {
-        hasToString<Int>("23")(23) shouldBe true
-        hasToString<Int>("23")(15) shouldBe false
+        hasToString("23")(23) shouldBe true
+        hasToString("23")(15) shouldBe false
     }
 
     "'eqIgnoreCase' should check if a string is the same as the given one, ignoring upper- and lowercase" {
@@ -49,6 +49,12 @@ class StringPatternTest : StringSpec({
         hasLength(3)("abc") shouldBe true
         hasLength(3)("") shouldBe false
         hasLength(3)("abcd") shouldBe false
+    }
+
+    "'hasLength' should check if a string length matches a given pattern" {
+        hasLength(ge(3))("abc") shouldBe true
+        hasLength(oneOf(3,4,5))("") shouldBe false
+        hasLength(lt(3))("abcd") shouldBe false
     }
 
     "'regex' should check if a string matches the given regex" {
