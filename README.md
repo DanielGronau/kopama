@@ -1,8 +1,6 @@
-# kopama
+# Kopama
 
-Kopama ("Kotlin Pattern Matching") provides pattern matching functionality, as known from Haskell and Scala. It not only
-supports built-in classes, but also custom classes (which requires the use of KSP). The project started out as an
-example in my
+Kopama ("Kotlin Pattern Matching") provides pattern matching functionality, as known from Haskell and Scala. It not only supports built-in classes, but also custom classes (which requires the use of KSP). The project started out as an example for my
 book [Creative DSLs in Kotlin](https://www.amazon.com/-/de/dp/3759759866/) ([eBook](https://play.google.com/store/books/details/Daniel_Gronau_Creative_DSLs_in_Kotlin?id=ZtMZEQAAQBAJ)).
 
 ## Introduction
@@ -73,7 +71,7 @@ In order to use the core functionality with the built-in patterns, add the depen
 
 `implementation("kopama:kopama-core:$kopamaVersion")`
 
-If you also want to generated patterns, add the depencency:
+If you also want to generated patterns, add the dependency:
 
 `ksp("kopama:kopama-ksp:$kopamaVersion")`
 
@@ -114,8 +112,7 @@ whole expression will be determined by the first `then`-branch with a matching p
 -branch when none was matching. The `otherwise`-branch is mandatory, as there is no way for the library to determine if
 the given patterns are exhaustive.
 
-The naming of the built-in patterns often follows corresponding Hamcrest matchers, so if you are familiar with the
-latter (e.g. by using them for testing), you should pick up the Kopama patterns quickly.
+The naming of the built-in patterns often follows corresponding Hamcrest matchers, so if you are familiar with the latter (e.g. by using them for testing), you should pick up the Kopama patterns quickly.
 
 ## Built-In Patterns
 
@@ -219,4 +216,40 @@ Generally avoid capturing values which can be easily obtained from the matched v
 
 ## Generated Patterns
 
-### Generated Patterns for Classes with Type Variables
+As a prerequisite for generating patterns for classes, you need to add a dependency to the KSP module of the library, e.g. in Gradle:
+
+`ksp("kopama:kopama-ksp:$kopamaVersion")`
+
+Additionally, you need to tell Gradle that the output directory of KSP is also a source directory. There might be better solutions, but the example module of the library uses the following instructions: 
+
+```kotlin
+kotlin.sourceSets["main"].kotlin.srcDir(layout.buildDirectory.dir("/generated/ksp/main"))
+
+sourceSets {
+  main {
+    java {
+      srcDir(layout.buildDirectory.dir("/generated/ksp/main"))
+    }
+  }
+}
+```
+After these preparations, you should be able to use the `@Kopama` annotation in order to generate a pattern for a class. If you use it for data and value classes, this will almost always "just work".
+
+The `@Kopama` annotation has three arguments:
+* `arguments: Array<String>`: Here you can specify the properties (both `val` and `var`) or no-argument functions that should appear in the pattern (in the given order). If you don't specify `arguments`, the generator will take all `val` and `var` parameters from the primary constructor of the class instead.
+* `patternName: String`: This argument allows you to give the pattern a name. Be careful to avoid name clashes. If no `patternName` is given, the "de-capitalized" class name is used, e.g. the pattern for class `ExampleClass` would be named `exampleClass`.
+* `fileName: String`: This argument can change the file name for the generated pattern function. If `fileName` is not given, it will use the pattern name and add `"Pattern"` as suffix, so the `exampleClass` pattern would be generated in a file named `exampleClassPattern`. Note that the file is generated in the package of the original class, and currently there is no way to change this. 
+
+### Generated Patterns for Generic Classes
+
+The code generator works for simple generic classes, but frankly, this is the part of the library I'm the least confident of. 
+
+An important limitation is that the generator doesn't detect whether a type parameter is used for any of the pattern arguments, the pattern function will always have the same generic signature as the annotated class. Finding out which type parameter is really "used" is a challenging problem, as type parameters can also depend on each other. If this behavior is a problem, I would recommend to copy the generated pattern over to the regular code and to manually remove the offending type parameters from the function (and the `@Kopama` annotation from the class).
+
+## Closing Remarks 
+
+Working on this library was and is a fun challenge. Thank you for trying it out. I'm  grateful for your feedback. 
+
+My ultimate goal would be to make this library superfluous, by helping to push the Kotlin language itself towards better pattern matching capabilities. 
+
+Also, I want to mention that "Kopama" means "Are you angry?" in Telugu.

@@ -5,19 +5,19 @@ plugins {
 }
 
 group = "kopama-example"
-version = "1.0-SNAPSHOT"
+version = "1.0-RC1"
 
 repositories {
     mavenCentral()
     google()
 }
 
-kotlin.sourceSets["main"].kotlin.srcDir("$buildDir/generated/ksp/main/")
+kotlin.sourceSets["main"].kotlin.srcDir(layout.buildDirectory.dir("/generated/ksp/main"))
 
 sourceSets {
     main {
         java {
-            srcDir("$buildDir/generated/ksp/main")
+            srcDir(layout.buildDirectory.dir("/generated/ksp/main"))
         }
     }
 }
