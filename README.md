@@ -190,7 +190,11 @@ Tuple patterns work on pairs and triples:
 
 If you want to use the value of a nested property of the matched value on the right-hand side of `then`, you can use variable capture. First, you need to define a capture pattern before the test branch you want to use it in, e.g. `val capInt = capture<Int>()`. In the nested pattern on the left-hand side, you can then capture the value by using the defined pattern. On the right-hand side you can then read the value from the capture pattern, e.g. `capInt.value`. Note that you can't read null values, and that an error is thrown if you try to read a capture pattern before a value was captured.
 
-You can have multiple capture patterns, and they can be reused. Of course, you have to be careful that you actually use the pattern on the left-hand side, else you will read values captured in earlier branches. Here is an example:
+Sometimes it is not clear whether a variable is captured: Consider a pattern like `isNotNullAnd(capInt)`, which will short-circuit if the variable is `null`, so there is nothing captured in this case. To safely access the value in such situations, you have two options:
+* check if `capInt.isSet` is `true` before accessing `capInt.value`
+* use the `capInt.getOrNull()` function, which will return `null` for unset values
+
+You can have as many capture patterns as you want, and they can be reused in several branches. Of course, you have to be careful that you actually use the pattern on the left-hand side, else you will read values captured in earlier branches. Here is an example:
 
 ```kotlin
 val s = match(12 to "twelve") {
@@ -238,7 +242,7 @@ After these preparations, you should be able to use the `@Kopama` annotation in 
 The `@Kopama` annotation has three arguments:
 * `arguments: Array<String>`: Here you can specify the properties (both `val` and `var`) or no-argument functions that should appear in the pattern (in the given order). If you don't specify `arguments`, the generator will take all `val` and `var` parameters from the primary constructor of the class instead.
 * `patternName: String`: This argument allows you to give the pattern a name. Be careful to avoid name clashes. If no `patternName` is given, the "de-capitalized" class name is used, e.g. the pattern for class `ExampleClass` would be named `exampleClass`.
-* `fileName: String`: This argument can change the file name for the generated pattern function. If `fileName` is not given, it will use the pattern name and add `"Pattern"` as suffix, so the `exampleClass` pattern would be generated in a file named `exampleClassPattern`. Note that the file is generated in the package of the original class, and currently there is no way to change this. 
+* `fileName: String`: This argument can change the file name for the generated pattern function. If `fileName` is not given, it will use the pattern name and add `"Pattern"` as suffix, so the `exampleClass` pattern would be generated in a file named `exampleClassPattern`. Note that the file is generated in the package of the original class, and currently there is no way to change this. Also, it is currently not possible to have one file for multiple pattern functions.
 
 ### Generated Patterns for Generic Classes
 
