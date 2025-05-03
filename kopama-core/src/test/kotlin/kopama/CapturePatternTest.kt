@@ -49,6 +49,14 @@ class CapturePatternTest : StringSpec({
         capInt.value shouldBe 25
     }
 
+    "capture patterns work with nullable types" {
+        val capInt = capture<String?>()
+        capInt(null) shouldBe true
+        capInt.value shouldBe null
+        capInt("x") shouldBe true
+        capInt.value shouldBe "x"
+    }
+
     "multiple captures work in one match" {
         match(12 to "twelve") {
             val capInt = capture<Int>()

@@ -1,25 +1,15 @@
 plugins {
     application
     kotlin("jvm")
-    id("com.google.devtools.ksp") version "2.0.10-1.0.24"
+    id("com.google.devtools.ksp") version "2.1.20-2.0.1"
 }
 
 group = "kopama-example"
-version = "1.0-RC1"
+version = "1.0-RC2"
 
 repositories {
     mavenCentral()
     google()
-}
-
-kotlin.sourceSets["main"].kotlin.srcDir(layout.buildDirectory.dir("/generated/ksp/main"))
-
-sourceSets {
-    main {
-        java {
-            srcDir(layout.buildDirectory.dir("/generated/ksp/main"))
-        }
-    }
 }
 
 dependencies {

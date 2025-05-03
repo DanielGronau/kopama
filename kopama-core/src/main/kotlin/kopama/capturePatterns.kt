@@ -1,20 +1,24 @@
 package kopama
 
-class Capture<P : Any> : Pattern<P> {
+class Capture<P> : Pattern<P> {
 
-    lateinit var value: P
-        private set
+    private inner class Box(val value: P)
+
+    private var boxedValue: Box? = null
+
+    val value: P
+        get() = when (val bv = boxedValue) {
+            null -> throw UninitializedPropertyAccessException("No value captured")
+            else -> bv.value
+        }
 
     override fun invoke(obj: P) =
-        true.also { value = obj }
+        true.also { boxedValue = Box(obj) }
 
     val isSet: Boolean
-        get() = this::value.isInitialized
+        get() = boxedValue != null
 
-    fun getOrNull(): P? = when {
-        this::value.isInitialized -> value
-        else -> null
-    }
+    fun getOrNull(): P? = boxedValue?.value
 }
 
-inline fun <reified P : Any> capture() = Capture<P>()
+inline fun <reified P> capture() = Capture<P>()

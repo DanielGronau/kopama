@@ -1,12 +1,10 @@
 # Kopama
 
-Kopama ("Kotlin Pattern Matching") provides pattern matching functionality, as known from Haskell and Scala. It not only supports built-in classes, but also custom classes (which requires the use of KSP). The project started out as an example for my
-book [Creative DSLs in Kotlin](https://www.amazon.com/-/de/dp/3759759866/) ([eBook](https://play.google.com/store/books/details/Daniel_Gronau_Creative_DSLs_in_Kotlin?id=ZtMZEQAAQBAJ)).
+Kopama ("**Ko**tlin **Pa**ttern **Ma**tching") provides pattern matching functionality, as known from Haskell and Scala. It not only supports built-in classes, but also custom classes (which requires the use of KSP). The project started out as an example for my book [Creative DSLs in Kotlin](https://www.amazon.com/-/de/dp/3759759866/) ([eBook](https://play.google.com/store/books/details/Daniel_Gronau_Creative_DSLs_in_Kotlin?id=ZtMZEQAAQBAJ)).
 
 ## Introduction
 
-Assume we need to contact users who have an ADMIN role. If they reside in the US, we want to prefer a contact by phone,
-otherwise we would rather prefer email. If no contact information is given, we inform the billing department.
+Assume we need to contact users who have an ADMIN role. If they reside in the US, we want to prefer a contact by phone, otherwise we would rather prefer email. If no contact information is given, we inform the billing department.
 
 ```kotlin
 data class User(
@@ -59,11 +57,7 @@ fun kopamaMethod(user: User): String =
     }
 ```
 
-If a final class is annotated with `@Kopama`, a pattern function like `user()` will be generated (via KSP), which allows
-to check each component individually, either by using one of the built-in patterns (like `contains()`), or by using a
-nested generated pattern (e.g. imagine that the email in the example was not a simple String but has its own data class), or
-by a custom pattern function. It is also possible to capture values in the process, which can then be accessed on the
-right-hand side.
+If a final class is annotated with `@Kopama`, a pattern function like `user()` will be generated (via KSP), which allows to check each component individually, either by using one of the built-in patterns (like `contains()`), or by using a nested generated pattern (e.g. imagine that the email in the example was not a simple String but has its own data class), or by a custom pattern function. It is also possible to capture values in the process, which can then be accessed on the right-hand side.
 
 ## Using the Library
 
@@ -82,16 +76,11 @@ library is stable and production-ready, it will be released on Maven Central.
 
 Despite all efforts to make the library as safe to use as possible, there are still some risks involved:
 
-* the code generation is complicated and might break if a class is not suitable, or was updated without checking that
-  the matching still works. Renaming, reordering or removing a property can break the code, as well as using extension
-  properties or functions.
-* generating code from generic classes is especially tricky, and it is hard to predict if classes with complicated type
-  signatures (e.g. recursive ones) can be processed properly
-* capturing variables is inherently unsafe, e.g. the captured value is readable even after leaving the `then` branch, or
-  it will be overridden if the capture variable is used multiple times in a pattern
+* the code generation is complicated and might break if a class is not suitable, or was updated without checking that the matching still works. Renaming, reordering or removing a property can break the code, as well as using extension  properties or functions.
+* generating code from generic classes is especially tricky, and it is hard to predict if classes with complicated type signatures (e.g. recursive ones) can be processed properly
+* capturing variables is inherently unsafe, e.g. the captured value is readable even after leaving the `then` branch, or it will be overridden if the capture variable is used multiple times in a pattern
 
-Please, always check the generated code, and take extra care when changing classes used for code generation, and when
-capturing variables.
+Please, always check the generated code, and take extra care when changing classes used for code generation, and when capturing variables.
 
 ## Match Expressions
 
@@ -107,12 +96,9 @@ The general structure of a match-expression is
   }
 ```
 
-A pattern is just a predicate `(T) -> Boolean` - the library uses the typealias `Pattern<T>`. The result value of the
-whole expression will be determined by the first `then`-branch with a matching pattern, or the result of the `otherwise`
--branch when none was matching. The `otherwise`-branch is mandatory, as there is no way for the library to determine if
-the given patterns are exhaustive.
+A pattern is just a predicate `(T) -> Boolean` - the library uses the typealias `Pattern<T>`. The result value of the whole expression will be determined by the first `then`-branch with a matching pattern, or the result of the `otherwise`-branch when none was matching. The `otherwise`-branch is mandatory, as there is no way for the library to determine if the given patterns are exhaustive.
 
-The naming of the built-in patterns often follows corresponding Hamcrest matchers, so if you are familiar with the latter (e.g. by using them for testing), you should pick up the Kopama patterns quickly.
+The naming of the built-in patterns often follows the corresponding [Hamcrest Matchers](https://hamcrest.org/JavaHamcrest/) (e.g. used in testing libraries), so if you are familiar with them, you should pick up the Kopama patterns quickly.
 
 ## Built-In Patterns
 
@@ -139,18 +125,12 @@ Operator patterns allow to combine or modify existing patterns:
 
 Comparing patterns perform some kind of comparison:
 
-* `isNull` and `isNotNull` check against `null`, `isNullOr` and `isNotNullAnd` combine a not nullable pattern with a
-  null-check
-* `eq` checks if the value is equal with a given one. Inside a `match` block, the unary `+` is an alternative way to
-  call the pattern, e.g. `+"John"` is a shorthand for `eq("John")`. Obviously, for numerical values you still need to
-  use `eq`, as they have already a more specific implementation of the unary `+`. If you need instance equality, you can
-  use `isSame`
+* `isNull` and `isNotNull` check against `null`, `isNullOr` and `isNotNullAnd` combine a not nullable pattern with a null-check
+* `eq` checks if the value is equal with a given one. Inside a `match` block, the unary `+` is an alternative way to call the pattern, e.g. `+"John"` is a shorthand for `eq("John")`. Obviously, for numerical values you still need to use `eq`, as they have already a more specific implementation of the unary `+`. If you need instance equality, you can use `isSame`
 * `oneOf` checks if the value is equal to one of the given ones
 * `isA` checks if the value has a given type
-* `gt`, `ge`, `lt` and `le` check if the value is greater than, greater or equal, less then, or less or equal to the
-  given value. This works only for comparable values.
-* `between` checks if a value is between the given values, and `inRange` checks if the value falls in a given closed
-  range
+* `gt`, `ge`, `lt` and `le` check if the value is greater than, greater or equal, less then, or less or equal to the given value. This works only for comparable values.
+* `between` checks if a value is between the given values, and `inRange` checks if the value falls in a given closed range
 
 ### Collection and Array Patterns
 
@@ -162,8 +142,7 @@ Collection patterns work on collections or sometimes on iterables:
 * `contains`, `containsAll`, `containsAny`, `containsAll` check if the elements match the given values
 * the indexed access operator `[]` matches the pattern with the list element specified by the index
 
-Array patters are very similar, they have usually just the prefix `array...`. One exception is the indexed access, which
-is replaced by the `atIndex` function.
+Array patters are very similar, the patterns have just an `array...` prefix. One exception is the indexed access, which is replaced by the `atIndex` function.
 
 ### Map Patterns
 
@@ -188,11 +167,13 @@ Tuple patterns work on pairs and triples:
 
 ## Capturing Values
 
-If you want to use the value of a nested property of the matched value on the right-hand side of `then`, you can use variable capture. First, you need to define a capture pattern before the test branch you want to use it in, e.g. `val capInt = capture<Int>()`. In the nested pattern on the left-hand side, you can then capture the value by using the defined pattern. On the right-hand side you can then read the value from the capture pattern, e.g. `capInt.value`. Note that you can't read null values, and that an error is thrown if you try to read a capture pattern before a value was captured.
+If you want to use the value of a nested property of the matched value on the right-hand side of `then`, you can use variable capture. First, you need to define a capture pattern before the test branch you want to use it in, e.g. `val capInt = capture<Int>()`. In the nested pattern on the left-hand side, you can then capture the value by using the defined pattern. On the right-hand side you can then read the value from the capture pattern, e.g. `capInt.value`. Note that an error is thrown if you try to read a capture pattern before a value was captured.
 
 Sometimes it is not clear whether a variable is captured: Consider a pattern like `isNotNullAnd(capInt)`, which will short-circuit if the variable is `null`, so there is nothing captured in this case. To safely access the value in such situations, you have two options:
 * check if `capInt.isSet` is `true` before accessing `capInt.value`
 * use the `capInt.getOrNull()` function, which will return `null` for unset values
+
+If you use a capture together with other patterns, make sure that the capture is evaluated first, e.g. write `capInt and ge(13)`, not the other way around.
 
 You can have as many capture patterns as you want, and they can be reused in several branches. Of course, you have to be careful that you actually use the pattern on the left-hand side, else you will read values captured in earlier branches. Here is an example:
 
@@ -213,7 +194,7 @@ println(s) //  "first: 12 second: twelve and length is 6"
 Please avoid the following mistakes:
 * Don't try to read the value of a capture pattern before it was used
 * Make sure that the capture pattern was actually captured on the left-hand side before reading the value on the right-hand side
-* Just because a capture pattern appears on the left-hand side doesn't mean it will always be captured, as some operations short-circuit. E.g. code like `any or capInt` would never capture a value
+* Just because a capture pattern appears on the left-hand side doesn't mean it will always be captured, as some operations short-circuit. E.g. code like `any or capInt` would never capture a value. That's why you should evaluate a capture as early as possible
 * Don't capture the same pattern twice in one left-hand side, it will then contain only the last value
 
 Generally avoid capturing values which can be easily obtained from the matched value itself. Use the feature instead to read deeply nested or otherwise hard to get values.
@@ -224,36 +205,23 @@ As a prerequisite for generating patterns for classes, you need to add a depende
 
 `ksp("kopama:kopama-ksp:$kopamaVersion")`
 
-Additionally, you need to tell Gradle that the output directory of KSP is also a source directory. There might be better solutions, but the example module of the library uses the following instructions: 
+At least as long as you change your module frequently, it might be helpful to turn off  the KSP incremental build mode. For this, add the line `ksp.incremental=false` in your `gradle.properties` file.
 
-```kotlin
-kotlin.sourceSets["main"].kotlin.srcDir(layout.buildDirectory.dir("/generated/ksp/main"))
-
-sourceSets {
-  main {
-    java {
-      srcDir(layout.buildDirectory.dir("/generated/ksp/main"))
-    }
-  }
-}
-```
 After these preparations, you should be able to use the `@Kopama` annotation in order to generate a pattern for a class. If you use it for data and value classes, this will almost always "just work".
 
 The `@Kopama` annotation has three arguments:
 * `arguments: Array<String>`: Here you can specify the properties (both `val` and `var`) or no-argument functions that should appear in the pattern (in the given order). If you don't specify `arguments`, the generator will take all `val` and `var` parameters from the primary constructor of the class instead.
 * `patternName: String`: This argument allows you to give the pattern a name. Be careful to avoid name clashes. If no `patternName` is given, the "de-capitalized" class name is used, e.g. the pattern for class `ExampleClass` would be named `exampleClass`.
-* `fileName: String`: This argument can change the file name for the generated pattern function. If `fileName` is not given, it will use the pattern name and add `"Pattern"` as suffix, so the `exampleClass` pattern would be generated in a file named `exampleClassPattern`. Note that the file is generated in the package of the original class, and currently there is no way to change this. Also, it is currently not possible to have one file for multiple pattern functions.
+* `fileName: String`: This argument can change the file name for the generated pattern function. If `fileName` is not given, it will use the pattern name and add `"Pattern"` as suffix, so the `exampleClass` pattern would be generated in a file named `exampleClassPattern`. Note that the file is generated in the package of the original class, and currently there is no way to change this. Also, it is not possible to have one file for multiple pattern functions.
 
 ### Generated Patterns for Generic Classes
 
-The code generator works for simple generic classes, but frankly, this is the part of the library I'm the least confident of. 
+The code generator works for _simple_ generic classes, but frankly, this is the part of the library I'm the least confident of. 
 
-An important limitation is that the generator doesn't detect whether a type parameter is used for any of the pattern arguments, the pattern function will always have the same generic signature as the annotated class. Finding out which type parameter is really "used" is a challenging problem, as type parameters can also depend on each other. If this behavior is a problem, I would recommend to copy the generated pattern over to the regular code and to manually remove the offending type parameters from the function (and the `@Kopama` annotation from the class).
+An important limitation is that the generator doesn't detect whether a type parameter is used for any of the pattern arguments, the pattern function will always have the same generic signature as the annotated class. Finding out which type parameter is really "used" is a challenging problem, as type parameters can also depend on each other. If this behavior is a problem, I would recommend to copy the generated pattern over to the regular code and to manually remove the offending type parameters from the function, and the `@Kopama` annotation from the class itself.
 
 ## Closing Remarks 
 
-Working on this library was and is a fun challenge. Thank you for trying it out. I'm  grateful for your feedback. 
+Working on this library was and is a fun challenge. Thank you for trying it out. I'm  grateful for your feedback. My ultimate goal would be to make this library superfluous, by helping to push the Kotlin language itself towards better pattern matching capabilities. 
 
-My ultimate goal would be to make this library superfluous, by helping to push the Kotlin language itself towards better pattern matching capabilities. 
-
-Also, I want to mention that "Kopama" means "Are you angry?" in Telugu.
+Also, I would like to mention that "Kopama" means "Are you angry?" in Telugu.
