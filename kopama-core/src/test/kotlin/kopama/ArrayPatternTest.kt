@@ -25,10 +25,10 @@ class ArrayPatternTest : StringSpec({
 
     "'arrayHasSize' should check if an array matches the given pattern for its size" {
         arrayHasSize(oneOf(0, 2, 10))(arrayOf<Int>()) shouldBe true
-        arrayHasSize(oneOf(2,3))(arrayOf<Int>()) shouldBe false
-        arrayHasSize(oneOf(2,4,6))(arrayOf(1)) shouldBe false
-        arrayHasSize(oneOf(0,2))(arrayOf(1, 2)) shouldBe true
-        arrayHasSize(oneOf(0,1))(arrayOf(1, 2)) shouldBe false
+        arrayHasSize(oneOf(2, 3))(arrayOf<Int>()) shouldBe false
+        arrayHasSize(oneOf(2, 4, 6))(arrayOf(1)) shouldBe false
+        arrayHasSize(oneOf(0, 2))(arrayOf(1, 2)) shouldBe true
+        arrayHasSize(oneOf(0, 1))(arrayOf(1, 2)) shouldBe false
     }
 
     "'arrayForAll' should check if a pattern matches for all elements" {
@@ -88,11 +88,11 @@ class ArrayPatternTest : StringSpec({
     }
 
     "`atIndex` should apply the given pattern at the indicated element" {
-        eq(5).atIndex(2)(listOf(1, 3, 5, 7)) shouldBe true
-        eq(5).atIndex(2)(listOf(5, 5, 6, 5)) shouldBe false
-        eq(5).atIndex(0)(listOf(5, 4, 2, 1)) shouldBe true
-        eq(5).atIndex(3)(listOf(1, 2, 4, 5)) shouldBe true
-        eq(5).atIndex(2)(listOf(1)) shouldBe false
-        eq(5).atIndex(-2)(listOf(1)) shouldBe false
+        (eq(5) atIndex 2)(arrayOf(1, 3, 5, 7)) shouldBe true
+        (eq(5) atIndex 2)(arrayOf(5, 5, 6, 5)) shouldBe false
+        (eq(5) atIndex 0)(arrayOf(5, 4, 2, 1)) shouldBe true
+        (eq(5) atIndex 3)(arrayOf(1, 2, 4, 5)) shouldBe true
+        (eq(5) atIndex 2)(arrayOf(1)) shouldBe false
+        (eq(5) atIndex -2)(arrayOf(1)) shouldBe false
     }
 })

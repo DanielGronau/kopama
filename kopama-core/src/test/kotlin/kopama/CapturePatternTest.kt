@@ -69,4 +69,12 @@ class CapturePatternTest : StringSpec({
         } shouldBe "first:12 second:twelve"
     }
 
+    "can capture elements from list" {
+        match(listOf(1, 2, 30, 4, 5)) {
+            val capInt = capture<Int>()
+            forAny(capInt and ge(10)) then { "big value is ${capInt.value}" }
+            otherwise { "no big value" }
+        } shouldBe "big value is 30"
+    }
+
 })

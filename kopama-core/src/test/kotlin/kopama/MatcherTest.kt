@@ -58,5 +58,4 @@ class MatcherTest : StringSpec({
             otherwise { "no result" }
         } shouldBe "it's 23"
     }
-
 })
