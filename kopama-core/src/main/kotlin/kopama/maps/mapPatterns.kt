@@ -1,4 +1,6 @@
-package kopama
+package kopama.maps
+
+import kopama.Pattern
 
 /**
  * Matches when the keys of the map match the given pattern.
@@ -51,7 +53,7 @@ fun <K, V> entries(pattern: Pattern<List<Pair<K, V>>>): Pattern<Map<K, V>> =
  * @param key the key specifying which value should be matched against the pattern.
  * @return the resulting pattern.
  */
-fun <K,V> Pattern<V>.valueAt(key: K): Pattern<Map<K,V>> =
+fun <K,V> Pattern<V>.valueAt(key: K): Pattern<Map<K, V>> =
     { it[key]?.let { this@valueAt(it) } == true }
 
 /**

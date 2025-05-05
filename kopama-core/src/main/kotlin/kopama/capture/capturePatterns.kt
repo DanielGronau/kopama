@@ -1,7 +1,9 @@
-package kopama
+package kopama.capture
+
+import kopama.Pattern
 
 /**
- * The class for capture patterns.
+ * The pattern class for capture.
  *
  * Part of the kopama DSL.
  *

@@ -1,8 +1,16 @@
-package kopama
+package kopama.capture
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import kopama.operators.and
+import kopama.collections.forAny
+import kopama.compare.ge
+import kopama.strings.hasLength
+import kopama.compare.isNotNullAnd
+import kopama.compare.lt
+import kopama.match
+import kopama.tuples.pair
 
 class CapturePatternTest : StringSpec({
 

@@ -1,4 +1,6 @@
-package kopama
+package kopama.arrays
+
+import kopama.Pattern
 
 /**
  * Matches if array is empty.

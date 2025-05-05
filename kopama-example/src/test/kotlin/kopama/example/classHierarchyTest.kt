@@ -3,13 +3,13 @@ package kopama.example
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import kopama.Kopama
-import kopama.and
-import kopama.capture
-import kopama.eq
-import kopama.isA
-import kopama.lt
+import kopama.operators.and
+import kopama.capture.capture
+import kopama.compare.eq
+import kopama.compare.isA
+import kopama.compare.lt
 import kopama.match
-import kopama.startsWith
+import kopama.strings.startsWith
 
 enum class Gender { MALE, FEMALE, DIVERSE }
 

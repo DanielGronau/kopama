@@ -51,7 +51,7 @@ class KopamaVisitor(
 
         val fileSpec = FileSpec.builder(packageName = classDeclaration.packageName.asString(), fileName = fileName)
             .addFunction(funSpec)
-            .addImport("kopama", "any")
+            .addImport("kopama.compare", "any")
             .build()
 
         fileSpec.writeTo(codeGenerator, false)

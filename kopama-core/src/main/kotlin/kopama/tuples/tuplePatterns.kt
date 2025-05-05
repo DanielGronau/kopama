@@ -1,4 +1,8 @@
-package kopama
+package kopama.tuples
+
+import kopama.Matcher
+import kopama.Pattern
+import kopama.compare.any
 
 /**
  * Matches for a pair when the given condition matches.
@@ -103,7 +107,7 @@ fun <A, B, C> triple(
  * @param p3 the required pattern for the third element.
  * @return the resulting pattern.
  */// top-level version of triple, which avoids the need for explicit type parameters
-fun <A, B, C> Matcher<Triple<A,B,C>,*>.triple_(
+fun <A, B, C> Matcher<Triple<A, B, C>, *>.triple_(
     p1: Pattern<A> = any,
     p2: Pattern<B> = any,
     p3: Pattern<C> = any

@@ -2,6 +2,11 @@ package kopama
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import kopama.capture.capture
+import kopama.compare.gt
+import kopama.compare.lt
+import kopama.operators.and
+import kopama.operators.or
 
 class MatcherTest : StringSpec({
 

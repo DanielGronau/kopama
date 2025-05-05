@@ -1,4 +1,6 @@
-package kopama
+package kopama.collections
+
+import kopama.Pattern
 
 /**
  * Matches if collection is empty.

@@ -1,7 +1,11 @@
-package kopama
+package kopama.tuples
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import kopama.compare.gt
+import kopama.compare.lt
+import kopama.match
+import kopama.strings.startsWith
 
 class TuplePatternTest : StringSpec({
 

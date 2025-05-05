@@ -1,7 +1,12 @@
-package kopama
+package kopama.maps
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import kopama.collections.forAll
+import kopama.compare.eq
+import kopama.compare.oneOf
+import kopama.tuples.pair
+import kopama.strings.startsWith
 
 class MapPatternTest : StringSpec({
 

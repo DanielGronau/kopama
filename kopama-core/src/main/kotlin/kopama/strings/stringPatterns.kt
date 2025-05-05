@@ -1,4 +1,6 @@
-package kopama
+package kopama.strings
+
+import kopama.Pattern
 
 /**
  * Matches when the value has the given string representation (using `toString()`).

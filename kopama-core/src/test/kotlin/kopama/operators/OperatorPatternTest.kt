@@ -1,8 +1,12 @@
-package kopama
+package kopama.operators
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import java.io.Serializable
+import kopama.compare.any
+import kopama.compare.none
+import kopama.compare.eq
+import kopama.compare.ge
+import kopama.compare.isNull
 
 class OperatorPatternTest : StringSpec({
 

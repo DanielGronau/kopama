@@ -1,6 +1,10 @@
 package kopama.example
 
 import kopama.*
+import kopama.collections.contains
+import kopama.compare.isNull
+import kopama.compare.any
+import kopama.operators.not
 
 @Kopama
 data class User(

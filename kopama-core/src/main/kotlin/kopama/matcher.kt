@@ -1,5 +1,7 @@
 package kopama
 
+import kopama.compare.eq
+
 typealias Pattern<P> = (P) -> Boolean
 
 /**

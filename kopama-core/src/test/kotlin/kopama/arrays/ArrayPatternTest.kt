@@ -1,7 +1,10 @@
-package kopama
+package kopama.arrays
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import kopama.compare.eq
+import kopama.compare.isNull
+import kopama.compare.oneOf
 
 class ArrayPatternTest : StringSpec({
 

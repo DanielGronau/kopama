@@ -1,7 +1,10 @@
-package kopama
+package kopama.collections
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import kopama.compare.eq
+import kopama.compare.isNull
+import kopama.compare.oneOf
 
 class CollectionPatternTest : StringSpec({
 
@@ -25,10 +28,10 @@ class CollectionPatternTest : StringSpec({
 
     "'hasSize' should check if a collection matches the given pattern for its size" {
         hasSize(oneOf(0, 2, 10))(emptyList<Int>()) shouldBe true
-        hasSize(oneOf(2,3))(emptyList<Int>()) shouldBe false
-        hasSize(oneOf(2,4,6))(listOf(1)) shouldBe false
-        hasSize(oneOf(0,2))(listOf(1, 2)) shouldBe true
-        hasSize(oneOf(0,1))(listOf(1, 2)) shouldBe false
+        hasSize(oneOf(2, 3))(emptyList<Int>()) shouldBe false
+        hasSize(oneOf(2, 4, 6))(listOf(1)) shouldBe false
+        hasSize(oneOf(0, 2))(listOf(1, 2)) shouldBe true
+        hasSize(oneOf(0, 1))(listOf(1, 2)) shouldBe false
     }
 
     "'forAll' should check if a pattern matches for all elements" {

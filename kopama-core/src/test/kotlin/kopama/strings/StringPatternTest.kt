@@ -1,7 +1,10 @@
-package kopama
+package kopama.strings
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import kopama.compare.ge
+import kopama.compare.lt
+import kopama.compare.oneOf
 
 class StringPatternTest : StringSpec({
 
@@ -53,7 +56,7 @@ class StringPatternTest : StringSpec({
 
     "'hasLength' should check if a string length matches a given pattern" {
         hasLength(ge(3))("abc") shouldBe true
-        hasLength(oneOf(3,4,5))("") shouldBe false
+        hasLength(oneOf(3, 4, 5))("") shouldBe false
         hasLength(lt(3))("abcd") shouldBe false
     }
 

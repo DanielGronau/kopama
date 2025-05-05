@@ -3,8 +3,8 @@ package kopama.example
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import kopama.Kopama
-import kopama.isNotNull
-import kopama.isNull
+import kopama.compare.isNotNull
+import kopama.compare.isNull
 import kopama.match
 
 @Kopama

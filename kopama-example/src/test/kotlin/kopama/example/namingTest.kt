@@ -3,8 +3,8 @@ package kopama.example
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import kopama.Kopama
-import kopama.any
-import kopama.eq
+import kopama.compare.any
+import kopama.compare.eq
 import kopama.match
 import java.time.Instant
 

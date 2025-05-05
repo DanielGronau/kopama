@@ -3,10 +3,10 @@ package kopama.example
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import kopama.Kopama
-import kopama.any
-import kopama.forAny
-import kopama.eq
-import kopama.isEmpty
+import kopama.compare.any
+import kopama.collections.forAny
+import kopama.compare.eq
+import kopama.collections.isEmpty
 import kopama.match
 
 @Kopama

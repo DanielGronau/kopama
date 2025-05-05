@@ -3,7 +3,7 @@ package kopama.example
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import kopama.match
-import kopama.pair_
+import kopama.tuples.pair_
 
 class CustomPatternTest : StringSpec({
 

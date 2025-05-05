@@ -3,7 +3,7 @@ package kopama.example
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import kopama.Kopama
-import kopama.eq
+import kopama.compare.eq
 import kopama.match
 
 @Kopama(arguments = ["foo", "bar", "baz", "quux"])
