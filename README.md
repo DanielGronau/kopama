@@ -102,15 +102,18 @@ The naming of the built-in patterns often follows the corresponding [Hamcrest Ma
 
 ## Built-In Patterns
 
-### Constant Patterns
+### Comparing Patterns
 
-There are two constant patterns:
+Comparing patterns perform some kind of comparison:
 
 * `any`, which is always `true`
-* `none`, which is always `false`.
-
-For generated pattern functions like `user()` in the introduction example, all the patterns for the component patterns
-are by default `any`.
+* `none`, which is always `false`
+* `isNull` and `isNotNull` check against `null`, `isNullOr` and `isNotNullAnd` combine a not nullable pattern with a null-check
+* `eq` checks if the value is equal with a given one. Inside a `match` block, the unary `+` is an alternative way to call the pattern, e.g. `+"John"` is a shorthand for `eq("John")`. Obviously, for numerical values you still need to use `eq`, as they have already a more specific implementation of the unary `+`. If you need instance equality, you can use `isSame`
+* `oneOf` checks if the value is equal to one of the given ones
+* `isA` checks if the value has a given type
+* `gt`, `ge`, `lt` and `le` check if the value is greater than, greater or equal, less then, or less or equal to the given value. This works only for comparable values.
+* `between` checks if a value is between the given values, and `inRange` checks if the value falls in a given closed range
 
 ### Operator Patterns
 
@@ -120,17 +123,6 @@ Operator patterns allow to combine or modify existing patterns:
 * the functions `allOf`, `anyOf` and `noneOf` for combining several patterns
 * the operator `on` which allows to transform a value before the given pattern is applied
 * the conditional operators `thenRequire` and `ifThenElse`, which test patterns only if an initial condition is met
-
-### Comparing Patterns
-
-Comparing patterns perform some kind of comparison:
-
-* `isNull` and `isNotNull` check against `null`, `isNullOr` and `isNotNullAnd` combine a not nullable pattern with a null-check
-* `eq` checks if the value is equal with a given one. Inside a `match` block, the unary `+` is an alternative way to call the pattern, e.g. `+"John"` is a shorthand for `eq("John")`. Obviously, for numerical values you still need to use `eq`, as they have already a more specific implementation of the unary `+`. If you need instance equality, you can use `isSame`
-* `oneOf` checks if the value is equal to one of the given ones
-* `isA` checks if the value has a given type
-* `gt`, `ge`, `lt` and `le` check if the value is greater than, greater or equal, less then, or less or equal to the given value. This works only for comparable values.
-* `between` checks if a value is between the given values, and `inRange` checks if the value falls in a given closed range
 
 ### Collection and Array Patterns
 
@@ -165,6 +157,27 @@ Tuple patterns work on pairs and triples:
 * `pair` and `triple` check all elements against the given pattern. It might be required to specify type parameters for these patterns. If this happens when using them as top-level patterns (not inside other patterns), using the versions `pair_` and `triple_` instead should allow to avoid type parameters in most cases
 * `first`, `second`, `triple1`, `triple2` and `triple3` match the specified element
 
+## Data Class Patterns
+
+The recommended way to generate patterns for custom classes is to use the `@Kopama` annotation and the KSP module. However, the library provides a second way especially for data classes. It is less flexible, less safe and less convenient, but it doesn't rely on code generation. At the moment, only data classes up to eight parameters are supported.
+
+To get a pattern template, you instantiate one of the `DataClassPattern1..8` classes with the parameter types of the data class. Mistakes during this step can lead to runtime errors. Then you can generate patterns by simply invoking the template. In contrast to the KSP version, the sub-patterns have fixed names `comp1..8`, which makes it less convenient to use named arguments. Here is an example:
+
+```kotlin
+data class Person(val firstName: String, val lastName: String, val age: Int)
+
+// create a data class pattern template
+val person = DataClassPattern3<Person, String, String, Int>(Person::class)
+
+val result = match(Person("John", "Doe", 34)) {
+    person(comp3 = lt(18)) then { "too young" }
+    person(+"Jane", +"Doe", eq(27)) then { "it's Jane"}
+    person(+"John", +"Doe", lt(50)) then { "it's John"}
+    otherwise { "unknown person" }
+}
+println(result) // "it's John"
+```
+ 
 ## Capturing Values
 
 If you want to use the value of a nested property of the matched value on the right-hand side of `then`, you can use variable capture. First, you need to define a capture pattern before the test branch you want to use it in, e.g. `val capInt = capture<Int>()`. In the nested pattern on the left-hand side, you can then capture the value by using the defined pattern. On the right-hand side you can then read the value from the capture pattern, e.g. `capInt.value`. Note that an error is thrown if you try to read a capture pattern before a value was captured.

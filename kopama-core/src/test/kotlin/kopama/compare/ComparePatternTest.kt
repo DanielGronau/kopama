@@ -3,7 +3,6 @@ package kopama.compare
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import java.io.Serializable
-import kotlin.invoke
 
 class ComparePatternTest : StringSpec({
 

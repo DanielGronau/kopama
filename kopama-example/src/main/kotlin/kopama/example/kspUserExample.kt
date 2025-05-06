@@ -1,9 +1,11 @@
 package kopama.example
 
-import kopama.*
+import kopama.Kopama
 import kopama.collections.contains
-import kopama.compare.isNull
 import kopama.compare.any
+import kopama.compare.isNull
+import kopama.dataclasses.DataClassPattern5
+import kopama.match
 import kopama.operators.not
 
 @Kopama
@@ -45,6 +47,22 @@ fun kopamaMethod(user: User): String =
         otherwise { "no action" }
     }
 
+fun dataMethod(user: User): String {
+    val user_ = DataClassPattern5<User, String, String, List<String>, String?, String?>(User::class)
+
+    return match(user) {
+        user_(any, +"US", contains("ADMIN"), any, !isNull) then
+                { "Contact by phone: ${user.phone}" }
+        user_(comp3 = contains("ADMIN"),  comp4 = !isNull) then
+                { "Contact by email: ${user.email}" }
+        user_(any, any,  contains("ADMIN"), any, !isNull) then
+                { "Contact by phone: ${user.phone}" }
+        user_(comp3 = contains("ADMIN")) then
+                { "Inform billing, user: ${user.name}" }
+        otherwise { "no action" }
+    }
+}
+
 fun main() {
     val user = User("Daniel", "DE", listOf("ADMIN"), phone = "123-456-789")
 
@@ -53,4 +71,11 @@ fun main() {
 
     val c2 = kopamaMethod(user)
     println(c2)
+
+    val c3 = dataMethod(user)
+    println(c3)
 }
+
+
+
+
