@@ -5,7 +5,7 @@ import kopama.compare.any
 import kotlin.reflect.KClass
 
 /**
- * Data class pattern of size 7.
+ * Data class pattern of size 8.
  *
  * @param T the data class type.
  * @param A the first parameter type.
@@ -19,7 +19,8 @@ import kotlin.reflect.KClass
  * @property kClass the KClass of the data class.
  */
 @Suppress("UNCHECKED_CAST")
-data class DataClassPattern8<T : Any, A, B, C, D, E, F, G, H>(val kClass: KClass<T>) {
+data class DataClassPattern8<T : Any, A, B, C, D, E, F, G, H>(val kClass: KClass<T>): DataClassPattern(kClass, 8) {
+
     operator fun invoke(
         comp1: Pattern<A> = any,
         comp2: Pattern<B> = any,

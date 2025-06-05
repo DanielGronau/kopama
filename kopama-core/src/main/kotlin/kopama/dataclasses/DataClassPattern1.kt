@@ -12,11 +12,11 @@ import kotlin.reflect.KClass
  * @property kClass the KClass of the data class.
  */
 @Suppress("UNCHECKED_CAST")
-data class DataClassPattern1<T : Any, A>(val kClass: KClass<T>) {
+data class DataClassPattern1<T : Any, A>(val kClass: KClass<T>): DataClassPattern(kClass, 1) {
+
     operator fun invoke(
         comp1: Pattern<A> = any
     ): Pattern<T?> = { value ->
-        value is T &&
-                comp1(kClass.java.methods.first { it.name == "component1" }(value) as A)
+        value is T && comp1(kClass.java.methods.first { it.name == "component1" }(value) as A)
     }
 }

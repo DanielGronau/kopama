@@ -1,6 +1,6 @@
 # Kopama
 
-Kopama ("**Ko**tlin **Pa**ttern **Ma**tching") provides pattern matching functionality, as known from Haskell and Scala. It not only supports built-in classes, but also custom classes (which requires the use of KSP). The project started out as an example for my book [Creative DSLs in Kotlin](https://www.amazon.com/-/de/dp/3759759866/) ([eBook](https://play.google.com/store/books/details/Daniel_Gronau_Creative_DSLs_in_Kotlin?id=ZtMZEQAAQBAJ)).
+Kopama ("**Ko**tlin **Pa**ttern **Ma**tching") provides pattern matching functionality, as known from Haskell and Scala. It not only supports built-in classes, but also custom classes (requiring KSP for the best support). The project started out as an example for my book [Creative DSLs in Kotlin](https://www.amazon.com/-/de/dp/3759759866/) ([eBook](https://play.google.com/store/books/details/Daniel_Gronau_Creative_DSLs_in_Kotlin?id=ZtMZEQAAQBAJ)).
 
 ## Introduction
 
@@ -53,7 +53,7 @@ fun kopamaMethod(user: User): String =
                 { "Contact by phone: ${user.phone}" }
         user(roles = contains("ADMIN")) then
                 { "Inform billing department, user: ${user.name}" }
-        otherwise { "no action" }
+        otherwise { "No action" }
     }
 ```
 
@@ -157,17 +157,17 @@ Tuple patterns work on pairs and triples:
 * `pair` and `triple` check all elements against the given pattern. It might be required to specify type parameters for these patterns. If this happens when using them as top-level patterns (not inside other patterns), using the versions `pair_` and `triple_` instead should allow to avoid type parameters in most cases
 * `first`, `second`, `triple1`, `triple2` and `triple3` match the specified element
 
-## Data Class Patterns
+### Data Class Patterns
 
 The recommended way to generate patterns for custom classes is to use the `@Kopama` annotation and the KSP module. However, the library provides a second way especially for data classes. It is less flexible, less safe and less convenient, but it doesn't rely on code generation. At the moment, only data classes up to eight parameters are supported.
 
-To get a pattern template, you instantiate one of the `DataClassPattern1..8` classes with the parameter types of the data class. Mistakes during this step can lead to runtime errors. Then you can generate patterns by simply invoking the template. In contrast to the KSP version, the sub-patterns have fixed names `comp1..8`, which makes it less convenient to use named arguments. Here is an example:
+To get a pattern template, you instantiate one of the `DataClassPattern1..8` classes with the parameter types of the data class. This can be simplified a bit by using the `DataClassPattern()` smart constructors. <strong>Using wrong type parameters during this step will lead to runtime errors.</strong> Then you can generate patterns by simply invoking the template. In contrast to the KSP version, the sub-patterns have fixed names `comp1..8`, which makes it less convenient to use named arguments. Here is an example:
 
 ```kotlin
 data class Person(val firstName: String, val lastName: String, val age: Int)
 
 // create a data class pattern template
-val person = DataClassPattern3<Person, String, String, Int>(Person::class)
+val person = DataClassPattern<Person, String, String, Int>()
 
 val result = match(Person("John", "Doe", 34)) {
     person(comp3 = lt(18)) then { "too young" }

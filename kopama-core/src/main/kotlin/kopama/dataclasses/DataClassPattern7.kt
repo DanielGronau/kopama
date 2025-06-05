@@ -18,7 +18,8 @@ import kotlin.reflect.KClass
  * @property kClass the KClass of the data class.
  */
 @Suppress("UNCHECKED_CAST")
-data class DataClassPattern7<T : Any, A, B, C, D, E, F, G>(val kClass: KClass<T>) {
+data class DataClassPattern7<T : Any, A, B, C, D, E, F, G>(val kClass: KClass<T>): DataClassPattern(kClass, 7) {
+
     operator fun invoke(
         comp1: Pattern<A> = any,
         comp2: Pattern<B> = any,
