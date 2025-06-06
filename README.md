@@ -161,13 +161,13 @@ Tuple patterns work on pairs and triples:
 
 The recommended way to generate patterns for custom classes is to use the `@Kopama` annotation and the KSP module. However, the library provides a second way especially for data classes. It is less flexible, less safe and less convenient, but it doesn't rely on code generation. At the moment, only data classes up to eight parameters are supported.
 
-To get a pattern template, you instantiate one of the `DataClassPattern1..8` classes with the parameter types of the data class. This can be simplified a bit by using the `DataClassPattern()` smart constructors. <strong>Using wrong type parameters during this step will lead to runtime errors.</strong> Then you can generate patterns by simply invoking the template. In contrast to the KSP version, the sub-patterns have fixed names `comp1..8`, which makes it less convenient to use named arguments. Here is an example:
+To get a pattern template, you instantiate one of the `DataClassPattern1..8` classes with the parameter types of the data class. This can be simplified a bit by using the smart constructors, which don't need a `KClass` argument. <strong>Using wrong type parameters during this step will lead to runtime errors.</strong> Then you can generate patterns by simply invoking the template. In contrast to the KSP version, the sub-patterns have fixed names `comp1..8`, which makes it less convenient to use named arguments. Here is an example:
 
 ```kotlin
 data class Person(val firstName: String, val lastName: String, val age: Int)
 
 // create a data class pattern template
-val person = DataClassPattern<Person, String, String, Int>()
+val person = DataClassPattern3<Person, String, String, Int>()
 
 val result = match(Person("John", "Doe", 34)) {
     person(comp3 = lt(18)) then { "too young" }

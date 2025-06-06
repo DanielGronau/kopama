@@ -9,7 +9,7 @@ import kotlin.reflect.KClass
  * @param A the first parameter type.
  * @return the data class pattern.
  */
-inline fun <reified T : Any, A> DataClassPattern(): DataClassPattern1<T, A> =
+inline fun <reified T : Any, A> DataClassPattern1(): DataClassPattern1<T, A> =
     DataClassPattern1<T, A>(T::class)
 
 /**
@@ -20,7 +20,7 @@ inline fun <reified T : Any, A> DataClassPattern(): DataClassPattern1<T, A> =
  * @param B the second parameter type.
  * @return the data class pattern.
  */
-inline fun <reified T : Any, A, B> DataClassPattern(): DataClassPattern2<T, A, B> =
+inline fun <reified T : Any, A, B> DataClassPattern2(): DataClassPattern2<T, A, B> =
     DataClassPattern2<T, A, B>(T::class)
 
 /**
@@ -32,7 +32,7 @@ inline fun <reified T : Any, A, B> DataClassPattern(): DataClassPattern2<T, A, B
  * @param C the third parameter type.
  * @return the data class pattern.
  */
-inline fun <reified T : Any, A, B, C> DataClassPattern(): DataClassPattern3<T, A, B, C> =
+inline fun <reified T : Any, A, B, C> DataClassPattern3(): DataClassPattern3<T, A, B, C> =
     DataClassPattern3<T, A, B, C>(T::class)
 
 /**
@@ -45,7 +45,7 @@ inline fun <reified T : Any, A, B, C> DataClassPattern(): DataClassPattern3<T, A
  * @param D the fourth parameter type.
  * @return the data class pattern.
  */
-inline fun <reified T : Any, A, B, C, D> DataClassPattern(): DataClassPattern4<T, A, B, C, D> =
+inline fun <reified T : Any, A, B, C, D> DataClassPattern4(): DataClassPattern4<T, A, B, C, D> =
     DataClassPattern4<T, A, B, C, D>(T::class)
 
 /**
@@ -59,7 +59,7 @@ inline fun <reified T : Any, A, B, C, D> DataClassPattern(): DataClassPattern4<T
  * @param E the fifth parameter type.
  * @return the data class pattern.
  */
-inline fun <reified T : Any, A, B, C, D, E> DataClassPattern(): DataClassPattern5<T, A, B, C, D, E> =
+inline fun <reified T : Any, A, B, C, D, E> DataClassPattern5(): DataClassPattern5<T, A, B, C, D, E> =
     DataClassPattern5<T, A, B, C, D, E>(T::class)
 
 /**
@@ -74,7 +74,7 @@ inline fun <reified T : Any, A, B, C, D, E> DataClassPattern(): DataClassPattern
  * @param F the sixth parameter type.
  * @return the data class pattern.
  */
-inline fun <reified T : Any, A, B, C, D, E, F> DataClassPattern(): DataClassPattern6<T, A, B, C, D, E, F> =
+inline fun <reified T : Any, A, B, C, D, E, F> DataClassPattern6(): DataClassPattern6<T, A, B, C, D, E, F> =
     DataClassPattern6<T, A, B, C, D, E, F>(T::class)
 
 /**
@@ -90,7 +90,7 @@ inline fun <reified T : Any, A, B, C, D, E, F> DataClassPattern(): DataClassPatt
  * @param G the seventh parameter type.
  * @return the data class pattern.
  */
-inline fun <reified T : Any, A, B, C, D, E, F, G> DataClassPattern(): DataClassPattern7<T, A, B, C, D, E, F, G> =
+inline fun <reified T : Any, A, B, C, D, E, F, G> DataClassPattern7(): DataClassPattern7<T, A, B, C, D, E, F, G> =
     DataClassPattern7<T, A, B, C, D, E, F, G>(T::class)
 
 /**
@@ -107,7 +107,7 @@ inline fun <reified T : Any, A, B, C, D, E, F, G> DataClassPattern(): DataClassP
  * @param H the eighth parameter type.
  * @return the data class pattern.
  */
-inline fun <reified T : Any, A, B, C, D, E, F, G, H> DataClassPattern(): DataClassPattern8<T, A, B, C, D, E, F, G, H> =
+inline fun <reified T : Any, A, B, C, D, E, F, G, H> DataClassPattern8(): DataClassPattern8<T, A, B, C, D, E, F, G, H> =
     DataClassPattern8<T, A, B, C, D, E, F, G, H>(T::class)
 
 abstract class DataClassPattern(kClass: KClass<*>, arity: Int) {
