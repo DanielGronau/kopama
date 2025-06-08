@@ -12,7 +12,7 @@ class DataClassPatternTest : StringSpec({
 
     data class Test3(val foo: String, var bar: Int, val baz: Int?)
 
-    val test3 = DataClassPattern3<Test3, String, Int, Int?>()
+    val test3 = DataClassPattern<Test3, String, Int, Int?>()
 
     "data class patterns should match correctly" {
         match(Test3("quux", 42, null)) {
@@ -26,13 +26,13 @@ class DataClassPatternTest : StringSpec({
 
     "non-data classes must not be instantiatable" {
         shouldThrow< IllegalArgumentException> {
-            DataClassPattern2<String, Int, String>()
+            DataClassPattern<String, Int, String>()
         }.message shouldBe "'String' is not a data class or has not enough arguments"
     }
 
     "data classes with too few arguments must not be instantiatable" {
         shouldThrow< IllegalArgumentException> {
-            DataClassPattern4<Test3, String, Int, Int?, Boolean>()
+            DataClassPattern<Test3, String, Int, Int?, Boolean>()
         }.message shouldBe "'Test3' is not a data class or has not enough arguments"
     }
 })
