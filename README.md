@@ -2,6 +2,31 @@
 
 Kopama ("**Ko**tlin **Pa**ttern **Ma**tching") provides pattern matching functionality, as known from Haskell and Scala, and also supports validation. It not only supports built-in classes, but also custom classes (requiring KSP for the best support). The project started out as an example for my book [Creative DSLs in Kotlin](https://www.amazon.com/-/de/dp/3759759866/) ([eBook](https://play.google.com/store/books/details/Daniel_Gronau_Creative_DSLs_in_Kotlin?id=ZtMZEQAAQBAJ)).
 
+## Table of Contents
+
+<!-- TOC -->
+* [Kopama](#kopama)
+  * [Table of Contents](#table-of-contents)
+  * [Introduction](#introduction)
+  * [Using the Library](#using-the-library)
+  * [Considerations before using Kopama](#considerations-before-using-kopama)
+  * [Match Expressions](#match-expressions)
+  * [Built-In Patterns](#built-in-patterns)
+    * [Comparing Patterns](#comparing-patterns)
+    * [Operator Patterns](#operator-patterns)
+    * [Collection and Array Patterns](#collection-and-array-patterns)
+    * [Map Patterns](#map-patterns)
+    * [String Patterns](#string-patterns)
+    * [Tuple Patterns](#tuple-patterns)
+    * [Data Class Patterns](#data-class-patterns)
+  * [Capturing Values](#capturing-values)
+  * [Generated Patterns](#generated-patterns)
+    * [Generated Patterns for Generic Classes](#generated-patterns-for-generic-classes)
+  * [Custom Patterns](#custom-patterns)
+  * [Validation](#validation)
+  * [Closing Remarks](#closing-remarks-)
+<!-- TOC -->
+
 ## Introduction
 
 Assume we need to contact users who have an ADMIN role. If they reside in the US, we want to prefer a contact by phone, otherwise we would rather prefer email. If no contact information is given, we inform the billing department.
@@ -233,7 +258,7 @@ The code generator works for _simple_ generic classes, but frankly, this is the 
 
 An important limitation is that the generator doesn't detect whether a type parameter is used for any of the pattern arguments, the pattern function will always have the same generic signature as the annotated class. Finding out which type parameter is really "used" is a challenging problem, as type parameters can also depend on each other. If this behavior is a problem, I would recommend to copy the generated pattern over to the regular code and to manually remove the offending type parameters from the function, and the `@Kopama` annotation from the class itself.
 
-### Custom Patterns
+## Custom Patterns
 
 As mentioned, patterns are just simple predicates, and it is very easy to write them yourself, and to combine them with the built-in ones. Often you can use fitting methods directly:
 
