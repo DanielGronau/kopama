@@ -2,13 +2,9 @@ package kopama.example
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import kopama.Kopama
 import kopama.compare.isNotNull
 import kopama.compare.isNull
 import kopama.match
-
-@Kopama
-data class NullTest(val alpha: Int, val beta: Int?, var gamma: String, var delta: String?)
 
 class NullabilityTest : StringSpec({
 

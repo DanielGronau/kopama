@@ -2,24 +2,13 @@ package kopama.example
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import kopama.Kopama
-import kopama.operators.and
 import kopama.capture.capture
 import kopama.compare.eq
 import kopama.compare.isA
 import kopama.compare.lt
 import kopama.match
+import kopama.operators.and
 import kopama.strings.startsWith
-
-enum class Gender { MALE, FEMALE, DIVERSE }
-
-sealed interface LegalEntity
-
-@Kopama
-data class Person(val firstName: String, val lastName: String, val age: Int, val gender: Gender) : LegalEntity
-
-@Kopama
-class Company(val companyName: String, var taxID: String, nonsense: String) : LegalEntity
 
 class ClassHierarchyTest : StringSpec({
 

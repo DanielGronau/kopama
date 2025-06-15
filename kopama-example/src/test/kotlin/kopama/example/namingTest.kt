@@ -2,15 +2,10 @@ package kopama.example
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import kopama.Kopama
 import kopama.compare.any
 import kopama.compare.eq
 import kopama.match
 import java.time.Instant
-
-@Kopama(patternName = "bar", fileName = "bazPattern")
-data class Foo(val alpha: Int, val beta: String, val gamma: Instant)
-
 
 class NamingTest : StringSpec({
 

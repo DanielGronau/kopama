@@ -15,7 +15,6 @@ repositories {
 dependencies {
     implementation(project(":kopama-core"))
     ksp(project(":kopama-ksp"))
-
     testImplementation(kotlin("test"))
     testImplementation(libs.kotest.junit)
     testImplementation(libs.kotest.assertions)

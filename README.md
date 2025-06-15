@@ -1,6 +1,6 @@
 # Kopama
 
-Kopama ("**Ko**tlin **Pa**ttern **Ma**tching") provides pattern matching functionality, as known from Haskell and Scala. It not only supports built-in classes, but also custom classes (requiring KSP for the best support). The project started out as an example for my book [Creative DSLs in Kotlin](https://www.amazon.com/-/de/dp/3759759866/) ([eBook](https://play.google.com/store/books/details/Daniel_Gronau_Creative_DSLs_in_Kotlin?id=ZtMZEQAAQBAJ)).
+Kopama ("**Ko**tlin **Pa**ttern **Ma**tching") provides pattern matching functionality, as known from Haskell and Scala, and also supports validation. It not only supports built-in classes, but also custom classes (requiring KSP for the best support). The project started out as an example for my book [Creative DSLs in Kotlin](https://www.amazon.com/-/de/dp/3759759866/) ([eBook](https://play.google.com/store/books/details/Daniel_Gronau_Creative_DSLs_in_Kotlin?id=ZtMZEQAAQBAJ)).
 
 ## Introduction
 
@@ -232,6 +232,64 @@ The `@Kopama` annotation has three arguments:
 The code generator works for _simple_ generic classes, but frankly, this is the part of the library I'm the least confident of. 
 
 An important limitation is that the generator doesn't detect whether a type parameter is used for any of the pattern arguments, the pattern function will always have the same generic signature as the annotated class. Finding out which type parameter is really "used" is a challenging problem, as type parameters can also depend on each other. If this behavior is a problem, I would recommend to copy the generated pattern over to the regular code and to manually remove the offending type parameters from the function, and the `@Kopama` annotation from the class itself.
+
+### Custom Patterns
+
+As mentioned, patterns are just simple predicates, and it is very easy to write them yourself, and to combine them with the built-in ones. Often you can use fitting methods directly:
+
+```
+val c = 'c'
+val result = match(c) {
+    Char::isDigit then { "digit" }
+    Char::isLetter then { "letter" }
+    otherwise { "unknown" }
+}
+println(result) // letter
+```
+
+## Validation
+
+The validation functionality builds on the existing pattern infrastructure, but is admittedly very basic. For more sophisticated validation support I recommend the excellent [konform-kt](https://github.com/konform-kt/konform) library.
+
+Here is an example, using the same `User` class as in the introduction of pattern matching.
+
+```kotlin
+user = User("John", "DE", listOf("ADMIN"), phone = "123-456-789")
+...
+val result = validate(user) {
+    user(name = containsString(" ")) onFail { "must have first and last name" }
+    user(country = oneOf("UK", "US")) onFail { "must be from UK or US" }
+    user(roles = containsAny("ADMIN", "SUPERUSER")) onFail { "must be admin or superuser" }
+    user(phone = isNullOr(!containsString("-"))) onFail { "phone must not contain -" }
+}
+
+println("User is valid: ${result.isValid()}") // User is valid: false
+println("Problems: ${result.failures}") 
+// Problems: [
+//   must have first and last name, 
+//   must be from UK or US, 
+//   phone must not contain -
+// ]
+result.onFailure { failures ->
+    throw IllegalArgumentException("Problems with user: $failures")
+} // throws exception
+```
+
+The validation block is similar to a match block, but all patterns are checked. For the _failing_ ones, the right hand sides are evaluated, and stored in a `ValidationResult`, which is basically just a wrapper around a `failures` list, and has additionally  
+* two smart constructors `Valid()` and `Invalid(...)`
+* a check `isValid()` for the validation status 
+* an overloaded `+` operator for adding failure values or other `ValidationResults`
+* an `onFailure{ ... }` method for triggering an action (like throwing an exception) in case of an invalid result
+
+ATTENTION: Be aware that patterns assuming the wrong type are also considered as "failing". Consider this example:
+```
+val n: Number = 42
+val result = validate(n) {
+   lt(50) onFail { "must be smaller than 50" }
+   gt(40.0) onFail { "must be bigger than 40.0" }
+}
+```
+This may seem fine at the first glance, but the second condition will fail, as it assumes `n` to be a `Double`, while it is actually an `Int`. This behavior can be inconvenient, but the alternative would be to skip such patterns silently, which is obviously dangerous.  
 
 ## Closing Remarks 
 
