@@ -1,6 +1,6 @@
 # Kopama
 
-Kopama ("**Ko**tlin **Pa**ttern **Ma**tching") provides pattern matching functionality, as known from Haskell and Scala, and also supports validation. It not only supports built-in classes, but also custom classes (requiring KSP for the best support). The project started out as an example for my book [Creative DSLs in Kotlin](https://www.amazon.com/-/de/dp/3759759866/) ([eBook](https://play.google.com/store/books/details/Daniel_Gronau_Creative_DSLs_in_Kotlin?id=ZtMZEQAAQBAJ)).
+Kopama ("**Ko**tlin **Pa**ttern **Ma**tching") provides pattern matching functionality, as known from Haskell and Scala, and also supports validation. It not only supports matching for built-in classes, but also custom classes (requiring KSP for the best support). The project started out as an example for the book [Creative DSLs in Kotlin](https://www.amazon.com/-/de/dp/3759759866/) ([eBook](https://play.google.com/store/books/details/Daniel_Gronau_Creative_DSLs_in_Kotlin?id=ZtMZEQAAQBAJ)).
 
 ## Table of Contents
 
@@ -94,8 +94,10 @@ If you also want to generated patterns, add the dependency:
 
 `ksp("kopama:kopama-ksp:$kopamaVersion")`
 
-NOTE: Currently Kopama is not available on Maven Central, you can use [JitPack](https://jitpack.io/) instead. Once the
+NOTE: Currently kopama is not available on Maven Central, you can use [JitPack](https://jitpack.io/) instead. Once the
 library is stable and production-ready, it will be released on Maven Central.
+
+The `kopama-example` module is just included for demonstration purposes, and for hosting tests that require KSP and therefore can't reside in `kopama-core`.
 
 ## Considerations before using Kopama
 

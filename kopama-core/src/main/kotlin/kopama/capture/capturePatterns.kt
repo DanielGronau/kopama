@@ -52,14 +52,11 @@ class Capture<P> : Pattern<P> {
  *
  * Example usage:
  *
- * ```
- * match(listOf(1,42,3) {
- *   ...
- *   val capInt = capture<Int>()
- *   forAny(capInt and ge(10)) then { "the big number is ${capInt.value}" }
- *   ...
- * }
- * ```
+ *     val s = match(listOf(1,42,3) {
+ *        val capInt = capture<Int>()
+ *        forAny(capInt and ge(10)) then { "the big number is ${capInt.value}" } //matches
+ *        otherwise { "no big number in list" }
+ *     }
  *
  * @param P the target type of the capture pattern.
  * @return the resulting pattern.
