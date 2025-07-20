@@ -52,9 +52,9 @@ class Capture<P> : Pattern<P> {
  *
  * Example usage:
  *
- *     val s = match(listOf(1,42,3) {
+ *     val s = match(listOf(1, 42, 3) {
  *        val capInt = capture<Int>()
- *        forAny(capInt and ge(10)) then { "the big number is ${capInt.value}" } //matches
+ *        forAny(capInt and ge(10)) then { "a big number in the list is ${capInt.value}" } //matches
  *        otherwise { "no big number in list" }
  *     }
  *
