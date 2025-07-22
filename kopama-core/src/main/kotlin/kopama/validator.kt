@@ -7,7 +7,7 @@ import kopama.compare.eq
  *
  * Part of the kopama DSL.
  *
- * @param F the result type of a validation failure.
+ * @param F the result type of validations.
  */
 data class ValidationResult<F>(val failures: List<F>) {
 
@@ -20,7 +20,7 @@ data class ValidationResult<F>(val failures: List<F>) {
     fun isValid(): Boolean = failures.isEmpty()
 
     fun onFailure(action: (List<F>) -> Unit) {
-        if (! isValid()) action(failures)
+        if (!isValid()) action(failures)
     }
 
     override fun toString(): String = when {
@@ -76,8 +76,10 @@ class Validator<P, F : Any>(val obj: P) {
      * A shortcut for `eq`.
      *
      * E.g. `+"abc"` is the same as writing `eq("abc")`.
+     *
+     * @param T type of comparison value
      */
-    operator fun Any.unaryPlus() = eq(this)
+    operator fun <T> T.unaryPlus() = eq(this)
 
 }
 

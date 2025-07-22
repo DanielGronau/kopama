@@ -35,8 +35,8 @@ class Matcher<P, T : Any>(val obj: P) {
      * The general syntax is `<pattern> then { <result value> }`
      *
      * @param Q
-     * @param value
-     * @receiver
+     * @property value
+     * @receiver Pattern
      */
     inline infix fun <reified Q : P> Pattern<Q>.then(value: () -> T) {
         if (result == null && obj is Q && this(obj)) {
@@ -48,8 +48,9 @@ class Matcher<P, T : Any>(val obj: P) {
      * A shortcut for `eq`.
      *
      * E.g. `+"abc"` is the same as writing `eq("abc")`.
+     * @param T type of comparison value
      */
-    operator fun Any.unaryPlus() = eq(this)
+    operator fun <T> T.unaryPlus() = eq(this)
 
     /**
      * Constructs the default clause inside a match block.
