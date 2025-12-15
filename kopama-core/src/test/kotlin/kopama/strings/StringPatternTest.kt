@@ -2,11 +2,12 @@ package kopama.strings
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import kopama.Matcher
 import kopama.compare.ge
 import kopama.compare.lt
 import kopama.compare.oneOf
 
-class StringPatternTest : StringSpec({
+internal class StringPatternTest : StringSpec({
 
     "'hasToString' should check if calling toString() matches the given string" {
         hasToString("23")(23) shouldBe true

@@ -12,7 +12,7 @@ import kopama.compare.lt
 import kopama.match
 import kopama.tuples.pair
 
-class CapturePatternTest : StringSpec({
+internal class CapturePatternTest : StringSpec({
 
     "a capture pattern should succeed and retain the last value" {
         val capInt = capture<Int>()

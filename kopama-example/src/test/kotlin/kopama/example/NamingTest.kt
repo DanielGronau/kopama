@@ -7,7 +7,7 @@ import kopama.compare.eq
 import kopama.match
 import java.time.Instant
 
-class NamingTest : StringSpec({
+internal class NamingTest : StringSpec({
 
     "pattern can be renamed via annotation" {
         match(Foo(12, "twelve", Instant.now())) {

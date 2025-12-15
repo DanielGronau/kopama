@@ -10,7 +10,7 @@ import kopama.compare.isNull
 import kopama.strings.startsWith
 import kopama.validate
 
-class ValidatorTest : StringSpec({
+internal class ValidatorTest : StringSpec({
 
     "validator works for generated classes" {
         validate(NullTest(12, null, "foo", "bar")) {

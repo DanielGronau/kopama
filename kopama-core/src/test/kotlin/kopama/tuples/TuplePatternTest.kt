@@ -7,7 +7,7 @@ import kopama.compare.lt
 import kopama.match
 import kopama.strings.startsWith
 
-class TuplePatternTest : StringSpec({
+internal class TuplePatternTest : StringSpec({
 
     "'pair' should check if the given condition for the elements of a pair holds" {
         pair { a: Int, b: String -> a.toString() == b }(5 to "5") shouldBe true

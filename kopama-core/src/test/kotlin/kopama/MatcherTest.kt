@@ -8,7 +8,7 @@ import kopama.compare.lt
 import kopama.operators.and
 import kopama.operators.or
 
-class MatcherTest : StringSpec({
+internal class MatcherTest : StringSpec({
 
     "a matcher should return the lambda result of the first matching case" {
         match(23) {

@@ -8,7 +8,7 @@ import kopama.compare.isNull
 import kopama.match
 import java.lang.IllegalArgumentException
 
-class DataClassPatternTest : StringSpec({
+internal class DataClassPatternTest : StringSpec({
 
     data class Test3(val foo: String, var bar: Int, val baz: Int?)
 

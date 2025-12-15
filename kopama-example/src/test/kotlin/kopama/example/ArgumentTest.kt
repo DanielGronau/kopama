@@ -5,7 +5,7 @@ import io.kotest.matchers.shouldBe
 import kopama.compare.eq
 import kopama.match
 
-class ArgumentTest : StringSpec({
+internal class ArgumentTest : StringSpec({
 
     "works for constructor var and vals, properties and methods" {
         match(ArgTest(11, listOf("2"))) {

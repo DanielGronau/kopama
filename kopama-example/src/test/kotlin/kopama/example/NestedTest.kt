@@ -9,7 +9,7 @@ import kopama.compare.eq
 import kopama.match
 
 
-class NestedTest : StringSpec({
+internal class NestedTest : StringSpec({
 
     "nested patterns work" {
         val o1 = Outer(Inner(27), emptyList())

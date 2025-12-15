@@ -8,7 +8,7 @@ import kopama.compare.oneOf
 import kopama.tuples.pair
 import kopama.strings.startsWith
 
-class MapPatternTest : StringSpec({
+internal class MapPatternTest : StringSpec({
 
     "'keys' should check if the given pattern matches the keys of a map" {
         keys<String, Int>(forAll(startsWith("a")))(mapOf("a" to 1, "ab" to 2)) shouldBe true

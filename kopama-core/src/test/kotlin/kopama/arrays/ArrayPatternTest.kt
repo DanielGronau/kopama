@@ -6,7 +6,7 @@ import kopama.compare.eq
 import kopama.compare.isNull
 import kopama.compare.oneOf
 
-class ArrayPatternTest : StringSpec({
+internal class ArrayPatternTest : StringSpec({
 
     "'arrayIsEmpty' should check if an array is empty" {
         arrayIsEmpty()(arrayOf<Int>()) shouldBe true

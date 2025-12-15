@@ -6,7 +6,7 @@ import kopama.compare.oneOf
 import kopama.match
 import kopama.tuples.pair_
 
-class CustomPatternTest : StringSpec({
+internal class CustomPatternTest : StringSpec({
 
     "using custom patterns works" {
         val c = 'c'

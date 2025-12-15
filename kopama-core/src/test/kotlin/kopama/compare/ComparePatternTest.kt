@@ -4,7 +4,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 import java.io.Serializable
 
-class ComparePatternTest : StringSpec({
+internal class ComparePatternTest : StringSpec({
 
     "'isNull' should check if a value is null" {
         isNull(null) shouldBe true

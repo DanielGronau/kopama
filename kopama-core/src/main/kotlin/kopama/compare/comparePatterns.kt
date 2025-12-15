@@ -4,12 +4,29 @@ import kopama.Pattern
 
 /**
  * The pattern that always matches.
+ *
+ * Example:
+ *
+ *     val s = match("x") {
+ *         none then { "none" }
+ *         any then { "any" } // matches
+ *         otherwise { "can't happen" }
+ *     }
+ *
  */
 val any: Pattern<Any?> =
     { true }
 
 /**
  * The pattern that never matches.
+ *
+ * Example:
+ *
+ *     val s = match("x") {
+ *         none then { "none" } // doesn't match
+ *         any then { "any" }
+ *         otherwise { "can't happen" }
+ *     }
  */
 val none: Pattern<Any?> =
     { false }

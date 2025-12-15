@@ -11,7 +11,7 @@ import kotlin.reflect.KClass
  */
 @JvmName("DataClassPattern1")
 inline fun <reified T : Any, A> DataClassPattern(): DataClassPattern1<T, A> =
-    DataClassPattern1<T, A>(T::class)
+    DataClassPattern1(T::class)
 
 /**
  * Convenience function for creating data class patterns of size 2.
@@ -23,7 +23,7 @@ inline fun <reified T : Any, A> DataClassPattern(): DataClassPattern1<T, A> =
  */
 @JvmName("DataClassPattern2")
 inline fun <reified T : Any, A, B> DataClassPattern(): DataClassPattern2<T, A, B> =
-    DataClassPattern2<T, A, B>(T::class)
+    DataClassPattern2(T::class)
 
 /**
  * Convenience function for creating data class patterns of size 3.
@@ -36,7 +36,7 @@ inline fun <reified T : Any, A, B> DataClassPattern(): DataClassPattern2<T, A, B
  */
 @JvmName("DataClassPattern3")
 inline fun <reified T : Any, A, B, C> DataClassPattern(): DataClassPattern3<T, A, B, C> =
-    DataClassPattern3<T, A, B, C>(T::class)
+    DataClassPattern3(T::class)
 
 /**
  * Convenience function for creating data class patterns of size 4.
@@ -50,7 +50,7 @@ inline fun <reified T : Any, A, B, C> DataClassPattern(): DataClassPattern3<T, A
  */
 @JvmName("DataClassPattern4")
 inline fun <reified T : Any, A, B, C, D> DataClassPattern(): DataClassPattern4<T, A, B, C, D> =
-    DataClassPattern4<T, A, B, C, D>(T::class)
+    DataClassPattern4(T::class)
 
 /**
  * Convenience function for creating data class patterns of size 5.
@@ -65,7 +65,7 @@ inline fun <reified T : Any, A, B, C, D> DataClassPattern(): DataClassPattern4<T
  */
 @JvmName("DataClassPattern5")
 inline fun <reified T : Any, A, B, C, D, E> DataClassPattern(): DataClassPattern5<T, A, B, C, D, E> =
-    DataClassPattern5<T, A, B, C, D, E>(T::class)
+    DataClassPattern5(T::class)
 
 /**
  * Convenience function for creating data class patterns of size 6.
@@ -81,7 +81,7 @@ inline fun <reified T : Any, A, B, C, D, E> DataClassPattern(): DataClassPattern
  */
 @JvmName("DataClassPattern6")
 inline fun <reified T : Any, A, B, C, D, E, F> DataClassPattern(): DataClassPattern6<T, A, B, C, D, E, F> =
-    DataClassPattern6<T, A, B, C, D, E, F>(T::class)
+    DataClassPattern6(T::class)
 
 /**
  * Convenience function for creating data class patterns of size 7.
@@ -98,7 +98,7 @@ inline fun <reified T : Any, A, B, C, D, E, F> DataClassPattern(): DataClassPatt
  */
 @JvmName("DataClassPattern7")
 inline fun <reified T : Any, A, B, C, D, E, F, G> DataClassPattern(): DataClassPattern7<T, A, B, C, D, E, F, G> =
-    DataClassPattern7<T, A, B, C, D, E, F, G>(T::class)
+    DataClassPattern7(T::class)
 
 /**
  * Convenience function for creating data class patterns of size 8.
@@ -116,7 +116,7 @@ inline fun <reified T : Any, A, B, C, D, E, F, G> DataClassPattern(): DataClassP
  */
 @JvmName("DataClassPattern8")
 inline fun <reified T : Any, A, B, C, D, E, F, G, H> DataClassPattern(): DataClassPattern8<T, A, B, C, D, E, F, G, H> =
-    DataClassPattern8<T, A, B, C, D, E, F, G, H>(T::class)
+    DataClassPattern8(T::class)
 
 abstract class DataClassPattern(kClass: KClass<*>, arity: Int) {
     init {

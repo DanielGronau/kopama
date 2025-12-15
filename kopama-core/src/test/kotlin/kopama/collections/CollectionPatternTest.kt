@@ -6,7 +6,7 @@ import kopama.compare.eq
 import kopama.compare.isNull
 import kopama.compare.oneOf
 
-class CollectionPatternTest : StringSpec({
+internal class CollectionPatternTest : StringSpec({
 
     "'isEmpty' should check if a collection is empty" {
         isEmpty()(emptyList<Int>()) shouldBe true

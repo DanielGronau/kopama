@@ -10,7 +10,7 @@ import kopama.strings.endsWith
 import kopama.strings.hasLength
 import kopama.strings.startsWith
 
-class ValidatorTest : StringSpec({
+internal class ValidatorTest : StringSpec({
 
     "a validator should return all failing cases" {
         validate("foo") {

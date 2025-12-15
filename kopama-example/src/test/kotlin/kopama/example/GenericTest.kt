@@ -8,7 +8,7 @@ import kopama.compare.eq
 import kopama.compare.ge
 import kopama.match
 
-class GenericTest : StringSpec({
+internal class GenericTest : StringSpec({
 
     "generic arguments and arguments with type arguments should be processed correctly" {
         val g = GenTest(23, listOf("x"))

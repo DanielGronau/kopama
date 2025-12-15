@@ -5,7 +5,7 @@ include("kopama-ksp")
 include("kopama-example")
 
 dependencyResolutionManagement {
-    val kotlinVersion = "2.2.0"
+    val kotlinVersion = "2.2.10"
     val kotestVersion = "5.9.1"
     versionCatalogs {
         create("libs") {

@@ -8,7 +8,7 @@ import kopama.compare.eq
 import kopama.compare.ge
 import kopama.compare.isNull
 
-class OperatorPatternTest : StringSpec({
+internal class OperatorPatternTest : StringSpec({
 
     "'!' should invert the result of a pattern" {
         !isNull(23) shouldBe true

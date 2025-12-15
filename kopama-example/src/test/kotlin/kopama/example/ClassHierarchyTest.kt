@@ -10,7 +10,7 @@ import kopama.match
 import kopama.operators.and
 import kopama.strings.startsWith
 
-class ClassHierarchyTest : StringSpec({
+internal class ClassHierarchyTest : StringSpec({
 
     "works with classes in a hierarchy" {
         val p: LegalEntity = Person("John", "Doe", 27, Gender.MALE)
