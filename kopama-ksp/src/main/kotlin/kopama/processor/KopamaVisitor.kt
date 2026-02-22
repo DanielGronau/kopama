@@ -119,12 +119,8 @@ class KopamaVisitor(
 
     private fun paramTypeName(ksType: KSType, resolver: TypeParameterResolver): TypeName =
         when (val declaration = ksType.declaration) {
-            is KSClassDeclaration -> if (ksType.arguments.isEmpty()) ksType.toClassName() else
-                ksType.toClassName()
-                    .parameterizedBy(ksType.arguments.map {
-                        it.toTypeName(resolver)
-                    })
-
+            is KSClassDeclaration if ksType.arguments.isEmpty() -> ksType.toClassName()
+            is KSClassDeclaration if ksType.arguments.isNotEmpty() -> ksType.toTypeName(resolver)
             is KSTypeParameter -> declaration.toTypeVariableName(resolver)
             else -> loggedError("Cannot handle type ${ksType.declaration}")
         }.copy(nullable = ksType.nullability != Nullability.NOT_NULL)

@@ -1,7 +1,7 @@
 plugins {
     application
     kotlin("jvm")
-    id("com.google.devtools.ksp") version "2.1.20-2.0.1"
+    id("com.google.devtools.ksp") version "2.3.6"
 }
 
 group = "kopama-example"
