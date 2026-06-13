@@ -99,6 +99,19 @@ fun <P> eq(value: P): Pattern<P> =
     { it == value }
 
 /**
+ * Matches if the value is equal to the given value, same as `eq`.
+ *
+ * Note that you can use the unary plus instead (if not already defined, as for numbers) inside a match block.
+ *
+ * @param P the pattern target type.
+ * @param value the value to compare against.
+ * @return the resulting pattern.
+ */
+@Suppress("INVALID_CHARACTERS")
+@JvmName("equalTo")
+fun <P> `==`(value: P): Pattern<P> = eq(value)
+
+/**
  * Matches if the value is the same instance as the given value.
  *
  * @param P the pattern target type.
@@ -134,7 +147,7 @@ inline fun <reified Q> isA(): Pattern<Any> =
  * @param value the value to compare against.
  * @return the resulting pattern.
  */
-inline fun <reified C : Comparable<C>> gt(value: C): Pattern<C> =
+fun <C : Comparable<C>> gt(value: C): Pattern<C> =
     { it > value }
 
 /**
@@ -144,7 +157,7 @@ inline fun <reified C : Comparable<C>> gt(value: C): Pattern<C> =
  * @param value the value to compare against.
  * @return the resulting pattern.
  */
-inline fun <reified C : Comparable<C>> ge(value: C): Pattern<C> =
+fun <C : Comparable<C>> ge(value: C): Pattern<C> =
     { it >= value }
 
 /**
@@ -154,8 +167,13 @@ inline fun <reified C : Comparable<C>> ge(value: C): Pattern<C> =
  * @param value the value to compare against.
  * @return the resulting pattern.
  */
-inline fun <reified C : Comparable<C>> lt(value: C): Pattern<C> =
+fun <C : Comparable<C>> lt(value: C): Pattern<C> =
     { it < value }
+
+@Suppress("INVALID_CHARACTERS")
+@JvmName("lessThan")
+fun <C : Comparable<C>> `<`(value: C): Pattern<C> = lt(value)
+
 
 /**
  * Matches if the value is less than or equal to the given value.
@@ -164,7 +182,7 @@ inline fun <reified C : Comparable<C>> lt(value: C): Pattern<C> =
  * @param value the value to compare against.
  * @return the resulting pattern.
  */
-inline fun <reified C : Comparable<C>> le(value: C): Pattern<C> =
+fun <C : Comparable<C>> le(value: C): Pattern<C> =
     { it <= value }
 
 /**
@@ -175,7 +193,7 @@ inline fun <reified C : Comparable<C>> le(value: C): Pattern<C> =
  * @param upper the upper value (inclusive).
  * @return the resulting pattern.
  */
-inline fun <reified C : Comparable<C>> between(lower: C, upper: C): Pattern<C> =
+fun <C : Comparable<C>> between(lower: C, upper: C): Pattern<C> =
     { it in lower..upper }
 
 /**
@@ -185,5 +203,5 @@ inline fun <reified C : Comparable<C>> between(lower: C, upper: C): Pattern<C> =
  * @param range the range the value should fall in.
  * @return the resulting pattern.
  */
-inline fun <reified C : Comparable<C>> inRange(range: ClosedRange<C>): Pattern<C> =
+fun <C : Comparable<C>> inRange(range: ClosedRange<C>): Pattern<C> =
     { it in range }

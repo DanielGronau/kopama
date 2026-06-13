@@ -33,6 +33,9 @@ internal class ComparePatternTest : StringSpec({
         eq(23)(15) shouldBe false
         eq<Int?>(null)(null) shouldBe true
         eq<Int?>(null)(23) shouldBe false
+
+        `==`(23)(23) shouldBe true
+        `==`(23)(15) shouldBe false
     }
 
     "'isSame' should check if a value is the same instance as the given one" {
